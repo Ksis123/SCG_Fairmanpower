@@ -149,11 +149,11 @@
                                         <div class="container mt-4">
                                             <div class="btn-toolbar justify-content-between">
                                                 <div class="btn-group">
-                                                    <a href="admin/dashboard.php" class="admin-button">แอดมิน</a>
+                                                    <a href="admin/signin.php" class="admin-button">แอดมิน</a>
                                                 </div>
 
                                                 <div class="btn-group">
-                                                    <a href="employee/dashboard.php" class="empoyee-button">พนักงาน</a>
+                                                    <a href="employee/signin.php" class="empoyee-button">พนักงาน</a>
                                                 </div>
                                             </div>
                                         </div>
