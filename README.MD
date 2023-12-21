@@ -1,6 +1,6 @@
 <h2>Fair Manpower</h2>
 <h4> เป็นระบบวางแผนทรัพยากรมนุษย์ภายในองค์กร /h4>
-<h4>Sack : PHP , HTML , CSS , Javascript , SQL server</h4>
+<h4>Stack : PHP , HTML , CSS , Javascript , SQL server</h4>
 <hr>
 
 # วัตถุประสงค์
