@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="title">
-                                <h4>ข้อมูลโครงสร้างองค์กร : Business Unit</h4>
+                                <h3>ข้อมูลโครงสร้างองค์กร : Business Unit</h3>
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
@@ -36,15 +36,15 @@
                 <div class="row">
                     <div class="col-lg-8 col-md-6 col-sm-12 mb-30">
                         <div class="card-box pd-30 pt-10 height-100-p">
-                            <h2 class="mb-30 h4"></h2>
+                            <h2 class="mb-30 h4 text-blue">รายการ Business Unit ทั้งหมดในระบบ</h2>
                             <div class="pb-20">
                                 <table class="data-table table stripe hover nowrap">
                                     <thead>
                                         <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
+                                            <th>ลำดับ</th>
+                                            <th>Business Unit (TH)</th>
+                                            <th>Business Unit (ENG)</th>
+                                            <th>จัดการ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -62,7 +62,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label></label>
+                                                <label>ชื่อ Business Unit (TH)</label>
                                                 <input name="departmentname" type="text" class="form-control" required="true" autocomplete="off">
                                             </div>
                                         </div>
@@ -70,14 +70,14 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label></label>
+                                                <label>ชื่อ Business Unit (ENG)</label>
                                                 <input name="departmentshortname" type="text" class="form-control" required="true" autocomplete="off" style="text-transform:uppercase">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 text-right">
                                         <div class="dropdown">
-                                            <input class="btn btn-primary" type="submit" value="เพิ่มโครงสร้างองค์กร" name="add" id="add">
+                                            <input class="btn btn-primary" type="submit" value="เพิ่ม Business-Unit" name="add" id="add">
                                         </div>
                                     </div>
                                 </form>

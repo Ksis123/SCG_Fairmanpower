@@ -20,6 +20,7 @@
                                     <li class="breadcrumb-item"><a href="listemployee_Create.php">ข้อมูลพนักงานเบื้องต้น</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">ประวัติส่วนตัว</li>
                                     <li class="breadcrumb-item"><a href="listemployee_Education.php">ประวัติการศึกษา</a></li>
+                                    <li class="breadcrumb-item"><a href="listemployee_Workinfo.php">ประวัติการทำงาน</a></li>
                                     <li class="breadcrumb-item"><a href="listemployee_Manager.php">ผู้จัดการ</a></li>
                                     <li class="breadcrumb-item"><a href="listemployee_Report_to.php">report-to</a></li>
 

@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="title">
-                                <h4>ข้อมูลโครงสร้างองค์กร : Cost-Center</h4>
+                                <h3>ข้อมูลโครงสร้างองค์กร : Cost-Center</h3>
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
@@ -43,10 +43,9 @@
                                 <table class="data-table table stripe hover nowrap">
                                     <thead>
                                         <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
+                                            <th>ลำดับ</th>
+                                            <th>Cost-Center</th>
+                                            <th>จัดการ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -64,22 +63,15 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label></label>
-                                                <input name="departmentname" type="text" class="form-control" required="true" autocomplete="off">
+                                                <label>หมายเลข Cost-Center</label>
+                                                <input name="departmentname" type="number" class="form-control" required="true" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label></label>
-                                                <input name="departmentshortname" type="text" class="form-control" required="true" autocomplete="off" style="text-transform:uppercase">
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <div class="col-sm-12 text-right">
                                         <div class="dropdown">
-                                            <input class="btn btn-primary" type="submit" value="เพิ่มโครงสร้างองค์กร" name="add" id="add">
+                                            <input class="btn btn-primary" type="submit" value="เพิ่ม Cost-Center" name="add" id="add">
                                         </div>
                                     </div>
                                 </form>

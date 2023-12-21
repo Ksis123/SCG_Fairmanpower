@@ -35,7 +35,7 @@
 
 				</a>
 				<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-					<a class="dropdown-item" href="my_profile.php"><i class="dw dw-user1"></i> โปรไฟล์</a>
+					<a class="dropdown-item" href="profile.php"><i class="dw dw-user1"></i> โปรไฟล์</a>
 					<a class="dropdown-item" href="change_password.php"><i class="dw dw-help"></i> เปลี่ยนรหัสผ่าน</a>
 					<a class="dropdown-item" href="signout.php"><i class="dw dw-logout"></i> ออกจากระบบ </a>
 				</div>

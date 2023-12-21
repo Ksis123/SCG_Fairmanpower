@@ -213,13 +213,13 @@
 
                                             <div class="form-group">
                                                 <label>Email :</label>
-                                                <input type="email" class="form-control formcustom" value="<?php echo $email; ?>" name="email" require autofocus>
+                                                <input type="email" class="form-control formcustom" placeholder="example@scg.com" value="<?php echo $email; ?>" name="email" require autofocus>
                                                 <?php echo $email_err; ?>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Password :</label>
-                                                <input type="password" class="form-control formcustom" name="password" require autofocus>
+                                                <input type="password" placeholder="********" class="form-control formcustom" name="password" require autofocus>
                                                 <?php echo $pass_err; ?>
 
                                             </div>

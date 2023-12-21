@@ -45,9 +45,24 @@
                     </a>
                     <ul class="submenu">
                         <li><a href="listemployee.php">รายการข้อมูลพนักงานทั้งหมด</a></li>
-                        <li><a href="approve_total.php">รายการอนุมัติพนักงานใหม่ทั้งหมด</a></li>
-                        <li><a href="#">ประวัติพนักงานใหม่ผ่านอนุมัติ</a></li>
-                        <li><a href="#">ประวัติปฐิเสธพนักงานใหม่</a></li>
+                        <li><a href="listemployee_Create.php">ข้อมูลพนักงานเบื้องต้น</a></li>
+                        <li><a href="listemployee_Info.php">ประวัติส่วนตัว</a></li>
+                        <li><a href="listemployee_Education.php">ประวัติการศึกษา</a></li>
+                        <li><a href="listemployee_Workinfo.php">ประวัติการทำงาน</a></li>
+                        <li><a href="listemployee_Manager.php">ผู้จัดการ</a></li>
+                        <li><a href="listemployee_Report_to.php">report-to</a></li>
+
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="mtext">พนักงานทดลองงาน</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="">รายการพนักงานทดลองทั้งหมด</a></li>
+                        <li><a href="">ประวัติพนักงานทดลองงานผ่าน</a></li>
+                        <li><a href="">ประวัติพนักงานทดลองงานไม่ผ่าน</a></li>
                     </ul>
                 </li>
                 <li>

@@ -35,7 +35,7 @@ require_once "../config/connection.php";
             <div class="title pb-20">
                 <h2 class="h3 mb-0">Dashboard</h2>
             </div>
-            <div class="card-box pd-20 height-100-p mb-30">
+            <div class="card-box pd-20  mb-30">
 
             </div>
         </div>

@@ -20,6 +20,7 @@
                                     <li class="breadcrumb-item active" aria-current="page">ข้อมูลพนักงานเบื้องต้น</li>
                                     <li class="breadcrumb-item"><a href="listemployee_Info.php">ประวัติส่วนตัว</a></li>
                                     <li class="breadcrumb-item"><a href="listemployee_Education.php">ประวัติการศึกษา</a></li>
+                                    <li class="breadcrumb-item"><a href="listemployee_Workinfo.php">ประวัติการทำงาน</a></li>
                                     <li class="breadcrumb-item"><a href="listemployee_Manager.php">ผู้จัดการ</a></li>
                                     <li class="breadcrumb-item"><a href="listemployee_Report_to.php">report-to</a></li>
 
@@ -45,7 +46,7 @@
                                         <div class="form-group">
                                             <label>คำนำหน้าชื่อ (ภาษาไทย)</label>
                                             <select name="prefix_th" class="custom-select form-control" required="true" autocomplete="off">
-                                                <option value="">ระบุคำนำหน้าชื่อ</option>
+                                                <option value="" disabled selected>ระบุคำนำหน้าชื่อ</option>
                                                 <option value="นาย">นาย</option>
                                                 <option value="นาง">นาง</option>
                                                 <option value="นางสาว">นางสาว</option>
@@ -70,30 +71,21 @@
                                             <input name="nickname_thai" type="text" class="form-control wizard-required" required="true" autocomplete="off">
                                         </div>
                                     </div>
-                                    <div class="col-md-1 col-sm-6">
+                                    <div class="col-md-2 col-sm-12">
                                         <div class="form-group">
-                                            <label>อายุ</label>
-                                            <div class="flex">
-                                                <input name="age_year" type="number" placeholder="ปี" class="form-control wizard-required" required="true" autocomplete="off">
-                                            </div>
+                                            <label>วันเกิดพนักงาน</label>
+                                            <input name="birth_date" type="text" class="form-control date-picker" required="true" autocomplete="off">
                                         </div>
                                     </div>
-                                    <div class="col-md-1 col-sm-6">
-                                        <div class="form-group">
-                                            <label>.</label>
 
-                                            <div class="flex">
-                                                <input name="age_month" type="number" placeholder="เดือน" class="form-control wizard-required" required="true" autocomplete="off">
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-2 col-sm-12">
                                         <div class="form-group">
                                             <label>คำนำหน้าชื่อ (ภาษาอังกฤษ)</label>
                                             <select name="prefix_eng" class="custom-select form-control" required="true" autocomplete="off">
-                                                <option value="">ระบุคำนำหน้าชื่อ</option>
+                                                <option value="" disabled selected>ระบุคำนำหน้าชื่อ</option>
                                                 <option value="MR.">MR.</option>
                                                 <option value="MS.">MS.</option>
                                                 <option value="MRS.">MRS.</option>
@@ -118,14 +110,20 @@
                                             <input name="nickname_eng" type="text" class="form-control wizard-required" required="true" autocomplete="off">
                                         </div>
                                     </div>
-                                    <div class="col-md-2 col-sm-12">
-                                        <div class="form-group ">
-                                            <div class="text-left">
-                                                <label>ระบุเพศ</label>
+                                    <div class="col-md-1 col-sm-1">
+                                        <div class="form-group">
+                                            <label>อายุ</label>
+                                            <div class="flex">
+                                                <input name="age_year" type="number" placeholder="ปี" class="form-control wizard-required" required="true" autocomplete="off">
                                             </div>
-                                            <div class="text-left flex col-md-2">
-                                                <input type="radio" name="gender" value="male" checked>ชาย <br>
-                                                <input type="radio" name="gender" value="female" checked> หญิง<br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1 col-sm-1">
+                                        <div class="form-group">
+                                            <label>.</label>
+
+                                            <div class="flex">
+                                                <input name="age_month" type="number" placeholder="เดือน" class="form-control wizard-required" required="true" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -134,29 +132,159 @@
                                     <div class="col-md-3 col-sm-12">
                                         <div class="form-group">
                                             <label>รหัสบัตรประชาชนของพนักงาน (Card_id)</label>
-                                            <input name="card_id" type="number" class="form-control wizard-required" required="true" autocomplete="off">
+                                            <input name="card_id" placeholder="1949999999991" type="number" class="form-control wizard-required" required="true" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-sm-12">
                                         <div class="form-group">
                                             <label>รหัสส่วนบุคคล (Personal Number)</label>
-                                            <input name="person_id" type="number" class="form-control wizard-required" required="true" autocomplete="off">
+                                            <input name="person_id" placeholder="1002479" type="number" class="form-control wizard-required" required="true" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-sm-12">
                                         <div class="form-group">
                                             <label>รหัสประจำตัวบุคคล (Personnel Number)</label>
-                                            <input name="personnel_number" type="number" class="form-control wizard-required" required="true" autocomplete="off">
+                                            <input name="personnel_number" placeholder="1002247" type="number" class="form-control wizard-required" required="true" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-sm-12">
                                         <div class="form-group">
                                             <label>รหัสพนักงาน (SCG Employee)</label>
-                                            <input name="scg_employee_id" type="text" class="form-control wizard-required" required="true" autocomplete="off">
+                                            <input name="scg_employee_id" placeholder="0150-1141" type="text" class="form-control wizard-required" required="true" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
 
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-12">
+                                        <div class="form-group">
+                                            <label>เลขประกันสังคม</label>
+                                            <input name="social_security_id" type="password" placeholder="**********" class="form-control" required="true" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-12">
+                                        <div class="form-group">
+                                            <label>เลขประจำตัวผู้เสียภาษี</label>
+                                            <input name="tax_id" type="text" placeholder="**********" class="form-control" required="true" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-12">
+                                        <div class="form-group">
+                                            <label>ประเภทพนักงาน</label>
+                                            <select name="contract_type_id" class="custom-select form-control" required="true" autocomplete="off">
+                                                <option value="" disabled selected>ระบุประเภทพนักงาน</option>
+                                                <option value="พนักงานประจำ">พนักงานประจำ</option>
+                                                <option value="Outsource">Outsource</option>
+                                                <option value="สัญญาจ้างพิเศษ">สัญญาจ้างพิเศษ</option>
+                                                <option value="นักศึกษาฝึกงาน">นักศึกษาฝึกงาน</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-12">
+                                        <div class="form-group">
+                                            <label>ตำแหน่ง</label>
+                                            <select name="position_text_thai" class="custom-select form-control" required="true" autocomplete="off">
+                                                <option value="" disabled selected>ระบุตำแหน่งพนักงาน</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-12">
+                                        <div class="form-group">
+                                            <label>แผนก</label>
+                                            <select name="department_text_thai" class="custom-select form-control" required="true" autocomplete="off">
+                                                <option value="" disabled selected>ระบุแผนกพนักงาน</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-12">
+                                        <div class="form-group">
+                                            <label>ระดับ PL</label>
+                                            <select name="pl_text_thai" class="custom-select form-control" required="true" autocomplete="off">
+                                                <option value="" disabled selected>ระบุระดับ PL พนักงาน</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-12">
+                                        <div class="form-group ">
+                                            <label class="text-left">ระบุเพศ</label>
+                                            <div class="text-left flex col-md-4">
+                                                <input type="radio" name="gender" value="male" checked>ชาย <br>
+                                                <input type="radio" name="gender" value="female" checked> หญิง<br>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2 col-sm-12">
+                                        <div class="form-group">
+                                            <label>วันที่เริ่มงาน SCG :</label>
+                                            <input name="scg_pro_date" type="text" class="form-control date-picker" required="true" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-12">
+                                        <div class="form-group">
+                                            <label>วันที่บรรจุ SCG :</label>
+                                            <input name="scg_hiring_date" type="text" class="form-control date-picker" required="true" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-12">
+                                        <div class="form-group">
+                                            <label>วันที่เกษียณ</label>
+                                            <input name="retired_date" type="text" class="form-control date-picker" required="true" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-12">
+                                        <div class="form-group">
+                                            <label>วันที่สิ้นสุดการจ้าง</label>
+                                            <input name="termination_date" type="text" class="form-control date-picker" required="true" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-12">
+                                        <div class="form-group">
+                                            <label>ระยะเวลาทดลองงาน</label>
+                                            <input name="pro_date" type="number" class="form-control" required="true" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label>อีเมล</label>
+                                            <input name="employee_email" placeholder="example@scg.com" type="text" class="form-control" required="true" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label>รหัสผ่าน</label>
+                                            <input name="employee_password" placeholder="*********" type="text" class="form-control" required="true" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-12">
+                                        <div class="form-group">
+                                            <label>รหัสคอสเซนเตอร์</label>
+                                            <select name="cost_center_id" class="custom-select form-control" required="true" autocomplete="off">
+                                                <option value=""></option>
+                                                <option value="0150-93210">0150-93210</option>
+                                                <option value="0150-90200">0150-90200</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-12">
+                                        <div class="form-group">
+                                            <label>รหัสสถานะการทำงาน</label>
+                                            <select name="employment_status_id" class="custom-select form-control" required="true" autocomplete="off">
+                                                <option value=""></option>
+                                                <option value="ทำงาน">ทำงาน</option>
+                                                <option value="พักงาน/ลางาน">พักงาน/ลางาน</option>
+                                                <option value="ลาออก">ลาออก</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-1 col-sm-12">
                                         <div class="form-group">
@@ -227,82 +355,6 @@
                                 <div class="row">
                                     <div class="col-md-2 col-sm-12">
                                         <div class="form-group">
-                                            <label>เลขประกันสังคม</label>
-                                            <input name="social_security_id" type="password" placeholder="**********" class="form-control" required="true" autocomplete="off">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 col-sm-12">
-                                        <div class="form-group">
-                                            <label>เลขประจำตัวผู้เสียภาษี</label>
-                                            <input name="tax_id" type="text" class="form-control" required="true" autocomplete="off">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 col-sm-12">
-                                        <div class="form-group">
-                                            <label>วันที่เริ่มงาน SCG :</label>
-                                            <input name="scg_hiring_date" type="text" class="form-control date-picker" required="true" autocomplete="off">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 col-sm-12">
-                                        <div class="form-group">
-                                            <label>วันที่เกษียณ</label>
-                                            <input name="retired_date" type="text" class="form-control date-picker" required="true" autocomplete="off">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 col-sm-12">
-                                        <div class="form-group">
-                                            <label>วันที่สิ้นสุดการจ้าง</label>
-                                            <input name="termination_date" type="text" class="form-control date-picker" required="true" autocomplete="off">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 col-sm-12">
-                                        <div class="form-group">
-                                            <label>ประเภทพนักงาน</label>
-                                            <select name="contract_type_id" class="custom-select form-control" required="true" autocomplete="off">
-                                                <option value=""></option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4 col-sm-12">
-                                        <div class="form-group">
-                                            <label>อีเมล</label>
-                                            <input name="employee_email" placeholder="example@scg.com" type="text" class="form-control" required="true" autocomplete="off">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-12">
-                                        <div class="form-group">
-                                            <label>รหัสผ่าน</label>
-                                            <input name="employee_password" placeholder="*********" type="text" class="form-control" required="true" autocomplete="off">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 col-sm-12">
-                                        <div class="form-group">
-                                            <label>รหัสคอสเซนเตอร์</label>
-                                            <select name="cost_center_id" class="custom-select form-control" required="true" autocomplete="off">
-                                                <option value=""></option>
-                                                <option value="0150-93210">0150-93210</option>
-                                                <option value="0150-90200">0150-90200</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 col-sm-12">
-                                        <div class="form-group">
-                                            <label>รหัสสถานะการทำงาน</label>
-                                            <select name="employment_status_id" class="custom-select form-control" required="true" autocomplete="off">
-                                                <option value=""></option>
-                                                <option value="ทำงาน">ทำงาน</option>
-                                                <option value="พักงาน/ลางาน">พักงาน/ลางาน</option>
-                                                <option value="ลาออก">ลาออก</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-2 col-sm-12">
-                                        <div class="form-group">
                                             <label>เลือกธนาคาร</label>
                                             <select name="bank_name" class="custom-select form-control" required="true" autocomplete="off">
                                                 <option value="">ระบุธนาคาร</option>
@@ -329,6 +381,12 @@
                                             <input name="bank_account_id" placeholder="ระบุหมายเลขบัญชี" type="number" class="form-control" required="true" autocomplete="off">
                                         </div>
                                     </div>
+                                    <div class="col-md-2 col-sm-12">
+                                        <div class="form-group">
+                                            <label>วันทำงาน/สัปดาห์</label>
+                                            <input name="work_per_day" type="number" class="form-control" required="true" autocomplete="off">
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="row">
@@ -336,9 +394,9 @@
                                         <div class="form-group">
                                             <label style="font-size:24px;"><b></b></label>
                                             <div class="justify-content-center">
-                                            <button style="font-size:20px;" onclick="location.href='listemployee.php'" type="button" class="btn btn-default" data-dismiss="modal"><i class="fa-solid fa-circle-left"> </i> ย้อนกลับ</button>
-                                            <!-- color:#AAAAAA -->
-                                        </div>
+                                                <button style="font-size:20px;" onclick="location.href='listemployee.php'" type="button" class="btn btn-default" data-dismiss="modal"><i class="fa-solid fa-circle-left"> </i> ย้อนกลับ</button>
+                                                <!-- color:#AAAAAA -->
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-sm-12">

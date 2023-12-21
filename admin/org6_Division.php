@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="title">
-                                <h4>ข้อมูลโครงสร้างองค์กร : Division</h4>
+                                <h3>ข้อมูลโครงสร้างองค์กร : Division</h3>
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
@@ -42,10 +42,10 @@
                                 <table class="data-table table stripe hover nowrap">
                                     <thead>
                                         <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
+                                            <th>ลำดับ</th>
+                                            <th>Division (TH)</th>
+                                            <th>Division (ENG)</th>
+                                            <th>จัดการ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -63,7 +63,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label></label>
+                                                <label>ชื่อ Division (TH)</label>
                                                 <input name="departmentname" type="text" class="form-control" required="true" autocomplete="off">
                                             </div>
                                         </div>
@@ -71,14 +71,14 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label></label>
+                                                <label>ชื่อ Division (ENG)</label>
                                                 <input name="departmentshortname" type="text" class="form-control" required="true" autocomplete="off" style="text-transform:uppercase">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 text-right">
                                         <div class="dropdown">
-                                            <input class="btn btn-primary" type="submit" value="เพิ่มโครงสร้างองค์กร" name="add" id="add">
+                                            <input class="btn btn-primary" type="submit" value="เพิ่ม Division" name="add" id="add">
                                         </div>
                                     </div>
                                 </form>

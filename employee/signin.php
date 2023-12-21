@@ -210,13 +210,13 @@
 
                                             <div class="form-group">
                                                 <label>Email :</label>
-                                                <input type="email" class="form-control formcustom" value="<?php echo $email; ?>" name="email">
+                                                <input type="email" class="form-control formcustom" placeholder="example@scg.com" value="<?php echo $email; ?>" name="email">
                                                 <?php echo $email_err; ?>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Password :</label>
-                                                <input type="password" class="form-control formcustom" name="password">
+                                                <input type="password" placeholder="********" class="form-control formcustom" name="password">
                                                 <?php echo $pass_err; ?>
                                             </div>
 

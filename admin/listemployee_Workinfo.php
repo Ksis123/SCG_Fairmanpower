@@ -12,18 +12,17 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="title">
-                                <h3>ประวัติการศึกษา</h3>
+                                <h3>ประวัติการทำงาน</h3>
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="listemployee.php">รายการข้อมูลพนักงานทั้งหมด</a></li>
                                     <li class="breadcrumb-item"><a href="listemployee_Create.php">ข้อมูลพนักงานเบื้องต้น</a></li>
                                     <li class="breadcrumb-item"><a href="listemployee_Info.php">ประวัติส่วนตัว</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">ประวัติการศึกษา</li>
-                                    <li class="breadcrumb-item"><a href="listemployee_Workinfo.php">ประวัติการทำงาน</a></li>
+                                    <li class="breadcrumb-item"><a href="listemployee_Education.php">ประวัติการศึกษา</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">ประวัติการทำงาน</li>
                                     <li class="breadcrumb-item"><a href="listemployee_Manager.php">ผู้จัดการ</a></li>
                                     <li class="breadcrumb-item"><a href="listemployee_Report_to.php">report-to</a></li>
-
                                 </ol>
                             </nav>
                         </div>
@@ -61,67 +60,61 @@
                                     </div>
                                     <div class="col-md-3 col-sm-12">
                                         <div class="form-group">
-                                            <label>วุฒิการศึกษา</label>
-                                            <select name="education_level_entry_degree" class="custom-select form-control" required="true" autocomplete="off">
-                                                <option value=""></option>
-                                                <option value="บัณฑิตปี">บัณฑิตปี 4-6</option>
-                                                <option value="บัณฑิต (ปริญญาตรี)">บัณฑิต (ปริญญาตรี)</option>
-                                                <option value="มหาบัณฑิต (ปริญญาโท)">มหาบัณฑิต (ปริญญาโท)</option>
-                                            </select>
+                                            <label>ตำแหน่ง</label>
+                                            <input name="position" type="text" placeholder="Fron-End Developer" class="form-control wizard-required" required="true" autocomplete="off" disabled>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-
-                                    <div class="col-md-3 col-sm-12">
+                                    <div class="col-md-4 col-sm-12">
                                         <div class="form-group">
-                                            <label>ใบรับรองการศึกษา</label>
-                                            <input name="image" id="file" type="file" class="form-control wizard-required" accept="image/*" onchange="validateImage('file')">
+                                            <label>ประสบการณ์ทำงานภายใน SCG (ปี)</label>
+                                            <input name="service_year" type="text" class="form-control wizard-required" required="true" autocomplete="off">
                                         </div>
                                     </div>
-                                    <div class="col-md-3 col-sm-12">
+                                    <div class="col-md-4 col-sm-12">
                                         <div class="form-group">
-                                            <label>คณะ</label>
-                                            <select name="faculty_entry_degree" class="custom-select form-control" required="true" autocomplete="off">
-                                                <option value=""></option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-12">
-                                        <div class="form-group">
-                                            <label>วิชาเอก</label>
-                                            <select name="major_entry_degree" class="custom-select form-control" required="true" autocomplete="off">
-                                                <option value=""></option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-12">
-                                        <div class="form-group">
-                                            <label>สถาบัน</label>
-                                            <select name="institute_entry_degree" class="custom-select form-control" required="true" autocomplete="off">
-                                                <option value=""></option>
-                                            </select>
+                                            <div class="form-group">
+                                                <label>ประสบการณ์ทำงานภายใน SCG (เดือน)</label>
+                                                <input name="service_month" type="text" class="form-control wizard-required" required="true" autocomplete="off">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row">
-                                    <div class="col-md-2 col-sm-12">
+                                    <div class="col-md-4 col-sm-12">
                                         <div class="form-group">
-                                            <label>เกรดเฉลี่ย</label>
-                                            <input name="grade_entry_degree" type="text" class="form-control wizard-required" required="true" autocomplete="off">
-
+                                            <label>ประสบการณ์ทำงานภายนอก</label>
+                                            <input name="outside_equivalent_year" type="text" class="form-control wizard-required" required="true" autocomplete="off">
                                         </div>
                                     </div>
-                                    <div class="col-md-2 col-sm-12">
+                                    <div class="col-md-4 col-sm-12">
                                         <div class="form-group">
-                                            <label>ปีที่สำเร็จการศึกษา</label>
-                                            <input name="year_acquired_entry_degree" type="text" class="form-control date-picker" required="true" autocomplete="off">
+                                            <div class="form-group">
+                                                <label>ประสบการณ์ทำงานภายนอก</label>
+                                                <input name="outside_equivalent_month" type="text" class="form-control wizard-required" required="true" autocomplete="off">
+                                            </div>
                                         </div>
                                     </div>
-
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label>ประสบการณ์ทำงานทั้งหมด (ปี)</label>
+                                            <input name="equivalent_year" type="text" class="form-control wizard-required" required="true" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label>ประสบการณ์ทำงานทั้งหมด (เดือน)</label>
+                                                <input name="equivalent_month" type="text" class="form-control wizard-required" required="true" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="row">
                                     <div class="col-md-3 col-sm-12">
                                         <div class="form-group">
@@ -136,7 +129,7 @@
                                         <div class="form-group">
                                             <label style="font-size:16px;"><b></b></label>
                                             <div class="text-right">
-                                                <button style="font-size:16px;" class="btn btn-primary" name="add_staff" id="add_staff" data-toggle="modal">บันทึก&nbsp;ประวัติการศึกษา</button>
+                                                <button style="font-size:16px;" class="btn btn-primary" name="add_staff" id="add_staff" data-toggle="modal">บันทึก&nbsp;ประวัติการทำงาน</button>
                                             </div>
                                         </div>
                                     </div>
