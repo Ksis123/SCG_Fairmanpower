@@ -1,15 +1,19 @@
 <?php
-    $serverName = "KHEMKHEMIS"; 
+$serverName = "52.139.193.40, 3511";
+$connectionOptions = array(
+    "Database" => "fairman",
+    "Uid" => "follow",
+    "PWD" => "Follow@2022",
+    "CharacterSet" => "UTF-8" 
+);
 
-    $connectionInfo = array(
-        "Database" => "scg_fair_manpower"
-    );
-    $conn = sqlsrv_connect($serverName, $connectionInfo);
+// Establishes the connection
+$conn = sqlsrv_connect($serverName, $connectionOptions);
 
-    if ($conn) {
-        echo "Connection established.<br />";
-    } else {
-        echo "Connection could not be established.<br />";
-        die(print_r(sqlsrv_errors(), true));
-    }
+if ($conn) {
+    echo "Connection established.";
+} else {
+    echo "Connection could not be established.";
+    die(print_r(sqlsrv_errors(), true));
+}
 ?>

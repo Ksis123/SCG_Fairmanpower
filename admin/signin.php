@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/ico" href="../favicon.ico">
-    
-    <link href="../asset/css/styles.css" rel="stylesheet">
+
+    <link href="../asset/css/signin.css" rel="stylesheet">
 
     <script src="../asset/plugins/sweetalert2-11.10.1/jquery-3.7.1.min.js"></script>
     <script src="../asset/plugins/sweetalert2-11.10.1/sweetalert2.all.min.js"></script>
@@ -63,12 +63,18 @@
         }
 
         h1 {
+            src: url('../asset/fonts/Inter/Inter-VariableFont_slnt\,wght.ttf');
             font-size: 38px;
             font-weight: bold;
             color: #ed2626;
-            text-shadow: -1px 1px #000, 1px 1px 0 #ffffff, 1px -1px 0 #ffffff, -1px -1px 0 #ffffff;
             /* box-shadow: 0px 2px 15px -6px #000000; */
 
+        }
+
+        h2 {
+            font-size: 38px;
+            font-weight: bold;
+            color: #ED2626;
         }
 
         h4 {
@@ -76,7 +82,7 @@
         }
 
         input[type=submit] {
-            width: 50%;
+            width: 80%;
             padding: 14px 20px;
             margin: 8px 0;
             border: none;
@@ -114,7 +120,7 @@
         }
 
         input:focus {
-            border: 2px solid #A3DBD6 !important;
+            border: 2px solid #90d4ce !important;
             box-shadow: 0px 0px 5px rgba(56, 169, 240, 0.75) !important;
         }
 
@@ -159,7 +165,9 @@
             echo "<script>";
             echo "Swal.fire({title: 'เข้าสู่ระบบสำเร็จ!',text: 'ยินดีต้อนรับสู่ Fair Manpower', icon: 'success', timer: 1500});";
             echo "</script>";
-            require_once "../connection.php";
+            header("Location: dashboard.php");
+            sleep(2);
+            // require_once "../connection.php";
 
             $sql_query = "SELECT * FROM admin WHERE email='$email' && password = '$pass'  ";
             $result = mysqli_query($conn, $sql_query);
@@ -171,7 +179,7 @@
                     session_unset();
                     $_SESSION["email"] = $rows["email"];
 
-                    header("Location: dashboard.php?login-sucess");
+                    header("Location: dashboard.php?");
                 }
             } else {
                 echo "<script>";
@@ -192,14 +200,14 @@
                         <div class="col-xl-6">
                             <div class="form-input-content">
                                 <div class="card login-form mb-0">
-                                    <div class="card-body pt-5 shadow">
-
+                                    <div class="card-body pt-10 shadow">
                                         <div class="BoxLogo">
                                             <div className="BoxLogoinfo">
                                                 <img src="https://salmon-charming-stingray-66.mypinata.cloud/ipfs/QmebXP3b8JbPb14WvphSJQavhqtBgFTcYBfZD6X5rkiUbP?_gl=1*j2trn5*_ga*MTE0ODI0Mjc0LjE2OTY4NjQ2MTU.*_ga_5RMPXG14TE*MTcwMjI4NTMyNi41OC4xLjE3MDIyODY1OTEuNjAuMC4w" class="Logo " />
                                             </div>
                                         </div>
-                                        <h1 class="text-center">Fair Manpower</h1>
+                                        <h1 class="text-center">Fair Manpower <h2 class="text-center">แอดมิน</h2>
+                                        </h1>
                                         <hr class="custom">
                                         <form id="loginForm" method="POST" action=" <?php htmlspecialchars($_SERVER['PHP_SELF']) ?>">
 
