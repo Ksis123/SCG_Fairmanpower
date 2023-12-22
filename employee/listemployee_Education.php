@@ -16,7 +16,7 @@
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="listemployee.php">รายการข้อมูลพนักงานทั้งหมด</a></li>
+                                    <li class="breadcrumb-item"><a href="home.php">หน้าหลัก</a></li>
                                     <li class="breadcrumb-item"><a href="listemployee_Create.php">ข้อมูลพนักงานเบื้องต้น</a></li>
                                     <li class="breadcrumb-item"><a href="listemployee_Info.php">ประวัติส่วนตัว</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">ประวัติการศึกษา</li>

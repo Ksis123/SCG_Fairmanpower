@@ -12,7 +12,7 @@
 			<div class="dropdown">
 				<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 					<span class="user-icon">
-						<img src="<?php echo (!empty($row['location'])) ? '../uploads/' . $row['location'] : '../asset/img/employee.png'; ?>" alt="">
+						<img src="<?php echo (!empty($row['location'])) ? '../uploads/' . $row['location'] : '../asset/img/employeeicon.png'; ?>" alt="">
 					</span>
 					<span class="xp-user-live"></span>
 					<span class="user-name">นายศิวกร แก้วมาลา</span>
