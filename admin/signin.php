@@ -19,6 +19,10 @@
             margin: 0;
         }
 
+        .flex {
+            display: flex;
+        }
+
         .bg {
             background-image: url("https://salmon-charming-stingray-66.mypinata.cloud/ipfs/QmWJbmPVGoa4aErMAaCVkH8LXbXPcopAkkNDsbzV27Rnk4?_gl=1*1eemf2l*_ga*MTE0ODI0Mjc0LjE2OTY4NjQ2MTU.*_ga_5RMPXG14TE*MTcwMjI4NTMyNi41OC4xLjE3MDIyODcyMDguNjAuMC4w");
             height: 100%;
@@ -130,66 +134,36 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
+
+        .user-icon {
+            width: 82px;
+            height: 82px;
+            font-size: 24px;
+            background: #ebeff3;
+            color: #524d7d;
+            line-height: 52px;
+            text-align: center;
+            display: inline-block;
+            vertical-align: middle;
+            border-radius: 100%;
+            -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .18);
+            box-shadow: 0 0 10px rgba(0, 0, 0, .18)
+        }
+
+        .line-icon {
+            width: 72px;
+            height: 72px;
+            background: #ebeff3;
+            color: #524d7d;
+            -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .18);
+            box-shadow: 0 0 10px rgba(0, 0, 0, .18)
+        }
     </style>
 
 </head>
 
 <body>
 
-
-    <?php
-    $email_err = $pass_err = $login_Err = "";
-    $email = $pass = "";
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-        if (empty($_REQUEST["email"])) {
-            $email_err = " <p style='color:red'> * กรุณากรอกอีเมล</p> ";
-            echo "<script>";
-            echo "Swal.fire({title: 'อีเมลไม่ถูกต้อง!',text: 'กรุณาระบุอีเมลให้ถูกต้อง ', icon: 'error', confirmButtonText: 'ตกลง'});";
-            echo "</script>";
-        } else {
-            $email = $_REQUEST["email"];
-        }
-
-        if (empty($_REQUEST["password"])) {
-            $pass_err =  " <p style='color:red'> * กรุณากรอกรหัสผ่าน</p> ";
-            echo "<script>";
-            echo "Swal.fire({title: 'รหัสผ่านไม่ถูกต้อง!',text: 'กรุณาระบุรหัสผ่านให้ถูกต้อง', icon: 'error', confirmButtonText: 'ตกลง'});";
-            echo "</script>";
-        } else {
-            $pass = $_REQUEST["password"];
-        }
-        if (!empty($email) && !empty($pass)) {
-            // database connection
-            echo "<script>";
-            echo "Swal.fire({title: 'เข้าสู่ระบบสำเร็จ!',text: 'ยินดีต้อนรับสู่ Fair Manpower', icon: 'success', timer: 1500});";
-            echo "</script>";
-            header("Location: dashboard.php");
-            sleep(2);
-            // require_once "../connection.php";
-
-            $sql_query = "SELECT * FROM admin WHERE email='$email' && password = '$pass'  ";
-            $result = mysqli_query($conn, $sql_query);
-
-            if (mysqli_num_rows($result) > 0) {
-
-                while ($rows = mysqli_fetch_assoc($result)) {
-                    session_start();
-                    session_unset();
-                    $_SESSION["email"] = $rows["email"];
-
-                    header("Location: dashboard.php?");
-                }
-            } else {
-                echo "<script>";
-                echo "Swal.fire({title: 'เข้าสู่ระบบไม่สำเร็จ!',text: 'อีเมลหรือรหัสผ่านของท่านไม่ถูกต้อง', icon: 'error', confirmButtonText: 'ตกลง'});";
-                echo "</script>";
-            }
-        }
-    }
-
-    ?>
     <!-- php script end -->
 
     <div class="bg" style="height: 100%">
@@ -201,34 +175,25 @@
                             <div class="form-input-content">
                                 <div class="card login-form mb-0">
                                     <div class="card-body pt-10 shadow">
+
                                         <div class="BoxLogo">
                                             <div className="BoxLogoinfo">
                                                 <img src="https://salmon-charming-stingray-66.mypinata.cloud/ipfs/QmebXP3b8JbPb14WvphSJQavhqtBgFTcYBfZD6X5rkiUbP?_gl=1*j2trn5*_ga*MTE0ODI0Mjc0LjE2OTY4NjQ2MTU.*_ga_5RMPXG14TE*MTcwMjI4NTMyNi41OC4xLjE3MDIyODY1OTEuNjAuMC4w" class="Logo " />
                                             </div>
                                         </div>
-                                        <h1 class="text-center">Fair Manpower <h2 class="text-center">แอดมิน</h2>
-                                        </h1>
+                                        <div class="text-center">
+                                            <h1>Fair Manpower
+                                                <h2>แอดมิน</h2>
+                                            </h1>
+                                        </div>
                                         <hr class="custom">
-                                        <form id="loginForm" method="POST" action=" <?php htmlspecialchars($_SERVER['PHP_SELF']) ?>">
+                                        <!-- <form id="loginForm" method="POST"> -->
 
-                                            <div class="form-group">
-                                                <label>Email :</label>
-                                                <input type="email" class="form-control formcustom" placeholder="example@scg.com" value="<?php echo $email; ?>" name="email" require autofocus>
-                                                <?php echo $email_err; ?>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>Password :</label>
-                                                <input type="password" placeholder="********" class="form-control formcustom" name="password" require autofocus>
-                                                <?php echo $pass_err; ?>
-
-                                            </div>
-
-                                            <div class="form-group text-center">
-                                                <input type="submit" value="เข้าสู่ระบบ" class="login-button " name="signin">
-                                            </div>
-                                            <p class="text-center login-form__footer">กรณีไม่ใช่แอดมิน? โปรด <a href="../employee/signin.php" class="text-primary">เข้าสู่ระบบในฐานะพนักงาน</a></p>
-                                        </form>
+                                        <div class="form-group text-center">
+                                            <input type="submit" value="เข้าสู่ระบบด้วย LINE" class="login-button " name="signin" onclick="location.href='dashboard.php'">
+                                        </div>
+                                        <p class="text-center login-form__footer">กรณีไม่ใช่แอดมิน? โปรด <a href="../employee/signin.php" class="text-primary">เข้าสู่ระบบในฐานะพนักงาน</a></p>
+                                        <!-- </form> -->
                                     </div>
                                 </div>
                             </div>
