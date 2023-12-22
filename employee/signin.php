@@ -137,7 +137,6 @@
 <body>
 
     <?php
-
     $email_err = $pass_err = $login_Err = "";
     $email = $pass = "";
 
@@ -146,7 +145,7 @@
         if (empty($_REQUEST["email"])) {
             $email_err = " <p style='color:red'> * กรุณากรอกอีเมล</p> ";
             echo "<script>";
-            echo "Swal.fire({title: 'กรุณาระบุอีเมล !',text: '', icon: 'error', confirmButtonText: 'ตกลง'});";
+            echo "Swal.fire({title: 'อีเมลไม่ถูกต้อง!',text: 'กรุณาระบุอีเมลให้ถูกต้อง ', icon: 'error', confirmButtonText: 'ตกลง'});";
             echo "</script>";
         } else {
             $email = $_REQUEST["email"];
@@ -155,34 +154,35 @@
         if (empty($_REQUEST["password"])) {
             $pass_err =  " <p style='color:red'> * กรุณากรอกรหัสผ่าน</p> ";
             echo "<script>";
-            echo "Swal.fire({title: 'รหัสผ่านไม่ถูกต้อง!',text: 'กรุณากรอกรหัสผ่านให้ถูกต้อง', icon: 'error', confirmButtonText: 'ตกลง'});";
+            echo "Swal.fire({title: 'รหัสผ่านไม่ถูกต้อง!',text: 'กรุณาระบุรหัสผ่านให้ถูกต้อง', icon: 'error', confirmButtonText: 'ตกลง'});";
             echo "</script>";
         } else {
             $pass = $_REQUEST["password"];
         }
-
         if (!empty($email) && !empty($pass)) {
-
             // database connection
-            require_once "../connection.php";
+            echo "<script>";
+            echo "Swal.fire({title: 'เข้าสู่ระบบสำเร็จ!',text: 'ยินดีต้อนรับสู่ Fair Manpower', icon: 'success', timer: 1500});";
+            echo "</script>";
+            header("Location: home.php");
+            sleep(2);
+            // require_once "../connection.php";
 
-            $sql_query = "SELECT * FROM employee WHERE email='$email' && password = '$pass'  ";
+            $sql_query = "SELECT * FROM admin WHERE email='$email' && password = '$pass'  ";
             $result = mysqli_query($conn, $sql_query);
 
             if (mysqli_num_rows($result) > 0) {
-                echo "<script>";
-                echo "Swal.fire({title: 'เข้าสู่ระบบสำเร็จ!',text: 'ยินดีต้อนรับสู่ Fair Manpower', icon: 'success', timer: 1500});";
-                echo "</script>";
+
                 while ($rows = mysqli_fetch_assoc($result)) {
                     session_start();
                     session_unset();
-                    $_SESSION["email_emp"] = $rows["email"];
+                    $_SESSION["email"] = $rows["email"];
 
-                    header("Location: dashboard.php?login-sucess");
+                    header("Location: home.php?");
                 }
             } else {
                 echo "<script>";
-                echo "Swal.fire({title: 'เข้าสู่ระบบไม่สำเร็จ!',text: 'กรุณากรอกอีเมลหรือรหัสผ่านให้ถูกต้อง', icon: 'error', confirmButtonText: 'ตกลง'});";
+                echo "Swal.fire({title: 'เข้าสู่ระบบไม่สำเร็จ!',text: 'อีเมลหรือรหัสผ่านของท่านไม่ถูกต้อง', icon: 'error', confirmButtonText: 'ตกลง'});";
                 echo "</script>";
             }
         }

@@ -128,7 +128,6 @@
 </head>
 
 <body>
-    <!-- <?php require_once "./config/connection.php"; ?> -->
     <div class="bg border">
         <div class="transbox">
             <div class="login-form-bg h-100">

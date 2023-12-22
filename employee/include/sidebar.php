@@ -14,13 +14,8 @@
         <div class="sidebar-menu">
             <ul id="accordion-menu">
                 <li class="dropdown">
-                    <a href="dashboard.php" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-house-1"></span><span class="mtext">Dashboard</span>
-                    </a>
-                </li>
-                <li class="dropdown">
-                    <a href="organozation.php" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-house-1"></span><span class="mtext">ข้อมูลโครงสร้างองค์กร</span>
+                    <a href="home.php" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
                     </a>
                 </li>
                 <li class="dropdown">
@@ -28,10 +23,12 @@
                         <span class="micon dw dw-library"></span><span class="mtext">ข้อมูลพนักงาน</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="listemployee.php">รายการข้อมูลพนักงานทั้งหมด</a></li>
-                        <li><a href="#">รายการขออนุมัติพนักงานใหม่</a></li>
-                        <li><a href="#">ประวัติพนักงานใหม่ผ่านอนุมัติ</a></li>
-                        <li><a href="#">ประวัติปฐิเสธพนักงานใหม่</a></li>
+                        <li><a href="listemployee_Create.php">ข้อมูลพนักงานเบื้องต้น</a></li>
+                        <li><a href="listemployee_Info.php">ประวัติส่วนตัว</a></li>
+                        <li><a href="listemployee_Education.php">ประวัติการศึกษา</a></li>
+                        <li><a href="listemployee_Workinfo.php">ประวัติการทำงาน</a></li>
+                        <li><a href="listemployee_Manager.php">ผู้จัดการ</a></li>
+                        <li><a href="listemployee_Report_to.php">report-to</a></li>
                     </ul>
                 </li>
                 <li>
