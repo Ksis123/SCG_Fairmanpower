@@ -12,14 +12,11 @@
 		<div class="pd-ltr-20">
 			<div class="title pb-20">
 				<h2 class="h3 mb-0">ข้อมูลพนักงาน</h2>
-
 			</div>
 			<div>
 				<button class="importexcel-btn"><i class="fa-regular fa-file-excel"></i> นำเข้าไฟล์ Excel</button>
 				<button class="downloadexcel-btn"><i class="fa-regular fa-circle-down"></i> ดาวโหลดตัวอย่าง Excel</button>
 			</div>
-
-
 		</div>
 		<hr>
 		<div class="pd-ltr-20 card-box mb-0">
@@ -44,6 +41,7 @@
 				<table class="data-table table stripe hover nowrap">
 					<thead>
 						<tr>
+
 							<th class="datatable-nosort">ลำดับ</th>
 							<th class="datatable-nosort">SCG-ID</th>
 							<th class="datatable-nosort">รายชื่อพนักงาน</th>
@@ -57,23 +55,23 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>1</td>
-							<td>0150-234950</td>
+							<td></td>
+							<td></td>
 							<td class="table-plus">
 								<div class="name-avatar d-flex align-items-center">
 									<div class="avatar mr-2 flex-shrink-0">
 										<img src="<?php echo (!empty($row['location'])) ? '../uploads/' . $row['location'] : '../asset/img/employee/4.jpg'; ?>" class="border-radius-100 shadow" width="40" height="40" alt="">
 									</div>
 									<div class="txt">
-										<div class="weight-600">นายศิวกร แก้วมาลา</div>
+										<div class="weight-600"></div>
 									</div>
 								</div>
 							</td>
-							<td>ชาย</td>
-							<td>นักศึกษาฝึกงาน</td>
-							<td>Data Driven</td>
-							<td>Digital tranformation</td>
-							<td>Font-End Developer</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
 							<td>
 								<div class="dropdown">
 									<button class="delete-btn"><i class="fa-solid fa-trash-can"></i></button>

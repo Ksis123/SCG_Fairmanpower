@@ -37,7 +37,7 @@
                 <div class="row">
                     <div class="col-lg-8 col-md-6 col-sm-12 mb-30">
                         <div class="card-box pd-30 pt-10 height-100-p">
-                            <h2 class="mb-30 h4"></h2>
+                        <h2 class="mb-30 h4 text-blue">รายการ Sub-business-unit ทั้งหมดในระบบ</h2>
                             <div class="pb-20">
                                 <table class="data-table table stripe hover nowrap">
                                     <thead>

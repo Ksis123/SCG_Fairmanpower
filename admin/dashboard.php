@@ -6,7 +6,7 @@ require_once "../config/connection.php";
 
 <body>
 
-    <div class="pre-loader">
+    <!-- <div class="pre-loader">
         <div class="pre-loader-box">
             <div class="loader-logo">
                 <img src="https://gateway.pinata.cloud/ipfs/QmQWDGDreHp99nneodnavQYYBYd7ejFqU5TLzDefhKb92Z?_gl=1*1979x1s*_ga*MTE0ODI0Mjc0LjE2OTY4NjQ2MTU.*_ga_5RMPXG14TE*MTcwMjgzMjk4Mi42My4xLjE3MDI4MzI5ODIuNjAuMC4w" alt="">
@@ -19,12 +19,12 @@ require_once "../config/connection.php";
                 Loading...
             </div>
         </div>
-        <?php
-        echo "<script>";
-        echo "Swal.fire({title: 'เข้าสู่ระบบสำเร็จ!',text: 'ยินดีต้อนรับสู่ Fair Manpower', icon: 'success', timer: 2500});";
-        echo "</script>";
-        ?>
-    </div>
+    </div> -->
+    <?php
+    echo "<script>";
+    echo "Swal.fire({title: 'เข้าสู่ระบบสำเร็จ!',text: 'ยินดีต้อนรับสู่ Fair Manpower', icon: 'success', timer: 1500});";
+    echo "</script>";
+    ?>
     <?php include('../admin/include/navbar.php') ?>
     <?php include('../admin/include/sidebar.php') ?>
 
