@@ -60,7 +60,7 @@
         }
 
         img.Logo {
-            width: 35%;
+            width: 45%;
         }
 
         h1 {

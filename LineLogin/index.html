@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <title>LoginTest
+    </title>
+</head>
+<body>
+    <button id="btnLogIn" class="col-md-12" style="position: fixed; top: 40%; display:none;">login</button>
+    <script>
+         var userid = "";
+        const btnLogIn = document.getElementById('btnLogIn');
+        const btnLogOut = document.getElementById('btnLogOut');
+        const userId = document.getElementById('userId');
+
+        async function main() {
+          // Initialize LIFF app)
+          await liff.init({ liffId: '2002037246-9ZYPPoPo' });
+
+          getUserProfile();
+          if (!liff.isInClient()) {
+            if (liff.isLoggedIn()) {
+              btnLogIn.style.display = 'none';
+              getUserProfile();
+            } else {
+              btnLogIn.style.display = 'block';
+            }
+          }
+        }
+        
+        main();
+    
+        async function getUserProfile() {
+          const profile = await liff.getProfile();
+          window.location.href = "login.php?w1=" + profile.userId
+
+        }
+
+        btnLogIn.onclick = () => {
+          liff.login();
+        };
+        
+    </script>
+</body>
+</html>

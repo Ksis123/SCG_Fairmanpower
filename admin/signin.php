@@ -10,6 +10,7 @@
 
     <script src="../asset/plugins/sweetalert2-11.10.1/jquery-3.7.1.min.js"></script>
     <script src="../asset/plugins/sweetalert2-11.10.1/sweetalert2.all.min.js"></script>
+    
 
     <title> SCG | Fair Manpower</title>
     <style>
@@ -63,7 +64,7 @@
         }
 
         img.Logo {
-            width: 35%;
+            width: 45%;
         }
 
         h1 {
@@ -71,14 +72,13 @@
             font-size: 38px;
             font-weight: bold;
             color: #ed2626;
-            /* box-shadow: 0px 2px 15px -6px #000000; */
 
         }
 
         h2 {
             font-size: 38px;
             font-weight: bold;
-            color: #DF3737;
+            color: #ED2626;
         }
 
         h4 {
@@ -113,7 +113,7 @@
             color: white;
             transform: scale(1.1);
             transition: 0.25s ease-in-out;
-            box-shadow: 0px 2px 15px -8px #000000;
+            box-shadow: 0px 2px 15px -5px #000000;
 
         }
 
@@ -138,7 +138,8 @@
         .user-icon {
             width: 80px;
             height: 80px;
-            background: #CE5353;
+            background: #B71B1B;
+            color: #C47B7B;
             border-radius: 100%;
             box-shadow: 0 0 10px rgba(0, 0, 0, .18)
         }

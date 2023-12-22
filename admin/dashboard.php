@@ -1,6 +1,3 @@
-<?php
-require_once "../config/connection.php";
-?>
 
 <?php include('../admin/include/header.php') ?>
 
