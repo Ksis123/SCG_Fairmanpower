@@ -78,7 +78,7 @@
         h2 {
             font-size: 38px;
             font-weight: bold;
-            color: #ED2626;
+            color: #DF3737;
         }
 
         h4 {
@@ -100,11 +100,12 @@
             font-size: 25px;
             font-weight: bold;
             transition: 0.5s ease-in-out;
-            color: #f0f8ff;
+            color: #C6EBD5;
             padding: 4px 50px;
             box-shadow: 0px 2px 15px -6px #000000;
             transition: 0.1s ease-in-out;
-            background-image: linear-gradient(#1FBABF, #60D3AA);
+            background: linear-gradient(#06C755, #12B153);
+
         }
 
         .login-button:hover {
@@ -113,7 +114,6 @@
             transform: scale(1.1);
             transition: 0.25s ease-in-out;
             box-shadow: 0px 2px 15px -8px #000000;
-            background-image: linear-gradient(#1FBABF, #60D3AA);
 
         }
 
@@ -136,17 +136,10 @@
         }
 
         .user-icon {
-            width: 82px;
-            height: 82px;
-            font-size: 24px;
-            background: #ebeff3;
-            color: #524d7d;
-            line-height: 52px;
-            text-align: center;
-            display: inline-block;
-            vertical-align: middle;
+            width: 80px;
+            height: 80px;
+            background: #CE5353;
             border-radius: 100%;
-            -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .18);
             box-shadow: 0 0 10px rgba(0, 0, 0, .18)
         }
 
@@ -157,6 +150,12 @@
             color: #524d7d;
             -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .18);
             box-shadow: 0 0 10px rgba(0, 0, 0, .18)
+        }
+
+        .border-radius-100 {
+            border: 3px solid #ffffff !important;
+            box-shadow: 0px 0px 5px rgba(48, 50, 51, 0.382) !important;
+            border-radius: 100%
         }
     </style>
 
@@ -175,7 +174,9 @@
                             <div class="form-input-content">
                                 <div class="card login-form mb-0">
                                     <div class="card-body pt-10 shadow">
-
+                                        <div class="user-icon">
+                                            <img src="../asset/img/admin.png" class="border-radius-100" width="80" height="80" alt="">
+                                        </div>
                                         <div class="BoxLogo">
                                             <div className="BoxLogoinfo">
                                                 <img src="https://salmon-charming-stingray-66.mypinata.cloud/ipfs/QmebXP3b8JbPb14WvphSJQavhqtBgFTcYBfZD6X5rkiUbP?_gl=1*j2trn5*_ga*MTE0ODI0Mjc0LjE2OTY4NjQ2MTU.*_ga_5RMPXG14TE*MTcwMjI4NTMyNi41OC4xLjE3MDIyODY1OTEuNjAuMC4w" class="Logo " />

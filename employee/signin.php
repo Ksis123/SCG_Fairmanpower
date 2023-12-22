@@ -75,11 +75,11 @@
         h2 {
             font-size: 38px;
             font-weight: bold;
-            color: #ED2626;
+            color: #9C9D9D;
         }
 
         h4 {
-            color: #b8b2b2;
+            color: #2CCFCF;
         }
 
         input[type=submit] {
@@ -97,11 +97,11 @@
             font-size: 25px;
             font-weight: bold;
             transition: 0.5s ease-in-out;
-            color: #f0f8ff;
+            color: #C6EBD5;
             padding: 4px 50px;
             box-shadow: 0px 2px 15px -6px #000000;
             transition: 0.1s ease-in-out;
-            background-image: linear-gradient(#1FBABF, #60D3AA);
+            background: linear-gradient(#06C755, #12B153);
         }
 
         .login-button:hover {
@@ -110,7 +110,6 @@
             transform: scale(1.1);
             transition: 0.25s ease-in-out;
             box-shadow: 0px 2px 15px -8px #000000;
-            background-image: linear-gradient(#1FBABF, #60D3AA);
 
         }
 
@@ -131,6 +130,29 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
+
+        .user-icon {
+            width: 80px;
+            height: 80px;
+            background: #9C9D9D;
+            border-radius: 100%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .18)
+        }
+
+        .line-icon {
+            width: 72px;
+            height: 72px;
+            background: #ebeff3;
+            color: #524d7d;
+            -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .18);
+            box-shadow: 0 0 10px rgba(0, 0, 0, .18)
+        }
+
+        .border-radius-100 {
+            border: 3px solid #ffffff !important;
+            box-shadow: 0px 0px 5px rgba(48, 50, 51, 0.382) !important;
+            border-radius: 100%
+        }
     </style>
 </head>
 
@@ -145,6 +167,9 @@
                             <div class="form-input-content">
                                 <div class="card login-form mb-0">
                                     <div class="card-body pt-10 shadow">
+                                        <div class="user-icon">
+                                            <img src="../asset/img/employeeicon.png" class="border-radius-100" width="80" height="80" alt="">
+                                        </div>
                                         <div class="BoxLogo">
                                             <div className="BoxLogoinfo">
                                                 <img src="https://salmon-charming-stingray-66.mypinata.cloud/ipfs/QmebXP3b8JbPb14WvphSJQavhqtBgFTcYBfZD6X5rkiUbP?_gl=1*j2trn5*_ga*MTE0ODI0Mjc0LjE2OTY4NjQ2MTU.*_ga_5RMPXG14TE*MTcwMjI4NTMyNi41OC4xLjE3MDIyODY1OTEuNjAuMC4w" class="Logo " />
