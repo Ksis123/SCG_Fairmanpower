@@ -404,9 +404,9 @@ select {
 button,
 html [type="button"],
 [type="reset"],
-/* [type="submit"] {
+[type="submit"] {
     -webkit-appearance: button;
-} */
+}
 
 button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
@@ -3430,7 +3430,7 @@ fieldset:disabled a.btn {
 input[type="submit"].btn-block,
 input[type="reset"].btn-block,
 input[type="button"].btn-block {
-    width: 100%;
+    width: auto;
 }
 
 .fade {

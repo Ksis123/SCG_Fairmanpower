@@ -83,7 +83,7 @@
         }
 
         input[type=submit] {
-            width: 80%;
+            width: 100%;
             padding: 14px 20px;
             margin: 8px 0;
             border: none;
@@ -98,7 +98,6 @@
             font-weight: bold;
             transition: 0.5s ease-in-out;
             color: #C6EBD5;
-            padding: 4px 50px;
             box-shadow: 0px 2px 15px -6px #000000;
             transition: 0.1s ease-in-out;
             background: linear-gradient(#06C755, #12B153);
@@ -107,7 +106,7 @@
         .login-button:hover {
             font-weight: bold;
             color: white;
-            transform: scale(1.1);
+            transform: scale(1.05);
             transition: 0.25s ease-in-out;
             box-shadow: 0px 2px 15px -8px #000000;
 
@@ -181,13 +180,11 @@
                                             </h1>
                                         </div>
                                         <hr class="custom">
-                                        <!-- <form method="POST" action=" <?php htmlspecialchars($_SERVER['PHP_SELF']) ?>"> -->
 
                                         <div class="form-group text-center">
                                             <input type="submit" value="เข้าสู่ระบบด้วย LINE" class="login-button " name="signin" onclick="location.href='home.php'">
                                         </div>
                                         <p class="text-center login-form__footer">กรณีได้รับสิทธิ์แอดมิน? สามารถ <a href="../admin/signin.php" class="text-red">เข้าสู่ระบบ-ในฐานะแอดมิน </a></p>
-                                        <!-- </form> -->
                                     </div>
                                 </div>
                             </div>

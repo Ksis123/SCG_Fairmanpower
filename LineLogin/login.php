@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once 'C:\xampp\htdocs\ReviewModule\Linelogin\connect.php';
+require_once 'C:\xampp\htdocs\SCG_Fairmanpower\LineLogin\connect.php';
 
 $line_id = $_GET['w1'];
 $_SESSION['line_id'] = $line_id;

@@ -4,6 +4,9 @@ define('CLIENT_SECRET', 'AoBKBtxLxFsUFv6B4PSBf97T8God7TiNrjYP3km3Swb');
 //define('LINE_API_URI', 'https://notify-bot.line.me/oauth/token');
 define('CALLBACK_URI', 'https://localhost/LineloginTest/callback.php');
 
+// define('CALLBACK_URI', 'https://localhost/SCG_Fairmanpower/Linelogin/callback.php');
+
+
 parse_str($_SERVER['QUERY_STRING'], $queries);
 
 

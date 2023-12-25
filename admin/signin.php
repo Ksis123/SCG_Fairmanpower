@@ -10,7 +10,10 @@
 
     <script src="../asset/plugins/sweetalert2-11.10.1/jquery-3.7.1.min.js"></script>
     <script src="../asset/plugins/sweetalert2-11.10.1/sweetalert2.all.min.js"></script>
-    
+
+    <!-- LINE SCRIPT -->
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
 
     <title> SCG | Fair Manpower</title>
     <style>
@@ -86,7 +89,7 @@
         }
 
         input[type=submit] {
-            width: 80%;
+            width: 100%;
             padding: 14px 20px;
             margin: 8px 0;
             border: none;
@@ -101,7 +104,6 @@
             font-weight: bold;
             transition: 0.5s ease-in-out;
             color: #C6EBD5;
-            padding: 4px 50px;
             box-shadow: 0px 2px 15px -6px #000000;
             transition: 0.1s ease-in-out;
             background: linear-gradient(#06C755, #12B153);
@@ -111,7 +113,7 @@
         .login-button:hover {
             font-weight: bold;
             color: white;
-            transform: scale(1.1);
+            transform: scale(1.05);
             transition: 0.25s ease-in-out;
             box-shadow: 0px 2px 15px -5px #000000;
 
@@ -164,7 +166,6 @@
 
 <body>
 
-    <!-- php script end -->
 
     <div class="bg" style="height: 100%">
         <div class="transbox">
@@ -189,13 +190,12 @@
                                             </h1>
                                         </div>
                                         <hr class="custom">
-                                        <!-- <form id="loginForm" method="POST"> -->
 
-                                        <div class="form-group text-center">
-                                            <input type="submit" value="เข้าสู่ระบบด้วย LINE" class="login-button " name="signin" onclick="location.href='dashboard.php'">
+                                        <div class="form-group">
+                                            <!-- <input  type="submit" value="เข้าสู่ระบบด้วย LINE" class="login-button " name="signin" onclick="location.href='dashboard.php'"> -->
+                                            <input id="btnLogIn" type="submit" value="เข้าสู่ระบบด้วย LINE" class="login-button">
                                         </div>
                                         <p class="text-center login-form__footer">กรณีไม่ใช่แอดมิน? โปรด <a href="../employee/signin.php" class="text-primary">เข้าสู่ระบบในฐานะพนักงาน</a></p>
-                                        <!-- </form> -->
                                     </div>
                                 </div>
                             </div>
@@ -205,6 +205,42 @@
             </div>
         </div>
     </div>
+
+    <script>
+        var userid = "";
+        const btnLogIn = document.getElementById('btnLogIn');
+        const btnLogOut = document.getElementById('btnLogOut');
+        const userId = document.getElementById('userId');
+
+        async function main() {
+            // Initialize LIFF app)
+            await liff.init({
+                liffId: '2002434201-QE0o2R3X'
+            });
+
+            getUserProfile();
+            if (!liff.isInClient()) {
+                if (liff.isLoggedIn()) {
+                    btnLogIn.style.display = 'none';
+                    getUserProfile();
+                } else {
+                    btnLogIn.style.display = 'block';
+                }
+            }
+        }
+
+        main();
+
+        async function getUserProfile() {
+            const profile = await liff.getProfile();
+            window.location.href = "dashboard.php?w1=" + profile.userId
+
+        }
+
+        btnLogIn.onclick = () => {
+            liff.login();
+        };
+    </script>
 
 </body>
 
