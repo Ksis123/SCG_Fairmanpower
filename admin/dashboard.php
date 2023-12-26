@@ -1,26 +1,18 @@
-
 <?php include('../admin/include/header.php') ?>
+<?php include('../config/connection.php') ?>
 
 <body>
-
-    <!-- <div class="pre-loader">
-        <div class="pre-loader-box">
-            <div class="loader-logo">
-                <img src="https://gateway.pinata.cloud/ipfs/QmQWDGDreHp99nneodnavQYYBYd7ejFqU5TLzDefhKb92Z?_gl=1*1979x1s*_ga*MTE0ODI0Mjc0LjE2OTY4NjQ2MTU.*_ga_5RMPXG14TE*MTcwMjgzMjk4Mi42My4xLjE3MDI4MzI5ODIuNjAuMC4w" alt="">
-            </div>
-            <div class='loader-progress' id="progress_div">
-                <div class='bar' id='bar1'></div>
-            </div>
-            <div class='percent' id='percent1'>0%</div>
-            <div class="loading-text">
-                Loading...
-            </div>
-        </div>
-    </div> -->
-    <?php
-    echo "<script>";
+    <!-- echo "<script>";
     echo "Swal.fire({title: 'เข้าสู่ระบบสำเร็จ!',text: 'ยินดีต้อนรับสู่ Fair Manpower', icon: 'success', timer: 1500});";
-    echo "</script>";
+    echo "</script>"; -->
+    <?php
+    $a = array();
+
+    $stmt = "SELECT * FROM employee ";
+    $query = sqlsrv_query($conn, $stmt);
+    while ($result = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
+        array_push($a, $result);
+    }
     ?>
     <?php include('../admin/include/navbar.php') ?>
     <?php include('../admin/include/sidebar.php') ?>
@@ -30,7 +22,7 @@
     <div class="main-container">
         <div class="pd-ltr-20">
             <div class="title pb-20">
-                <h2 class="h3 mb-0">Dashboard</h2>
+                <h2 class="h3 mb-0">Darshboard</h2>
             </div>
             <div class="card-box pd-20  mb-30">
 

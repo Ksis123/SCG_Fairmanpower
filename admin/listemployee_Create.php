@@ -132,7 +132,7 @@
                                     <div class="col-md-3 col-sm-12">
                                         <div class="form-group">
                                             <label>รหัสบัตรประชาชนของพนักงาน (Card_id)</label>
-                                            <input name="card_id" placeholder="1949999999991" type="number" class="form-control wizard-required" required="true" autocomplete="off">
+                                            <input name="card_id" placeholder="1-9499-99999-991" type="number" maxlength="14" class="form-control wizard-required" required="true">
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-sm-12">
@@ -390,16 +390,16 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-3 col-sm-12">
+                                    <div class="col-md-3 col-sm-1">
                                         <div class="form-group">
                                             <label style="font-size:24px;"><b></b></label>
-                                            <div class="justify-content-center">
+                                            <div class="justify-content-left">
                                                 <button style="font-size:20px;" onclick="location.href='listemployee.php'" type="button" class="btn btn-default" data-dismiss="modal"><i class="fa-solid fa-circle-left"> </i> ย้อนกลับ</button>
                                                 <!-- color:#AAAAAA -->
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-9 col-sm-12">
+                                    <div class="col-md-9 col-sm-1">
                                         <div class="form-group">
                                             <label style="font-size:16px;"><b></b></label>
                                             <div class="text-right">
@@ -419,6 +419,7 @@
     </div>
     <!-- js -->
     <?php include('../admin/include/scripts.php') ?>
+
 </body>
 
 </html>
