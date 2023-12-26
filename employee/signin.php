@@ -184,7 +184,7 @@
                                         <div class="form-group text-center">
                                             <input type="submit" value="เข้าสู่ระบบด้วย LINE" class="login-button " name="signin" onclick="location.href='home.php'">
                                         </div>
-                                        <p class="text-center login-form__footer">กรณีได้รับสิทธิ์แอดมิน? สามารถ <a href="../admin/signin.php" class="text-red">เข้าสู่ระบบ-ในฐานะแอดมิน </a></p>
+                                        <p class="text-center login-form__footer">กรณีได้สิทธิ์แอดมิน? โปรด <a href="../admin/signin.php" class="text-red">เข้าสู่ระบบในฐานะแอดมิน </a></p>
                                     </div>
                                 </div>
                             </div>

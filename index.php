@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
     <link rel="icon" type="image/ico" href="favicon.ico">
-    <link href="asset/css/signin.css" rel="stylesheet"/>
+    <link href="asset/css/signin.css" rel="stylesheet" />
 
     <title>SCG | Fair Manpower</title>
     <style>
@@ -72,12 +72,14 @@
         }
 
         .admin-button {
+            text-align: center;
             font-size: 25px;
             font-weight: bold;
+            height: 45px;
+            width: 120px;
             text-shadow: 2px 2px 2px #000000 25%;
             background-image: linear-gradient(#EB5858, #B71B1B);
             color: white;
-            padding: 8px 40px;
             border-radius: 50px;
             border-style: solid;
             border-color: white;
@@ -91,7 +93,6 @@
             color: #EB5858;
             font-size: 25px;
             font-weight: bold;
-            padding: 8px 40px;
             border-radius: 50px;
             border-style: solid;
             border-color: #EB5858;
@@ -100,12 +101,14 @@
         }
 
         .empoyee-button {
+            text-align: center;
             font-size: 25px;
             font-weight: bold;
+            height: 45px;
+            width: 120px;
             transition: 0.5s ease-in-out;
             background-image: linear-gradient(#1FBABF, #60D3AA);
             color: #f0f8ff;
-            padding: 8px 40px;
             border-radius: 50px;
             border-style: solid;
             border-color: white;
@@ -145,7 +148,7 @@
                                         <h1 class="text-center">Fair Manpower <h4 class="text-center ">โปรดเลือกการเข้าสู่ระบบในฐานะ ?</h4>
                                         </h1>
                                         <hr class="custom">
-                                        <div class="container mt-4">
+                                        <div class="container mt-5">
                                             <div class="btn-toolbar justify-content-between">
                                                 <div class="btn-group">
                                                     <a href="admin/signin.php" class="admin-button">แอดมิน</a>

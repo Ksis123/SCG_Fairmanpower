@@ -1,3 +1,6 @@
+<?php
+include_once('./config/connection.php');
+?>
 
 <!DOCTYPE html>
 <html>
@@ -17,7 +20,6 @@
 
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="../vendors/styles/core.css">
-	<link rel="stylesheet" type="text/css" href="../vendors/styles/icon-font.min.css">
 	<link rel="stylesheet" type="text/css" href="../src/plugins/jquery-steps/jquery.steps.css">
 	<link rel="stylesheet" type="text/css" href="../vendors/styles/style.css">
 
