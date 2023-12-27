@@ -15,7 +15,7 @@
 						<img src="<?php echo (!empty($row['location'])) ? '../uploads/' . $row['location'] : '../asset/img/employeeicon.png'; ?>" alt="">
 					</span>
 					<span class="xp-user-live"></span>
-					<span class="user-name">นายศิวกร แก้วมาลา</span>
+					<span class="user-name"><?php echo  $prefix . $fname . ' ' . $lname ?></span>
 
 				</a>
 				<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">

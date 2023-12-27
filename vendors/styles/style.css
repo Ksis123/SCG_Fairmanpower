@@ -1322,7 +1322,7 @@ table.dataTable>tbody>tr.child ul.dtr-details .dtr-title {
 
 .table td,
 .table th {
-    vertical-align: middle
+    vertical-align: middle;
 }
 
 .table td {
@@ -1364,24 +1364,21 @@ table.dataTable thead .sorting_desc:after,
 table.dataTable thead .sorting_desc:before,
 table.dataTable thead .sorting_desc_disabled:after,
 table.dataTable thead .sorting_desc_disabled:before {
-    font-family: "dropways";
     font-size: 14px
 }
 
-table.dataTable thead .sorting:before,
+/* table.dataTable thead .sorting:before,
 table.dataTable thead .sorting_asc:before,
 table.dataTable thead .sorting_asc_disabled:before,
 table.dataTable thead .sorting_desc:before,
 table.dataTable thead .sorting_desc_disabled:before {
-    content: "\eabb"
-}
+} */
 
 table.dataTable thead .sorting:after,
 table.dataTable thead .sorting_asc:after,
 table.dataTable thead .sorting_asc_disabled:after,
 table.dataTable thead .sorting_desc:after,
 table.dataTable thead .sorting_desc_disabled:after {
-    content: "\eaba";
     right: .2em
 }
 
@@ -1489,9 +1486,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>th:first-child:before {
     box-shadow: none;
     border: 0;
     border-radius: 0;
-    font-family: "FontAwesome";
     background: 0 0;
-    content: "\f107";
     color: #444;
     font-size: 23px;
     left: 7px;
@@ -1501,7 +1496,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>th:first-child:before {
 
 table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child:before,
 table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
-    content: "\f106";
     background: 0 0
 }
 
@@ -1664,10 +1658,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     border-radius: 25px;
     box-shadow: 0px 2px 15px -8px #000000;
     transition: 0.25s ease-in-out;
-
-
-
-
 }
 
 .user-info-dropdown .dropdown-toggle .user-icon {
@@ -2079,7 +2069,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 }
 
 .sidebar-menu .submenu:before {
-    content: "";
     width: 1px;
     height: 100%;
     position: absolute;
@@ -2091,40 +2080,29 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 }
 
 .sidebar-menu .submenu li>a:before {
-    content: "\f208";
     position: absolute;
     line-height: 1;
-    left: 28px;
     top: 50%;
     -webkit-transform: translate(0, -50%);
     transform: translate(0, -50%);
-    font-family: Ionicons
 }
-
-.sidebar-menu.icon-list-style-2 .submenu li>a:before {
+f
+/* .sidebar-menu.icon-list-style-2 .submenu li>a:before {
     content: "\f10c";
     font-family: "FontAwesome"
-}
+} */
 
-.sidebar-menu.icon-list-style-3 .submenu li>a:before {
-    content: "\eb1d";
-    font-family: dropways
+/* .sidebar-menu.icon-list-style-3 .submenu li>a:before {
 }
 
 .sidebar-menu.icon-list-style-4 .submenu li>a:before {
-    content: "\edd2";
-    font-family: 'dropways'
 }
 
 .sidebar-menu.icon-list-style-5 .submenu li>a:before {
-    content: "\ee07";
-    font-family: 'dropways'
 }
 
 .sidebar-menu.icon-list-style-6 .submenu li>a:before {
-    content: "\ee36";
-    font-family: 'dropways'
-}
+} */
 
 .mobile-menu-overlay,
 .sidebar-menu .submenu li a,
@@ -3319,7 +3297,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 }
 
 .slider-arrow .slick-arrow:before {
-    font-family: 'dropways';
     font-size: 16px;
     color: #fff;
     line-height: 38px
@@ -4957,6 +4934,111 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     border: 2px solid #ffffff !important;
 
 }
+
+.delete-btn_Org {
+    font-size: 14px;
+    transition: 0.5s ease-in-out;
+    height: 33px;
+    width: 33px;
+    color: #f0f8ff;
+    box-shadow: 0px 2px 15px -6px #000000;
+    transition: 0.3s ease-in-out;
+    background-image: linear-gradient(#C42D2D, #CD4F4F);
+    border-radius: 30px;
+    border: 2px solid #C42D2D !important;
+    margin-right: 5px;
+
+
+}
+
+.delete-btn_Org:hover {
+    transition: 0.5s ease-in-out;
+    color: #C42D2D;
+    box-shadow: 0px 2px 15px -6px #000000;
+    transition: 0.3s ease-in-out;
+    background-image: linear-gradient(#ffffff, #ffffff);
+    border: 2px solid #C42D2D !important;
+}
+
+.edit-btn_Org {
+    font-size: 14px;
+    transition: 0.5s ease-in-out;
+    height: 33px;
+    width: 33px;
+    color: #60D3AA;
+    box-shadow: 0px 2px 15px -6px #000000;
+    transition: 0.3s ease-in-out;
+    background-color: #ffffff;
+    border-radius: 30px;
+    border: 2px solid #9CEE8C !important;
+
+}
+
+.edit-btn_Org:hover {
+    transition: 0.5s ease-in-out;
+    color: #f0f8ff;
+    box-shadow: 0px 2px 15px -6px #000000;
+    transition: 0.3s ease-in-out;
+    background-image: linear-gradient(#9CEE8C, #60D3AA);
+    border: 2px solid #ffffff !important;
+
+}
+
+.delete-swal {
+    font-size: 18px;
+    transition: 0.5s ease-in-out;
+    height: 43px;
+    width: 83px;
+    color: #f0f8ff;
+    box-shadow: 0px 2px 15px -6px #000000;
+    transition: 0.3s ease-in-out;
+    background-image: linear-gradient(#C42D2D, #CD4F4F);
+    border-radius: 15px;
+    border: 2px solid #C42D2D !important;
+    margin-right: 5px;
+
+
+}
+
+.delete-swal:hover {
+    font-size: 19px;
+    font-weight: bold;
+    transition: 0.5s ease-in-out;
+    color: #C42D2D;
+    box-shadow: 0px 2px 15px -6px #000000;
+    transition: 0.3s ease-in-out;
+    background-image: linear-gradient(#ffffff, #ffffff);
+    border: 2px solid #C42D2D !important;
+}
+
+.edit-swal {
+    font-size: 18px;
+    transition: 0.5s ease-in-out;
+    height: 43px;
+    width: 83px;
+    color: #60D3AA;
+    box-shadow: 0px 2px 15px -6px #000000;
+    transition: 0.3s ease-in-out;
+    background-color: #ffffff;
+    border-radius: 15px;
+    border: 2px solid #9CEE8C !important;
+
+}
+
+.edit-swal:hover {
+    font-size: 19px;
+    font-weight: bold;
+    transition: 0.5s ease-in-out;
+    color: #f0f8ff;
+    box-shadow: 0px 2px 15px -6px #000000;
+    transition: 0.3s ease-in-out;
+    background-image: linear-gradient(#9CEE8C, #60D3AA);
+    border: 2px solid #ffffff !important;
+
+}
+
+
+
 
 .importexcel-btn {
     font-size: 16px;

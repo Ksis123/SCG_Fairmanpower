@@ -35,61 +35,146 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-8 col-md-6 col-sm-12 mb-30">
+                    <div class="col-lg-12 col-md-6 col-sm-12 mb-30">
                         <div class="card-box pd-30 pt-10 height-100-p">
-                        <h2 class="mb-30 h4 text-blue">รายการ บริษัท ทั้งหมดในระบบ</h2>
-                            <div class="pb-20">
-                                <table class="data-table table stripe hover nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th>ลำดับ</th>
-                                            <th>บริษัท (TH)</th>
-                                            <th>บริษัท (ENG)</th>
-                                            <th>จัดการ</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                            <form name="save" method="post" action="org4_Company.php">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>หมายเลข Organization-ID</label>
+                                            <select name="organization_id" class="custom-select form-control" required="true" autocomplete="off">
+                                                <option value="" disabled selected>-- โปรดระบุ Organization-ID --</option>
+                                                <?php
+                                                // สร้าง options สำหรับ dropdown 2
+                                                $sqlDropdown4 = "SELECT * FROM organization";
+                                                $resultDropdown4 = sqlsrv_query($conn, $sqlDropdown4);
 
-                                    </tbody>
-                                </table>
-                            </div>
+                                                // เช็ค error
+                                                if ($resultDropdown4 === false) {
+                                                    die(print_r(sqlsrv_errors(), true));
+                                                }
+
+                                                if ($resultDropdown4) {
+                                                    while ($row = sqlsrv_fetch_array($resultDropdown4, SQLSRV_FETCH_ASSOC)) {
+                                                        echo "<option value='"  . $row['organization_id'] . "'>" . $row['organization_id'] . "</option>";
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>ชื่อ บริษัท (TH)</label>
+                                            <input name="name_thai" type="text" class="form-control" required="true" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>ชื่อ บริษัท (ENG)</label>
+                                            <input name="name_eng" type="text" class="form-control" required="true" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 text-right">
+                                    <div class="dropdown">
+                                        <input class="btn btn-primary" type="submit" value="เพิ่ม Company (บริษัท)" name="submit">
+                                    </div>
+                                </div>
                         </div>
+                        </form>
+                        <?php
+                        // PHP สำหรับการ Insert ข้อมูลลงในฐานข้อมูล SQL Server 
+                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            if (isset($_POST['submit'])) {
+                                $orgid = $_POST['organization_id'];
+                                $nameTH = $_POST['name_thai'];
+                                $nameENG = $_POST['name_eng'];
+
+                                // ค่าไม่ว่าง ทำการ insert ข้อมูล
+                                $sqlInsert = "INSERT INTO company (organization_id, name_thai, name_eng) VALUES ('$orgid', '$nameTH', '$nameENG')";
+                                // $params = array($selectedValue1, $nameTH, $nameENG);
+                                $stmt = sqlsrv_query($conn, $sqlInsert);
+
+                                if ($stmt === false) {
+                                    die(print_r(sqlsrv_errors(), true));
+                                } else {
+                                    echo '<script type="text/javascript">
+                                            const Toast = Swal.mixin({
+                                                toast: true,
+                                                position: "top-end",
+                                                showConfirmButton: false,
+                                                timer: 2000,
+                                                timerProgressBar: true,
+                                                didOpen: (toast) => {
+                                                    toast.onmouseenter = Swal.stopTimer;
+                                                    toast.onmouseleave = Swal.resumeTimer;
+                                                }
+                                            });
+                                            Toast.fire({
+                                                icon: "success",
+                                                title: "บันทึกข้อมูล Company (บริษัท) สำเร็จ"
+                                            });            
+                                            </script>';
+
+                                    echo "<meta http-equiv='refresh' content='2'>";
+                                    exit; // จบการทำงานของสคริปต์ทันทีหลังจาก redirect
+                                }
+                            }
+                        }
+                        ?>
+                        </section>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-30">
-                        <div class="card-box pd-30 pt-10 height-100-p">
-                            <section>
-                                <form name="save" method="post">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>ชื่อ บริษัท (TH)</label>
-                                                <input name="departmentname" type="text" class="form-control" required="true" autocomplete="off">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>ชื่อ บริษัท (ENG)</label>
-                                                <input name="departmentshortname" type="text" class="form-control" required="true" autocomplete="off" style="text-transform:uppercase">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 text-right">
-                                        <div class="dropdown">
-                                            <input class="btn btn-primary" type="submit" value="เพิ่ม Company (บริษัท)" name="add" id="add">
-                                        </div>
-                                    </div>
-                                </form>
-                            </section>
+                </div>
+                <div class="col-lg-12 col-md-6 col-sm-12 mb-30">
+                    <div class="card-box pd-30 pt-10 height-100-p">
+                        <h2 class="mb-30 h4 text-blue">รายการ บริษัท ทั้งหมดในระบบ</h2>
+                        <div class="pb-20">
+                            <table class="data-table table stripe hover nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>ลำดับ</th>
+                                        <th>Organization-ID</th>
+                                        <th>บริษัท (TH)</th>
+                                        <th>บริษัท (ENG)</th>
+                                        <th>จัดการ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    // เตรียมคำสั่ง SQL
+                                    $sql4 = "SELECT * FROM company";
+                                    $params4 = array();
+                                    // ดึงข้อมูลจากฐานข้อมูล
+                                    $stmt4 = sqlsrv_query($conn, $sql4, $params4);
+                                    // ตรวจสอบการทำงานของคำสั่ง SQL
+                                    if ($stmt4 === false) {
+                                        die(print_r(sqlsrv_errors(), true));
+                                    }
+
+                                    // แสดงผลลัพธ์ในรูปแบบของตาราง HTML
+                                    while ($row = sqlsrv_fetch_array($stmt4, SQLSRV_FETCH_ASSOC)) {
+                                        echo "<tr>";
+                                        echo "<td>" . $row["company_id"] . "</td>";
+                                        echo "<td>" . $row["organization_id"] . "</td>";
+                                        echo "<td>" . $row["name_thai"] . "</td>";
+                                        echo "<td>" . $row["name_eng"] . "</td>";
+                                        echo "<td><div class='dropdown'><button class='delete-btn_Org'><i class='fa-solid fa-trash-can'></i></button><button class='edit-btn_Org'><i class='fa-solid fa-pencil'></i></button></div></td>";
+                                        echo "</tr>";
+                                    }
+                                    // ปิดการเชื่อมต่อ
+                                    ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-
             </div>
 
-            <?php include('../admin/include/footer.php'); ?>
         </div>
+
+        <?php include('../admin/include/footer.php'); ?>
+    </div>
     </div>
     <!-- js -->
 

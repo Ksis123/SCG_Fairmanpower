@@ -6,13 +6,14 @@ if (isset($_SESSION['line_id']) && !empty($_SESSION['line_id'])) {
     $line_id = $_SESSION['line_id'];
 
     // เรียกใช้ไฟล์ config.php เพื่อเชื่อมต่อกับฐานข้อมูล SQL Server
-    require_once '../config/connection.php';
+	require_once('C:\xampp\htdocs\SCG_Fairmanpower\config\connection.php');
 
     // สร้างคำสั่ง SQL เพื่อตรวจสอบ card_id ที่ตรงกับ line_id ในตาราง test
-    $sql = "SELECT li.card_id, e.prefix_thai, e.firstname_thai, e.lastname_thai,e.permission_id 
+    $sql = "SELECT li.card_id, e.prefix_thai, e.firstname_thai, e.lastname_thai, e.permission_id 
             FROM login li
             INNER JOIN employee e ON li.card_id = e.card_id
             WHERE li.line_id = ?";
+
     $params = array($line_id, $line_id);
     $stmt = sqlsrv_query($conn, $sql, $params);
 
@@ -40,8 +41,7 @@ if (isset($_SESSION['line_id']) && !empty($_SESSION['line_id'])) {
         } else if ($permission == 4) {
             header('Location: ../employee/home.php');
         }
-
-        echo "พบข้อมูล p_id: " . $row["card_id"];
+        echo "พบข้อมูล บัตรประชาชน : " . $row["card_id"];
     } else {
         // หากไม่พบข้อมูลที่ตรงกัน
         echo "ไม่พบข้อมูลที่ตรงกับ line_id: $line_id";

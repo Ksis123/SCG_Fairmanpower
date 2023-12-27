@@ -173,6 +173,7 @@
                 <div class="container h-100">
                     <div class="row justify-content-center h-100">
                         <div class="col-xl-6">
+
                             <div class="form-input-content">
                                 <div class="card login-form mb-0">
                                     <div class="card-body pt-10 shadow">
@@ -188,6 +189,11 @@
                                             <h1>Fair Manpower
                                                 <h2>แอดมิน</h2>
                                             </h1>
+                                        </div>
+                                        <div class="text-right">
+                                            <a class="text-primary" href="../index.php">
+                                                ย้อนกลับ
+                                            </a>
                                         </div>
                                         <hr class="custom">
 

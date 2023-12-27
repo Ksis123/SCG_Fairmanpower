@@ -29,7 +29,7 @@
                         <div class="pd-20 card-box height-100-p">
                             <div class="profile-photo">
                                 <a href="modal" data-toggle="modal" data-target="#modal" class="edit-avatar"><i class="fa fa-pencil"></i></a>
-                                <img src="<?php echo (!empty($row['location'])) ? '../uploads/' . $row['location'] : '../asset/img/employee/4.jpg'; ?>" alt="" class="avatar-photo">
+                                <img src="<?php echo (!empty($row['location'])) ? '../uploads/' . $row['location'] : '../asset/img/admin.png'; ?>" alt="" class="avatar-photo">
                                 <form method="post" enctype="multipart/form-data">
                                     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">

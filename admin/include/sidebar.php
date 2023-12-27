@@ -25,7 +25,7 @@
                 </li> -->
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
-                        </span><span class="mtext">โครงสร้างองค์กร</span>
+                        <span class="mtext">โครงสร้างองค์กร</span>
                     </a>
                     <ul class="submenu">
                         <li><a href="org1_Business_unit.php">Business-Unit</a></li>
@@ -74,12 +74,11 @@
                 <li>
 
                     <a class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-settings2"></span><span class="mtext">การตั้งค่า</span>
+                        <span class="mtext">การตั้งค่า</span>
                     </a>
                 </li>
                 <li>
                     <a class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-paper-plane1"></span>
                         <span class="mtext">ติดต่อสอบถาม</span>
                     </a>
                 </li>

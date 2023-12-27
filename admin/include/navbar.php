@@ -1,3 +1,4 @@
+
 <div class="header">
 	<div class="header-left">
 		<div class="menu-icon">
@@ -31,11 +32,12 @@
 						<img src="<?php echo (!empty($row['location'])) ? '../uploads/' . $row['location'] : '../asset/img/admin.png'; ?>" alt="">
 					</span>
 					<!-- <span class="user-name">นายศิวกร แก้วมาลา</span> -->
-					<span class="user-name">นายศิวกร แก้วมาลา</span>
+					<span class="user-name"><?php echo  $prefix . $fname . ' ' . $lname ?></span>
+
 				</a>
-				<div class="dropdown-menu dropdown-menu-icon-list">
-					<a class="dropdown-item" href="profile.php"><i class="dw dw-user1"></i> โปรไฟล์</a>
-					<a class="dropdown-item" href="signin.php"><i class="dw dw-logout"></i> ออกจากระบบ</a>
+				<div class="dropdown-menu dropdown-menu-right ">
+					<a class="dropdown-item" href="profile.php"><i class="fa-regular fa-user" style=" padding-right: 5px;"><br /> </i> โปรไฟล์</a>
+					<a class="dropdown-item" href="signin.php"><i class="fa-solid fa-arrow-right-from-bracket" style=" padding-right: 5px;"></i> ออกจากระบบ</a>
 				</div>
 			</div>
 		</div>
