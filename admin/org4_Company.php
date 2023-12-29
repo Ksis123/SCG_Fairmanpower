@@ -16,6 +16,8 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="title">
                                 <h3>ข้อมูลโครงสร้างองค์กร : Company (บริษัท)</h3>
+                                <p class="text-primary">โครงสร้างทั้ง 9 ลำดับขั้นจะเริ่มเรียงจากซ้าย-ขวาเสมอ
+
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
@@ -104,7 +106,7 @@
                                                 toast: true,
                                                 position: "top-end",
                                                 showConfirmButton: false,
-                                                timer: 2000,
+                                                timer: 1300,
                                                 timerProgressBar: true,
                                                 didOpen: (toast) => {
                                                     toast.onmouseenter = Swal.stopTimer;
@@ -129,6 +131,8 @@
                 <div class="col-lg-12 col-md-6 col-sm-12 mb-30">
                     <div class="card-box pd-30 pt-10 height-100-p">
                         <h2 class="mb-30 h4 text-blue">รายการ บริษัท ทั้งหมดในระบบ</h2>
+                        <p class="text-danger">* หมายเหตุ : หากต้องการลบชื่อ Company(บริษัท) จะต้องลบ location ที่เกี่ยวข้องก่อนเสมอ</p>
+
                         <div class="pb-20">
                             <table class="data-table table stripe hover nowrap">
                                 <thead>
@@ -145,6 +149,7 @@
                                     // เตรียมคำสั่ง SQL
                                     $sql4 = "SELECT * FROM company";
                                     $params4 = array();
+                                    $i = 1;
                                     // ดึงข้อมูลจากฐานข้อมูล
                                     $stmt4 = sqlsrv_query($conn, $sql4, $params4);
                                     // ตรวจสอบการทำงานของคำสั่ง SQL
@@ -155,14 +160,59 @@
                                     // แสดงผลลัพธ์ในรูปแบบของตาราง HTML
                                     while ($row = sqlsrv_fetch_array($stmt4, SQLSRV_FETCH_ASSOC)) {
                                         echo "<tr>";
-                                        echo "<td>" . $row["company_id"] . "</td>";
+                                        echo "<td>" . $i++ . "</td>";
                                         echo "<td>" . $row["organization_id"] . "</td>";
                                         echo "<td>" . $row["name_thai"] . "</td>";
                                         echo "<td>" . $row["name_eng"] . "</td>";
-                                        echo "<td><div class='dropdown'><button class='delete-btn_Org'><i class='fa-solid fa-trash-can'></i></button><button class='edit-btn_Org'><i class='fa-solid fa-pencil'></i></button></div></td>";
+                                        echo '<td><div class="flex"><form method="post" action="org4_Company.php" >',
+                                        '<input type="hidden" name="company_id" value="' . $row['company_id'] . '">',
+                                        '<button type="submit" name="delete_company" class="delete-btn_Org"><i class="fa-solid fa-trash-can"></i></button>',
+                                        '</form>';
+                                        echo '<form >',
+                                        '<input type="hidden" name="company_id" value="' . $row['company_id'] . '">',
+                                        '<button type="submit" name="edit_company" class="edit-btn_Org"  ><i class="fa-solid fa-pencil"></i></button>',
+                                        '</form></div></td>';
                                         echo "</tr>";
                                     }
-                                    // ปิดการเชื่อมต่อ
+                                    ?>
+                                    <?php
+                                    // -- DELETE  ค่า Business ตาม organization_id -->
+
+                                    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_company'])) {
+
+                                        $company_id = $_POST['company_id'];
+                                        $sql = "DELETE FROM company WHERE company_id = ?";
+                                        $params = array($company_id);
+
+                                        $stmt = sqlsrv_prepare($conn, $sql, $params);
+                                        if ($stmt === false) {
+                                            die(print_r(sqlsrv_errors(), true));
+                                        }
+
+                                        $result = sqlsrv_execute($stmt);
+                                        if ($result === false) {
+                                            die(print_r(sqlsrv_errors(), true));
+                                        } else {
+                                            echo '<script type="text/javascript">
+                                                        const swalWithBootstrapButtons = Swal.mixin({
+                                                            customClass: {
+                                                                confirmButton: "delete-swal",
+                                                                cancelButton: "edit-swal"
+                                                            },
+                                                            buttonsStyling: false
+                                                        });
+                                                        swalWithBootstrapButtons.fire({
+                                                            icon: "success",
+                                                            title: "ระบบลบ ชื่อบริษัท ตามที่ระบุสำเร็จ ",
+                                                            text: "อีกสักครู่ ...ระบบจะทำการรีเฟส",
+                                                            confirmButtonText: "ตกลง",
+
+                                                        })
+                                                    </script>';
+                                            echo "<meta http-equiv='refresh' content='2'>";
+                                            exit();
+                                        }
+                                    }
                                     ?>
                                 </tbody>
                             </table>

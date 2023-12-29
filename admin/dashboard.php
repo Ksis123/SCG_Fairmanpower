@@ -19,7 +19,7 @@
                 <h4 class="font-20 weight-500 mb-10 text-capitalize">
                     SCG : Fair Manpower ยินดีให้บริการ <h4 class="weight-600 font-15 text-primary">คุณ<?php echo $fname . ' ' . $lname ?></h4>
                 </h4>
-                <p class="font-18 max-width-600"></p>
+                <p class="font-18 max-width-800 text-danger">* หมายเหตุ ทางผู้พัฒนาได้ปรับปรุงส่วน <a href="org1_Business_unit.php"> ข้อมูลโครงสร้างองค์กร </a>ณ วันที่ 28 - 31 ธ.ค. 2566 จึงขออภัยมา ณ ที่นี้</p>
             </div>
         </div>
 

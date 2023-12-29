@@ -16,6 +16,8 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="title">
                                 <h3>ข้อมูลโครงสร้างองค์กร : Department (แผนก)</h3>
+                                <p class="text-primary">โครงสร้างทั้ง 9 ลำดับขั้นจะเริ่มเรียงจากซ้าย-ขวาเสมอ
+
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
@@ -38,11 +40,13 @@
                     <div class="col-lg-9 col-md-6 col-sm-12 mb-30">
                         <div class="card-box pd-30 pt-10 height-100-p">
                             <h2 class="mb-30 h4 text-blue">รายการ แผนก ทั้งหมดในระบบ</h2>
+                            <p class="text-danger">* หมายเหตุ : หากต้องการลบ แผนก จะต้องลบ Section ที่เกี่ยวข้องก่อนเสมอ</p>
+
                             <div class="pb-20">
                                 <table class="data-table table stripe hover nowrap">
                                     <thead>
                                         <tr>
-                                            <th>ลำดับ</th>
+                                            <th>เลข Division </th>
                                             <th>ชื่อแผนก (TH)</th>
                                             <th>ชื่อแผนก (ENG)</th>
                                             <th>จัดการ</th>
@@ -52,7 +56,10 @@
                                         <?php
                                         // เตรียมคำสั่ง SQL
                                         $sql7 = "SELECT * FROM department";
+
                                         $params7 = array();
+                                        $i = 1;
+
                                         // ดึงข้อมูลจากฐานข้อมูล
                                         $stmt7 = sqlsrv_query($conn, $sql7, $params7);
                                         // ตรวจสอบการทำงานของคำสั่ง SQL
@@ -63,13 +70,59 @@
                                         // แสดงผลลัพธ์ในรูปแบบของตาราง HTML
                                         while ($row = sqlsrv_fetch_array($stmt7, SQLSRV_FETCH_ASSOC)) {
                                             echo "<tr>";
-                                            echo "<td>" . $row["department_id"] . "</td>";
+                                            echo "<td>" . $row["division_id"] .  "</td>";
                                             echo "<td>" . $row["name_thai"] . "</td>";
                                             echo "<td>" . $row["name_eng"] . "</td>";
-                                            echo "<td><div class='dropdown'><button class='delete-btn_Org'><i class='fa-solid fa-trash-can'></i></button><button class='edit-btn_Org'><i class='fa-solid fa-pencil'></i></button></div></td>";
+                                            echo '<td><div class="flex"><form method="post" action="org7_Department.php" >',
+                                            '<input type="hidden" name="department_id" value="' . $row['department_id'] . '">',
+                                            '<button type="submit" name="delete_department" class="delete-btn_Org"><i class="fa-solid fa-trash-can"></i></button>',
+                                            '</form>';
+                                            echo '<form >',
+                                            '<input type="hidden" name="department_id" value="' . $row['department_id'] . '">',
+                                            '<button type="submit" name="edit_department" class="edit-btn_Org" ><i class="fa-solid fa-pencil"></i></button>',
+                                            '</form></div></td>';
                                             echo "</tr>";
                                         }
-                                        // ปิดการเชื่อมต่อ
+                                        ?>
+
+                                        <?php
+                                        // -- DELETE  ค่า Business ตาม organization_id -->
+
+                                        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_department'])) {
+
+                                            $department_id = $_POST['department_id'];
+                                            $sql = "DELETE FROM department WHERE department_id = ?";
+                                            $params = array($department_id);
+
+                                            $stmt = sqlsrv_prepare($conn, $sql, $params);
+                                            if ($stmt === false) {
+                                                die(print_r(sqlsrv_errors(), true));
+                                            }
+
+                                            $result = sqlsrv_execute($stmt);
+                                            if ($result === false) {
+                                                die(print_r(sqlsrv_errors(), true));
+                                            } else {
+                                                echo '<script type="text/javascript">
+                                                        const swalWithBootstrapButtons = Swal.mixin({
+                                                            customClass: {
+                                                                confirmButton: "delete-swal",
+                                                                cancelButton: "edit-swal"
+                                                            },
+                                                            buttonsStyling: false
+                                                        });
+                                                        swalWithBootstrapButtons.fire({
+                                                            icon: "success",
+                                                            title: "ระบบลบ Department (แผนก) ตามที่ระบุสำเร็จ ",
+                                                            text: "อีกสักครู่ ...ระบบจะทำการรีเฟส",
+                                                            confirmButtonText: "ตกลง",
+
+                                                        })
+                                                    </script>';
+                                                echo "<meta http-equiv='refresh' content='2'>";
+                                                exit();
+                                            }
+                                        }
                                         ?>
                                     </tbody>
                                 </table>
@@ -152,7 +205,7 @@
                                                 toast: true,
                                                 position: "top-end",
                                                 showConfirmButton: false,
-                                                timer: 2000,
+                                                timer: 1300,
                                                 timerProgressBar: true,
                                                 didOpen: (toast) => {
                                                     toast.onmouseenter = Swal.stopTimer;

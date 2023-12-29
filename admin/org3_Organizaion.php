@@ -16,12 +16,14 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="title">
                                 <h3>ข้อมูลโครงสร้างองค์กร : Organization-ID</h3>
+                                <p class="text-primary">โครงสร้างทั้ง 9 ลำดับขั้นจะเริ่มเรียงจากซ้าย-ขวาเสมอ
+
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item "><a href="org1_Business_unit.php">Business Unit</a></li>
                                     <li class="breadcrumb-item"><a href="org2_Sub_Business_unit.php">Sub-business-unit</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Organization-ID</li>
+                                    <li class="breadcrumb-item active" aria-current="page">OrganizationID</li>
                                     <li class="breadcrumb-item"><a href="org4_Company.php">Company</a></li>
                                     <li class="breadcrumb-item"><a href="org5_Location.php">Location</a></li>
                                     <li class="breadcrumb-item"><a href="org6_Division.php">Division</a></li>
@@ -38,12 +40,14 @@
                     <div class="col-lg-8 col-md-6 col-sm-12 mb-30">
                         <div class="card-box pd-30 pt-10 height-100-p">
                             <h2 class="mb-30 h4 text-blue">หมายเลข Organization-ID ทั้งหมดในระบบ</h2>
+                            <p class="text-danger">* หมายเหตุ : หากต้องการหมายเลข OrganizationID จะต้องลบ ชื่อบริษัท ที่เกี่ยวข้องก่อนเสมอ</p>
+
                             <div class="pb-20">
                                 <table class="data-table table stripe hover nowrap">
                                     <thead>
                                         <tr>
                                             <th>จาก Sub-business-unit</th>
-                                            <th>Organization-ID</th>
+                                            <th>หมายเลข OrganizationID</th>
                                             <th>จัดการ</th>
                                         </tr>
                                     </thead>
@@ -53,7 +57,7 @@
 
                                         // $sql3 = "SELECT * FROM organization org INNER JOIN sub_business s ON org.sub_business_id = s.sub_business_id WHERE s.sub_business_id=?";
 
-                                        $sql3 = "SELECT * FROM organization";
+                                        $sql3 = "SELECT *FROM organization JOIN sub_business ON organization.sub_business_id = sub_business.sub_business_id;";
                                         $params3 = array();
                                         // ดึงข้อมูลจากฐานข้อมูล
                                         $stmt3 = sqlsrv_query($conn, $sql3, $params3);
@@ -65,12 +69,58 @@
                                         // แสดงผลลัพธ์ในรูปแบบของตาราง HTML
                                         while ($row = sqlsrv_fetch_array($stmt3, SQLSRV_FETCH_ASSOC)) {
                                             echo "<tr>";
-                                            echo "<td>" . $row["sub_business_id"] . "</td>";
+                                            echo "<td>" . $row["name_eng"] . "</td>";
                                             echo "<td>" . $row["organization_id"] . "</td>";
-                                            echo "<td><div class='dropdown'><button class='delete-btn_Org'><i class='fa-solid fa-trash-can'></i></button><button class='edit-btn_Org'><i class='fa-solid fa-pencil'></i></button></div></td>";
+                                            echo '<td><div class="flex"><form method="post" action="org3_Organizaion.php" >',
+                                            '<input type="hidden" name="organization_id" value="' . $row['organization_id'] . '">',
+                                            '<button type="submit" name="delete_organization" class="delete-btn_Org"><i class="fa-solid fa-trash-can"></i></button>',
+                                            '</form>';
+                                            echo '<form >',
+                                            '<input type="hidden" name="organization_id" value="' . $row['organization_id'] . '">',
+                                            '<button type="submit" name="edit_organization" class="edit-btn_Org"  ><i class="fa-solid fa-pencil"></i></button>',
+                                            '</form></div></td>';
                                             echo "</tr>";
                                         }
-                                        // ปิดการเชื่อมต่อ
+                                        ?>
+
+                                        <?php
+                                        // -- DELETE  ค่า Business ตาม organization_id -->
+
+                                        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_organization'])) {
+
+                                            $organization_id = $_POST['organization_id'];
+                                            $sql = "DELETE FROM organization WHERE organization_id = ?";
+                                            $params = array($organization_id);
+
+                                            $stmt = sqlsrv_prepare($conn, $sql, $params);
+                                            if ($stmt === false) {
+                                                die(print_r(sqlsrv_errors(), true));
+                                            }
+
+                                            $result = sqlsrv_execute($stmt);
+                                            if ($result === false) {
+                                                die(print_r(sqlsrv_errors(), true));
+                                            } else {
+                                                echo '<script type="text/javascript">
+                                                        const swalWithBootstrapButtons = Swal.mixin({
+                                                            customClass: {
+                                                                confirmButton: "delete-swal",
+                                                                cancelButton: "edit-swal"
+                                                            },
+                                                            buttonsStyling: false
+                                                        });
+                                                        swalWithBootstrapButtons.fire({
+                                                            icon: "success",
+                                                            title: "ระบบลบ หมายเลข OrganizationID ตามที่ระบุสำเร็จ ",
+                                                            text: "อีกสักครู่ ...ระบบจะทำการรีเฟส",
+                                                            confirmButtonText: "ตกลง",
+
+                                                        })
+                                                    </script>';
+                                                echo "<meta http-equiv='refresh' content='2'>";
+                                                exit();
+                                            }
+                                        }
                                         ?>
                                     </tbody>
                                 </table>
@@ -110,8 +160,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>หมายเลข Organization-ID</label>
-                                                <input name="organization_id" type="number" class="form-control" required="true" autocomplete="off" maxlength="4"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                                <label>หมายเลข OrganizationID</label>
+                                                <input name="organization_id" type="number" class="form-control" required="true" autocomplete="off" maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                                             </div>
                                         </div>
                                     </div>
@@ -126,7 +176,7 @@
                                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     if (isset($_POST['submit'])) {
                                         $selectedValue = $_POST['sub_business_id'];
-                                        $orgid= $_POST['organization_id'];
+                                        $orgid = $_POST['organization_id'];
 
                                         // ค่าไม่ว่าง ทำการ insert ข้อมูล
                                         $sqlInsert = "INSERT INTO organization (sub_business_id, organization_id) VALUES ('$selectedValue', '$orgid')";
@@ -141,7 +191,7 @@
                                                 toast: true,
                                                 position: "top-end",
                                                 showConfirmButton: false,
-                                                timer: 3000,
+                                                timer: 1300,
                                                 timerProgressBar: true,
                                                 didOpen: (toast) => {
                                                     toast.onmouseenter = Swal.stopTimer;
@@ -154,7 +204,7 @@
                                             });            
                                             </script>';
 
-                                            echo "<meta http-equiv='refresh' content='3'>";
+                                            echo "<meta http-equiv='refresh' content='2'>";
 
                                             exit; // จบการทำงานของสคริปต์ทันทีหลังจาก redirect
                                         }

@@ -1,6 +1,8 @@
 <?php include('../admin/include/header.php') ?>
 
 
+
+
 <body>
 
     <?php include('../admin/include/navbar.php') ?>
@@ -16,6 +18,8 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="title">
                                 <h3>ข้อมูลโครงสร้างองค์กร : Business Unit</h3>
+                                <p class="text-primary">โครงสร้างทั้ง 9 ลำดับขั้นจะเริ่มเรียงจากซ้าย-ขวาเสมอ
+
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
@@ -30,6 +34,7 @@
                                     <li class="breadcrumb-item"><a href="org9_Costcenter.php">Cost-Center</a></li>
                                 </ol>
                             </nav>
+
                         </div>
                     </div>
                 </div>
@@ -38,6 +43,8 @@
                         <div class="card-box pd-30 pt-10 height-100-p">
                             <div class="pb-20">
                                 <h2 class="mb-30 h4 text-blue">รายการ Business Unit ทั้งหมดในระบบ</h2>
+                                <p class="text-danger">* หมายเหตุ : หากต้องการลบระดับ Business Unit จะต้องลบหน่วยงานย่อยของ Sub-Business-Unit ให้หมดก่อน</p>
+
                                 <table class="data-table table stripe hover nowrap">
                                     <thead>
                                         <tr>
@@ -48,32 +55,80 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                            <?php
-                                            // เตรียมคำสั่ง SQL
-                                            $sql = "SELECT * FROM business";
-                                            $params = array();
-                                            // ดึงข้อมูลจากฐานข้อมูล
-                                            $stmt = sqlsrv_query($conn, $sql, $params);
-                                            // ตรวจสอบการทำงานของคำสั่ง SQL
+                                        <!-- SELECT ค่า Business -->
+
+                                        <?php
+                                        // เตรียมคำสั่ง SQL
+                                        $sql = "SELECT * FROM business";
+                                        $params = array();
+                                        // ดึงข้อมูลจากฐานข้อมูล
+                                        $stmt = sqlsrv_query($conn, $sql, $params);
+                                        // ตรวจสอบการทำงานของคำสั่ง SQL
+                                        if ($stmt === false) {
+                                            die(print_r(sqlsrv_errors(), true));
+                                        }
+
+                                        // แสดงผลลัพธ์ในรูปแบบของตาราง HTML
+                                        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+                                            echo "<tr>";
+                                            echo "<td>" . $row["business_id"] . "</td>";
+                                            echo "<td>" . $row["name_thai"] . "</td>";
+                                            echo "<td>" . $row["name_eng"] . "</td>";
+
+                                            echo '<td><div class="flex">',
+                                            '<form method="post" action="org1_Business_unit.php">',
+                                            '<input type="hidden" name="business_id" value="' . $row['business_id'] . '">',
+                                            '<button type="submit" name="delete_business" class="delete-btn_Org" ><i class="fa-solid fa-trash-can"></i></button>',
+                                            '</form>';
+                                            echo '<form >',
+                                            '<input type="hidden" name="business_id" value="' . $row['business_id'] . '">',
+                                            '<button type="submit" name="editbusiness" class="edit-btn_Org"  ><i class="fa-solid fa-pencil"></i></button>',
+                                            '</form></div></td>';
+
+                                            echo '</tr>';
+                                        }
+                                        ?>
+                                        <?php
+
+                                        // -- DELETE  ค่า Business ตาม business_id -->
+
+                                        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_business'])) {
+                                            
+                                            $business_id = $_POST['business_id'];
+                                            $sql = "DELETE FROM business WHERE business_id = ?";
+                                            $params = array($business_id);
+
+                                            $stmt = sqlsrv_prepare($conn, $sql, $params);
                                             if ($stmt === false) {
                                                 die(print_r(sqlsrv_errors(), true));
                                             }
 
-                                            // แสดงผลลัพธ์ในรูปแบบของตาราง HTML
-                                            while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-                                                echo "<tr>";
-                                                echo "<td>" . $row["business_id"] . "</td>";
-                                                echo "<td>" . $row["name_thai"] . "</td>";
-                                                echo "<td>" . $row["name_eng"] . "</td>";
-                                                echo "<td><div class='dropdown'>",
-                                                     "<button class='delete-btn_Org' onclick='swalDeleteAlert()'><i class='fa-solid fa-trash-can'></i></button>",
-                                                     "<button class='edit-btn_Org'><i class='fa-solid fa-pencil'></i></button>",
-                                                     "</div></td>";
-                                                echo "</tr>";
+                                            $result = sqlsrv_execute($stmt);
+                                            if ($result === false) {
+                                                die(print_r(sqlsrv_errors(), true));
+                                            } else {
+                                                echo '<script type="text/javascript">
+                                                        const swalWithBootstrapButtons = Swal.mixin({
+                                                            customClass: {
+                                                                confirmButton: "delete-swal",
+                                                                cancelButton: "edit-swal"
+                                                            },
+                                                            buttonsStyling: false
+                                                        });
+                                                        swalWithBootstrapButtons.fire({
+                                                            icon: "success",
+                                                            title: "ระบบลบข้อมูล Business-Unit สำเร็จ ",
+                                                            text: "อีกสักครู่ ...ระบบจะทำการรีเฟส",
+                                                            confirmButtonText: "ตกลง",
 
+                                                        })
+                                                    </script>';
+                                                echo "<meta http-equiv='refresh' content='2'>";
+                                                exit();
                                             }
-                                            // ปิดการเชื่อมต่อ
-                                            ?>
+                                        }
+                                        ?>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -88,7 +143,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>ชื่อย่อ หรือ Business ID </label>
-                                                <input id="business_id" name="business_id" placeholder="ตัวอย่างเช่น CBM" type="text" class="form-control" required="true" autocomplete="off">
+                                                <input name="business_id" placeholder="ตัวอย่างเช่น CBM" type="text" class="form-control" required="true" autocomplete="off" style="text-transform:uppercase">
                                             </div>
                                         </div>
                                     </div>
@@ -104,7 +159,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>ชื่อ Business Unit (ENG)</label>
-                                                <input name="name_eng" type="text" class="form-control" required="true" autocomplete="off" style="text-transform:uppercase">
+                                                <input name="name_eng" type="text" class="form-control" required="true" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -115,7 +170,9 @@
                                     </div>
                                 </form>
                                 <?php
-                                // PHP สำหรับการ Insert ข้อมูลลงในฐานข้อมูล SQL Server 
+
+                                // -------- INSERT  ค่า Business ตาม business_id PK-->
+
                                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     if (isset($_POST['submit'])) {
                                         $business_id = $_POST['business_id'];
@@ -136,7 +193,7 @@
                                                 toast: true,
                                                 position: "top-end",
                                                 showConfirmButton: false,
-                                                timer: 3000,
+                                                timer: 1500,
                                                 timerProgressBar: true,
                                                 didOpen: (toast) => {
                                                     toast.onmouseenter = Swal.stopTimer;
@@ -149,7 +206,7 @@
                                             });            
                                             </script>';
 
-                                            echo "<meta http-equiv='refresh' content='3'>";
+                                            echo "<meta http-equiv='refresh' content='2'>";
 
                                             exit; // จบการทำงานของสคริปต์ทันทีหลังจาก redirect
                                         }
@@ -166,7 +223,6 @@
         </div>
     </div>
     <!-- js -->
-
     <?php include('../admin/include/scripts.php') ?>
 </body>
 

@@ -12,9 +12,7 @@ $connectionOptions = array(
 $conn = sqlsrv_connect($serverName, $connectionOptions);
 
 if ($conn) {
-    // echo "Connection Successfull.";
-    // echo "<script language='javascript'>alert('message')
-    // </script>";
+    // echo "<script language='javascript'>alert('Connection Successfull.')
 } else {
     echo "Connection could not be established.";
     die(print_r(sqlsrv_errors(), true));

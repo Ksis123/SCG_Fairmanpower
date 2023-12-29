@@ -16,6 +16,8 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="title">
                                 <h3>ข้อมูลโครงสร้างองค์กร : Cost-Center</h3>
+                                <p class="text-primary">โครงสร้างทั้ง 9 ลำดับขั้นจะเริ่มเรียงจากซ้าย-ขวาเสมอ
+
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
@@ -44,6 +46,7 @@
                                     <thead>
                                         <tr>
                                             <th>ลำดับ</th>
+                                            <th>ชื่อ Section (ENG)</th>
                                             <th>Cost-Center</th>
                                             <th>จัดการ</th>
                                         </tr>
@@ -54,8 +57,9 @@
 
                                         // $sql3 = "SELECT * FROM organization org INNER JOIN sub_business s ON org.sub_business_id = s.sub_business_id WHERE s.sub_business_id=?";
 
-                                        $sql9 = "SELECT * FROM cost_center";
+                                        $sql9 = "SELECT * FROM cost_center JOIN section ON cost_center.section_id = section.section_id";
                                         $params9 = array();
+                                        $i = 1;
                                         // ดึงข้อมูลจากฐานข้อมูล
                                         $stmt9 = sqlsrv_query($conn, $sql9, $params9);
                                         // ตรวจสอบการทำงานของคำสั่ง SQL
@@ -66,12 +70,59 @@
                                         // แสดงผลลัพธ์ในรูปแบบของตาราง HTML
                                         while ($row = sqlsrv_fetch_array($stmt9, SQLSRV_FETCH_ASSOC)) {
                                             echo "<tr>";
-                                            echo "<td>" . $row["section_id"] . "</td>";
+                                            echo "<td>" . $i++ . "</td>";
+                                            echo "<td>" . $row["name_eng"] . "</td>";
                                             echo "<td>" . $row["cost_center_id"] . "</td>";
-                                            echo "<td><div class='dropdown'><button class='delete-btn_Org'><i class='fa-solid fa-trash-can'></i></button><button class='edit-btn_Org'><i class='fa-solid fa-pencil'></i></button></div></td>";
+                                            echo '<td><div class="flex"><form method="post" action="org9_Costcenter.php" >',
+                                            '<input type="hidden" name="cost_center_id" value="' . $row['cost_center_id'] . '">',
+                                            '<button type="submit" name="delete_cost_center" class="delete-btn_Org"><i class="fa-solid fa-trash-can"></i></button>',
+                                            '</form>';
+                                            echo '<form >',
+                                            '<input type="hidden" name="cost_center_id" value="' . $row['cost_center_id'] . '">',
+                                            '<button type="submit" name="edit_section" class="edit-btn_Org" ><i class="fa-solid fa-pencil"></i></button>',
+                                            '</form></div></td>';
                                             echo "</tr>";
                                         }
-                                        // ปิดการเชื่อมต่อ
+                                        ?>
+
+                                        <?php
+                                        // -- DELETE  ค่า Business ตาม organization_id -->
+
+                                        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_cost_center'])) {
+
+                                            $cost_center_id = $_POST['cost_center_id'];
+                                            $sql = "DELETE FROM cost_center WHERE cost_center_id = ?";
+                                            $params = array($cost_center_id);
+
+                                            $stmt = sqlsrv_prepare($conn, $sql, $params);
+                                            if ($stmt === false) {
+                                                die(print_r(sqlsrv_errors(), true));
+                                            }
+
+                                            $result = sqlsrv_execute($stmt);
+                                            if ($result === false) {
+                                                die(print_r(sqlsrv_errors(), true));
+                                            } else {
+                                                echo '<script type="text/javascript">
+                                                                    const swalWithBootstrapButtons = Swal.mixin({
+                                                                        customClass: {
+                                                                            confirmButton: "delete-swal",
+                                                                            cancelButton: "edit-swal"
+                                                                        },
+                                                                        buttonsStyling: false
+                                                                    });
+                                                                    swalWithBootstrapButtons.fire({
+                                                                        icon: "success",
+                                                                        title: "ระบบลบ หมายเลข Cost-Center ตามที่ระบุสำเร็จ ",
+                                                                        text: "อีกสักครู่ ...ระบบจะทำการรีเฟส",
+                                                                        confirmButtonText: "ตกลง",
+
+                                                                    })
+                                                                </script>';
+                                                echo "<meta http-equiv='refresh' content='3'>";
+                                                exit();
+                                            }
+                                        }
                                         ?>
                                     </tbody>
                                 </table>
@@ -143,7 +194,7 @@
                                                 toast: true,
                                                 position: "top-end",
                                                 showConfirmButton: false,
-                                                timer: 1000,
+                                                timer: 1300,
                                                 timerProgressBar: true,
                                                 didOpen: (toast) => {
                                                     toast.onmouseenter = Swal.stopTimer;
@@ -156,7 +207,7 @@
                                             });            
                                             </script>';
 
-                                            echo "<meta http-equiv='refresh' content='1'>";
+                                            echo "<meta http-equiv='refresh' content='2'>";
 
                                             exit; // จบการทำงานของสคริปต์ทันทีหลังจาก redirect
                                         }

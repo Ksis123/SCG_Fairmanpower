@@ -17,6 +17,8 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="title">
                                 <h3>ข้อมูลโครงสร้างองค์กร : Sub-business-unit</h3>
+                                <p class="text-primary">โครงสร้างทั้ง 9 ลำดับขั้นจะเริ่มเรียงจากซ้าย-ขวาเสมอ
+
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
@@ -39,6 +41,8 @@
                     <div class="col-lg-9 col-md-6 col-sm-12 mb-30">
                         <div class="card-box pd-30 pt-10 height-100-p">
                             <h2 class="mb-30 h4 text-blue">รายการ Sub-business-unit ทั้งหมดในระบบ</h2>
+                            <p class="text-danger">* หมายเหตุ : หากต้องการลบระดับ Sub-business ต้องลบหมายเลข OrganizationID ที่เกี่ยวข้องก่อนเสมอ</p>
+
                             <div class="pb-20">
                                 <table class="data-table table stripe hover nowrap">
                                     <thead>
@@ -55,6 +59,7 @@
                                         // เตรียมคำสั่ง SQL
                                         $sql2 = "SELECT * FROM sub_business";
                                         $params2 = array();
+                                        $i = 1;
                                         // ดึงข้อมูลจากฐานข้อมูล
                                         $stmt2 = sqlsrv_query($conn, $sql2, $params2);
                                         // ตรวจสอบการทำงานของคำสั่ง SQL
@@ -64,14 +69,60 @@
                                         // แสดงผลลัพธ์ในรูปแบบของตาราง HTML
                                         while ($row = sqlsrv_fetch_array($stmt2, SQLSRV_FETCH_ASSOC)) {
                                             echo "<tr>";
-                                            echo "<td>" . $row["sub_business_id"] . "</td>";
+                                            echo "<td>" . $i++ . "</td>";
                                             echo "<td>" . $row["business_id"] . "</td>";
                                             echo "<td>" . $row["name_thai"] . "</td>";
                                             echo "<td>" . $row["name_eng"] . "</td>";
-                                            echo "<td><div class='dropdown'><button class='delete-btn_Org' onclick='swalDeleteAlert()'><i class='fa-solid fa-trash-can'></i></button><button class='edit-btn_Org'><i class='fa-solid fa-pencil'></i></button></div></td>";
+                                            echo '<td><div class="flex"><form method="post" action="org2_Sub_Business_unit.php">',
+                                            '<input type="hidden" name="sub_business_id" value="' . $row['sub_business_id'] . '">',
+                                            '<button type="submit" name="delete_sub_business" class="delete-btn_Org"><i class="fa-solid fa-trash-can"></i></button>',
+                                            '</form>';
+                                            echo '<form >',
+                                            '<input type="hidden" name="sub_business_id" value="' . $row['sub_business_id'] . '">',
+                                            '<button type="submit" name="edit_sub_business" class="edit-btn_Org"  ><i class="fa-solid fa-pencil"></i></button>',
+                                            '</form></div></td>';
                                             echo "</tr>";
                                         }
-                                        // ปิดการเชื่อมต่อ
+                                        ?>
+                                        <?php
+
+                                        // ----- DELETE  ค่า Business ตาม sub_business_id -->
+
+                                        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_sub_business'])) {
+                                            
+                                            $sub_business_id = $_POST['sub_business_id'];
+                                            $sql = "DELETE FROM sub_business WHERE sub_business_id = ?";
+                                            $params = array($sub_business_id);
+
+                                            $stmt = sqlsrv_prepare($conn, $sql, $params);
+                                            if ($stmt === false) {
+                                                die(print_r(sqlsrv_errors(), true));
+                                            }
+
+                                            $result = sqlsrv_execute($stmt);
+                                            if ($result === false) {
+                                                die(print_r(sqlsrv_errors(), true));
+                                            } else {
+                                                echo '<script type="text/javascript">
+                                                        const swalWithBootstrapButtons = Swal.mixin({
+                                                            customClass: {
+                                                                confirmButton: "delete-swal",
+                                                                cancelButton: "edit-swal"
+                                                            },
+                                                            buttonsStyling: false
+                                                        });
+                                                        swalWithBootstrapButtons.fire({
+                                                            icon: "success",
+                                                            title: "ระบบลบข้อมูล Sub-Business-Unit สำเร็จ",
+                                                            text: "อีกสักครู่ ...ระบบจะทำการรีเฟส",
+                                                            confirmButtonText: "ตกลง",
+
+                                                        })
+                                                    </script>';
+                                                echo "<meta http-equiv='refresh' content='2'>";
+                                                exit();
+                                            }
+                                        }
                                         ?>
                                     </tbody>
                                     </tbody>
@@ -123,7 +174,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>ชื่อ Sub-Business-Unit (ENG)</label>
-                                                <input name="name_eng" type="text" class="form-control" required="true" autocomplete="off" style="text-transform:uppercase">
+                                                <input name="name_eng" type="text" class="form-control" required="true" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -154,7 +205,7 @@
                                                 toast: true,
                                                 position: "top-end",
                                                 showConfirmButton: false,
-                                                timer: 3000,
+                                                timer: 1300,
                                                 timerProgressBar: true,
                                                 didOpen: (toast) => {
                                                     toast.onmouseenter = Swal.stopTimer;
@@ -163,11 +214,11 @@
                                             });
                                             Toast.fire({
                                                 icon: "success",
-                                                title: "บันทึกข้อมูล Sub-Business-Unit สำเร็จ"
+                                                title: "บันทึก Sub-Business-Unit สำเร็จ"
                                             });            
                                             </script>';
 
-                                            echo "<meta http-equiv='refresh' content='3'>";
+                                            echo "<meta http-equiv='refresh' content='2'>";
 
                                             exit; // จบการทำงานของสคริปต์ทันทีหลังจาก redirect
                                         }

@@ -79,9 +79,9 @@
         }
 
         h2 {
-            font-size: 38px;
+            font-size: 28px;
             font-weight: bold;
-            color: #ED2626;
+            color: #293d52;
         }
 
         h4 {
@@ -187,21 +187,16 @@
                                         </div>
                                         <div class="text-center">
                                             <h1>Fair Manpower
-                                                <h2>แอดมิน</h2>
+                                                <h2>ระบบโครงสร้างองค์กรและข้อมูลประวัติ</h2>
                                             </h1>
                                         </div>
-                                        <div class="text-right">
-                                            <a class="text-primary" href="../index.php">
-                                                ย้อนกลับ
-                                            </a>
-                                        </div>
+
                                         <hr class="custom">
 
                                         <div class="form-group">
                                             <!-- <input  type="submit" value="เข้าสู่ระบบด้วย LINE" class="login-button " name="signin" onclick="location.href='dashboard.php'"> -->
                                             <input id="btnLogIn" type="submit" value="เข้าสู่ระบบด้วย LINE" class="login-button">
                                         </div>
-                                        <p class="text-center login-form__footer">กรณีไม่ใช่แอดมิน? โปรด <a href="../employee/signin.php" class="text-primary">เข้าสู่ระบบในฐานะพนักงาน</a></p>
                                     </div>
                                 </div>
                             </div>

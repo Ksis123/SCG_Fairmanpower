@@ -107,19 +107,19 @@
                                                         <div class="weight-500 col-md-6">
                                                             <div class="form-group">
                                                                 <label>First Name</label>
-                                                                <input name="fname" class="form-control form-control-lg" type="text" required="true" autocomplete="off" value="<?php echo $row['FirstName']; ?>">
+                                                                <input name="fname" class="form-control form-control-lg" type="text" required="true" autocomplete="off" value="<?php echo $fname; ?>">
                                                             </div>
                                                         </div>
                                                         <div class="weight-500 col-md-6">
                                                             <div class="form-group">
                                                                 <label>Last Name</label>
-                                                                <input name="lastname" class="form-control form-control-lg" type="text" placeholder="" required="true" autocomplete="off" value="<?php echo $row['LastName']; ?>">
+                                                                <input name="lastname" class="form-control form-control-lg" type="text" placeholder="" required="true" autocomplete="off" value="<?php echo $lname; ?>">
                                                             </div>
                                                         </div>
                                                         <div class="weight-500 col-md-6">
                                                             <div class="form-group">
                                                                 <label>Email Address</label>
-                                                                <input name="email" class="form-control form-control-lg" type="text" placeholder="" required="true" autocomplete="off" value="<?php echo $row['EmailId']; ?>">
+                                                                <input name="email" class="form-control form-control-lg" type="text" placeholder="" required="true" autocomplete="off" value="<?php echo $emp_email; ?>">
                                                             </div>
                                                         </div>
                                                         <div class="weight-500 col-md-6">
