@@ -1237,7 +1237,6 @@ table.dataTable>tbody>tr.child ul.dtr-details .dtr-title {
 }
 
 .dropup .dropdown-toggle::after {
-    content: "\f107";
     font-family: "FontAwesome";
     vertical-align: unset;
     width: auto;
@@ -1888,8 +1887,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     font-weight: 500;
     line-height: 45px;
     font-family: 'Noto Sans Thai';
-    ;
-    padding: 0 20px
+    padding: 0 55px
 }
 
 .brand-logo a .light-logo,
@@ -1915,7 +1913,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 .left-side-bar,
 .left-side-bar:before {
     position: fixed;
-
     left: 0;
     top: 0;
     -webkit-transition: all .3s ease-in-out;
@@ -1928,8 +1925,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     z-index: 1000;
     background-image: linear-gradient(#489AE0, #5BD1AC);
     box-shadow: 0px 2px 15px -2px #3b5154;
-
-
 }
 
 .left-side-bar .mCS-dark-2.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
@@ -1937,7 +1932,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 }
 
 .left-side-bar:before {
-    content: "";
     z-index: -1;
     width: 100%;
     height: 100%;
@@ -1964,14 +1958,14 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 }
 
 .sidebar-menu {
-    padding: 0 0 20px;
-    margin: 15px;
+    padding: 0 0px 20px;
+    margin: -2px;
     margin-top: 5px;
 }
 
 .sidebar-menu .dropdown-toggle {
     display: block;
-    padding: 18px 15px 18px 67px;
+    padding: 18px 15px 18px 35px;
     margin-top: 15px;
     margin: 15px;
 
@@ -1991,29 +1985,12 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     font-size: 18px
 }
 
-.sidebar-menu.icon-style-2 .dropdown-toggle:after {
-    content: "\f217";
-    font-family: "Ionicons"
-}
-
-.sidebar-menu.icon-style-2 .dropdown.show .dropdown-toggle:after {
-    content: "\f208"
-}
-
-.sidebar-menu.icon-style-3 .dropdown-toggle:after {
-    content: "\f101"
-}
-
-.sidebar-menu.icon-style-3 .dropdown.show .dropdown-toggle:after {
-    content: "\f103"
-}
-
 .sidebar-menu .dropdown-toggle:hover,
 .sidebar-menu .show>.dropdown-toggle {
     color: #347FB3;
     background-color: #ffffff;
     border-radius: 15px;
-    margin: 15px;
+    margin: 25px;
 
     box-shadow: 0px 5px 5px rgba(45, 50, 53, 0.178);
 
@@ -2086,23 +2063,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     -webkit-transform: translate(0, -50%);
     transform: translate(0, -50%);
 }
-f
-/* .sidebar-menu.icon-list-style-2 .submenu li>a:before {
-    content: "\f10c";
-    font-family: "FontAwesome"
-} */
 
-/* .sidebar-menu.icon-list-style-3 .submenu li>a:before {
-}
-
-.sidebar-menu.icon-list-style-4 .submenu li>a:before {
-}
-
-.sidebar-menu.icon-list-style-5 .submenu li>a:before {
-}
-
-.sidebar-menu.icon-list-style-6 .submenu li>a:before {
-} */
 
 .mobile-menu-overlay,
 .sidebar-menu .submenu li a,
@@ -2137,7 +2098,7 @@ f
 }
 
 .sidebar-menu .submenu.child {
-    padding-left: 15px
+    padding-left: 5px
 }
 
 .sidebar-menu .submenu li:hover>a:before {
@@ -2148,7 +2109,8 @@ f
 .sidebar-menu .submenu li a:hover {
     color: #ffffff;
     background-color: rgba(67, 70, 71, 0.266);
-    border-radius: 15px;
+    border-radius: 5px;
+    margin: 15px;
 
 }
 
@@ -3163,7 +3125,6 @@ f
 }
 
 .blog-detail ul li:before {
-    content: "\f101";
     font-family: "Noto Sans Thai";
     position: absolute;
     color: #405158;
@@ -3363,7 +3324,6 @@ f
 }
 
 .faq-wrap .card-header .btn:after {
-    content: "\f209";
     font-family: "Noto Sans Thai";
     position: absolute;
     right: 10px;
@@ -3371,9 +3331,7 @@ f
     top: 16px
 }
 
-.faq-wrap .card-header .btn.collapsed:after {
-    content: "\f218"
-}
+
 
 .faq-wrap .card-body {
     padding-top: 0
@@ -3514,7 +3472,6 @@ f
 }
 
 .pricing-points ul li:after {
-    content: "\f121";
     font-family: "Noto Sans Thai";
     font-size: 18px;
     line-height: 1;
@@ -3683,7 +3640,6 @@ f
 }
 
 .profile-task-list ul li .due-date:before {
-    content: "\f111";
     font-family: "Noto Sans Thai";
     display: inline-block;
     font-size: 8px;
@@ -4613,8 +4569,7 @@ f
     }
 
     .left-side-bar .brand-logo a {
-        text-align: left;
-        padding: 5px 15px
+        text-align: center;
     }
 
     .left-side-bar .brand-logo a .svg,
@@ -5167,3 +5122,47 @@ f
     background-image: linear-gradient(#5390d6, #488CBA);
     border: 2px solid #ffffff !important;
 }
+
+.warming-btn_Org {
+    transition: 0.5s ease-in-out;
+    color: #488CBA;
+    box-shadow: 0px 2px 15px -6px #000000;
+    transition: 0.3s ease-in-out;
+    background-image: linear-gradient(#ffffff, #ffffff);
+    border-radius: 30px;
+    border: 2px solid #488CBA !important;
+}
+
+.warming-btn_Org:hover {
+    font-weight: bold;
+    transition: 0.5s ease-in-out;
+    color: #ffffff;
+    box-shadow: 0px 2px 15px -6px #000000;
+    transition: 0.3s ease-in-out;
+    background-image: linear-gradient(#5390d6, #488CBA);
+    border: 2px solid #488CBA !important;
+}
+
+.warm-swal {
+    font-size: 18px;
+    transition: 0.5s ease-in-out;
+    color: #60D3AA;
+    box-shadow: 0px 2px 15px -6px #000000;
+    transition: 0.3s ease-in-out;
+    background-image: linear-gradient(#9CEE8C, #60D3AA);
+    border: 2px solid #9CEE8C !important;
+
+}
+
+.warm-swal:hover {
+    font-size: 19px;
+    font-weight: bold;
+    transition: 0.5s ease-in-out;
+    color: #f0f8ff;
+    box-shadow: 0px 2px 15px -6px #000000;
+    transition: 0.3s ease-in-out;
+    background-image: linear-gradient(#9CEE8C, #60D3AA);
+    border: 2px solid #ffffff !important;
+
+}
+

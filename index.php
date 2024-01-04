@@ -4,16 +4,29 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link rel="icon" type="image/ico" href="favicon.ico">
+
     <link href="asset/css/signin.css" rel="stylesheet" />
 
-    <title>SCG | Fair Manpower</title>
+
+    <script src="/asset/plugins/sweetalert2-11.10.1/jquery-3.7.1.min.js"></script>
+    <script src="/asset/plugins/sweetalert2-11.10.1/sweetalert2.all.min.js"></script>
+
+
+    <!-- LINE SCRIPT -->
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+
+    <title> SCG | Fair Manpower</title>
     <style>
         body,
         html {
             height: 100%;
             margin: 0;
+        }
+
+        .flex {
+            display: flex;
         }
 
         .bg {
@@ -30,11 +43,16 @@
             backdrop-filter: blur(5px);
             height: 100%;
 
+
+        }
+
+        hr.custom {
+            border: 2px solid #d2d4d4;
+            border-radius: 5px;
         }
 
         .card {
             border-radius: 67px;
-
         }
 
         .card-body {
@@ -51,113 +69,145 @@
         }
 
         img.Logo {
-            width: 45%;
+            width: 48%;
         }
 
         h1 {
-            font-size: 40px;
+            src: url('/asset/fonts/Inter/Inter-VariableFont_slnt\,wght.ttf');
+            font-size: 38px;
             font-weight: bold;
             color: #ed2626;
-            text-shadow: -1px 1px 0 #000, 1px 1px 0 #ffffff, 1px -1px 0 #ffffff, -1px -1px 0 #ffffff;
 
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #293d52;
+
+        }
+
+        .admin-color {
+            color: #ED2626;
+        }
+
+        .employee-color {
+            color: #9C9D9D;
         }
 
         h4 {
             color: #b8b2b2;
         }
 
-        hr.custom {
-            border: 2px solid #d2d4d4;
-            border-radius: 5px;
+        input[type=submit] {
+            width: 100%;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 15px;
+            border-style: solid;
+            border-color: white;
+            border-width: 3px;
         }
 
-        .admin-button {
-            text-align: center;
+        .login-button {
             font-size: 25px;
             font-weight: bold;
-            height: 45px;
-            width: 120px;
-            text-shadow: 2px 2px 2px #000000 25%;
-            background-image: linear-gradient(#EB5858, #B71B1B);
+            transition: 0.5s ease-in-out;
+            color: #C6EBD5;
+            box-shadow: 0px 2px 15px -6px #000000;
+            transition: 0.1s ease-in-out;
+            background: linear-gradient(#06C755, #12B153);
+
+        }
+
+        .login-button:hover {
+            font-weight: bold;
             color: white;
-            border-radius: 50px;
-            border-style: solid;
-            border-color: white;
+            transform: scale(1.05);
+            transition: 0.25s ease-in-out;
             box-shadow: 0px 2px 15px -5px #000000;
-            transition: 0.5s ease;
 
         }
 
-        .admin-button:hover {
-            background-image: linear-gradient(#ffffff, #ffffff);
-            color: #EB5858;
-            font-size: 25px;
-            font-weight: bold;
-            border-radius: 50px;
-            border-style: solid;
-            border-color: #EB5858;
-            transition: 0.5s ease-in-out;
-            text-shadow: -1px 1px 0 #000, 1px 1px 0 #ffffff, 1px -1px 0 #ffffff, -1px -1px 0 #ffffff;
+        .center {
+            margin: auto;
+            width: 50%;
+            padding: 10px;
         }
 
-        .empoyee-button {
-            text-align: center;
-            font-size: 25px;
-            font-weight: bold;
-            height: 45px;
-            width: 120px;
-            transition: 0.5s ease-in-out;
-            background-image: linear-gradient(#1FBABF, #60D3AA);
-            color: #f0f8ff;
-            border-radius: 50px;
-            border-style: solid;
-            border-color: white;
-            box-shadow: 0px 2px 15px -5px #000000;
-            transition: 0.5s ease-in-out;
+        input:focus {
+            border: 2px solid #90d4ce !important;
+            box-shadow: 0px 0px 5px rgba(56, 169, 240, 0.75) !important;
         }
 
-        .empoyee-button:hover {
-            background-image: linear-gradient(#ffffff, #ffffff);
-            color: #60D3AA;
-            border-radius: 50px;
-            transition: 0.5s ease-in-out;
-            border-style: solid;
-            border-color: #60D3AA;
-            text-shadow: -1px 1px 0 #000, 1px 1px 0 #ffffff, 1px -1px 0 #ffffff, -1px -1px 0 #ffffff;
+        .formcustom {
+            display: inline-block;
+            border: 2px solid #d2d4d4;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
 
+        .user-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #e8c5c3;
+            border-radius: 100%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .18)
+        }
+
+        .line-icon {
+            width: 72px;
+            height: 72px;
+            background: #ebeff3;
+            color: #524d7d;
+            -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .18);
+            box-shadow: 0 0 10px rgba(0, 0, 0, .18)
+        }
+
+        .border-radius-100 {
+            border: 3px solid #ffffff !important;
+            box-shadow: 0px 0px 5px rgba(48, 50, 51, 0.382) !important;
+            border-radius: 100%
         }
     </style>
 
 </head>
 
 <body>
-    <div class="bg border">
+    <div class="bg" style="height: 100%">
         <div class="transbox">
             <div class="login-form-bg h-100">
                 <div class="container h-100">
                     <div class="row justify-content-center h-100">
                         <div class="col-xl-6">
+
                             <div class="form-input-content">
-                                <div class="card login-form">
-                                    <div class="card-body shadow">
+                                <div class="card login-form mb-0">
+                                    <div class="card-body pt-10 shadow">
+                                        <div class="row pl-2">
+                                            <div class="user-icon ">
+                                                <img src="https://salmon-charming-stingray-66.mypinata.cloud/ipfs/QmPYcadAPrkKZ7Tdh4LDQNoaPNRuGEePfMYEp4WDCUCKwt?_gl=1*1ytzjhz*_ga*MTE0ODI0Mjc0LjE2OTY4NjQ2MTU.*_ga_5RMPXG14TE*MTcwMzc2NTE1OC42NC4xLjE3MDM3NjU5NjAuNDguMC4w" class="border-radius-100" width="80" height="80" alt="" style="box-shadow: 0 0 10px rgba(0, 0, 0, .18);">
+                                            </div>
+                                        </div>
                                         <div class="BoxLogo">
                                             <div className="BoxLogoinfo">
                                                 <img src="https://salmon-charming-stingray-66.mypinata.cloud/ipfs/QmebXP3b8JbPb14WvphSJQavhqtBgFTcYBfZD6X5rkiUbP?_gl=1*j2trn5*_ga*MTE0ODI0Mjc0LjE2OTY4NjQ2MTU.*_ga_5RMPXG14TE*MTcwMjI4NTMyNi41OC4xLjE3MDIyODY1OTEuNjAuMC4w" class="Logo " />
                                             </div>
                                         </div>
-                                        <h1 class="text-center">Fair Manpower <h4 class="text-center ">โปรดเลือกการเข้าสู่ระบบในฐานะ ?</h4>
-                                        </h1>
-                                        <hr class="custom">
-                                        <div class="container mt-5">
-                                            <div class="btn-toolbar justify-content-between">
-                                                <div class="btn-group">
-                                                    <a href="admin/signin.php" class="admin-button">แอดมิน</a>
-                                                </div>
+                                        <div>
+                                            <h1 class="text-center">Fair Manpower
+                                                <a>
+                                                    <h2>ระบบโครงสร้างองค์กรและข้อมูลประวัติ</h2>
+                                                </a>
+                                            </h1>
+                                        </div>
 
-                                                <div class="btn-group">
-                                                    <a href="employee/signin.php" class="empoyee-button">พนักงาน</a>
-                                                </div>
-                                            </div>
+                                        <hr class="custom">
+
+                                        <div class="form-group">
+                                            <!-- <input  type="submit" value="เข้าสู่ระบบด้วย LINE" class="login-button " name="signin" onclick="location.href='dashboard.php'"> -->
+                                            <input id="btnLogIn" type="submit" value="เข้าสู่ระบบด้วย LINE" class="login-button">
                                         </div>
                                     </div>
                                 </div>
@@ -169,7 +219,41 @@
         </div>
     </div>
 
+    <script>
+        var userid = "";
+        const btnLogIn = document.getElementById('btnLogIn');
+        const btnLogOut = document.getElementById('btnLogOut');
+        const userId = document.getElementById('userId');
 
+        async function main() {
+            // Initialize LIFF app)
+            await liff.init({
+                liffId: '2002434201-QE0o2R3X'
+            });
+
+            getUserProfile();
+            if (!liff.isInClient()) {
+                if (liff.isLoggedIn()) {
+                    btnLogIn.style.display = 'none';
+                    getUserProfile();
+                } else {
+                    btnLogIn.style.display = 'block';
+                }
+            }
+        }
+
+        main();
+
+        async function getUserProfile() {
+            const profile = await liff.getProfile();
+            window.location.href = "Auth_Line.php?w1=" + profile.userId
+
+        }
+
+        btnLogIn.onclick = () => {
+            liff.login();
+        };
+    </script>
 
 </body>
 

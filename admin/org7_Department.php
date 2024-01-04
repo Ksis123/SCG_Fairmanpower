@@ -77,11 +77,9 @@
                                             '<input type="hidden" name="department_id" value="' . $row['department_id'] . '">',
                                             '<button type="submit" name="delete_department" class="delete-btn_Org"><i class="fa-solid fa-trash-can"></i></button>',
                                             '</form>';
-                                            echo '<form >',
-                                            '<input type="hidden" name="department_id" value="' . $row['department_id'] . '">',
-                                            '<button type="submit" name="edit_department" class="edit-btn_Org" ><i class="fa-solid fa-pencil"></i></button>',
-                                            '</form></div></td>';
-                                            echo "</tr>";
+                                            echo '<button type="button" class="edit-btn_Org" onclick="openEdit_Department_Modal(\'' . $row['department_id'] . '\', \'' . $row['division_id'] . '\', \'' . $row['name_thai'] . '\', \'' . $row['name_eng'] . '\');">',
+                                            '<i class="fa-solid fa-pencil"></i>',
+                                            '</button></div></td>';
                                         }
                                         ?>
 
@@ -129,6 +127,98 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Modal Start -->
+                    <div class="modal fade" id="editDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="editDepartmentModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editDepartmentModalLabel">แก้ไขข้อมูล Department (แผนก)</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Form for editing Department data -->
+                                    <form id="editDepartmentForm" method="post" action="org7_Department.php">
+                                        <input name="department_id" type="hidden" id="editDepartmentIdInput">
+                                        <div class="form-group">
+                                            <label for="editDivision">ชื่อ Division</label>
+                                            <select name="division_id" class="custom-select form-control" required="true" autocomplete="off" id="editDivision">
+                                                <?php
+                                                // สร้าง options สำหรับ dropdown 2
+                                                $sqlDropdown = "SELECT * FROM division";
+                                                $resultDropdown = sqlsrv_query($conn, $sqlDropdown);
+
+                                                // เช็ค error
+                                                if ($resultDropdown === false) {
+                                                    die(print_r(sqlsrv_errors(), true));
+                                                }
+
+                                                if ($resultDropdown) {
+                                                    while ($row = sqlsrv_fetch_array($resultDropdown, SQLSRV_FETCH_ASSOC)) {
+                                                        echo "<option value='"  . $row['division_id'] . "'>" . $row['division_id'] .' '. $row['name_eng'] . "</option>";
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editDepartmentNameThai">ชื่อแผนก (TH)</label>
+                                            <input type="text" class="form-control" id="editDepartmentNameThai" name="name_thai" required autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editDepartmentNameEng">ชื่อแผนก (ENG)</label>
+                                            <input type="text" class="form-control" id="editDepartmentNameEng" name="name_eng" required autocomplete="off">
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary" name="update_department">บันทึกการแก้ไข</button>
+                                        </div>
+                                    </form>
+                                    <?php
+                                    // -- UPDATE Department based on department_id -->
+                                    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_department'])) {
+                                        $department_id = $_POST['department_id'];
+                                        $division_id = $_POST['division_id'];
+                                        $name_thai = $_POST['name_thai'];
+                                        $name_eng = $_POST['name_eng'];
+
+                                        // อัปเดตค่าของฟิลด์ division_id, name_thai, และ name_eng
+                                        $sqlUpdateDepartment = "UPDATE department SET division_id = '$division_id', name_thai = '$name_thai', name_eng = '$name_eng' WHERE department_id = '$department_id'";
+                                        $stmtUpdateDepartment = sqlsrv_query($conn, $sqlUpdateDepartment);
+
+                                        if ($stmtUpdateDepartment === false) {
+                                            die(print_r(sqlsrv_errors(), true));
+                                        } else {
+                                            echo '<script type="text/javascript">
+                                                    const Toast = Swal.mixin({
+                                                        toast: true,
+                                                        position: "top-end",
+                                                        showConfirmButton: false,
+                                                        timer: 980,
+                                                        timerProgressBar: true,
+                                                        didOpen: (toast) => {
+                                                            toast.onmouseenter = Swal.stopTimer;
+                                                            toast.onmouseleave = Swal.resumeTimer;
+                                                        }
+                                                    });
+                                                    Toast.fire({
+                                                        icon: "success",
+                                                        title: "แก้ไขข้อมูล Department สำเร็จ"
+                                                    });
+                                                </script>';
+
+                                            echo "<meta http-equiv='refresh' content='1'>";
+                                            exit; // จบการทำงานของสคริปต์ทันทีหลังจาก redirect
+                                        }
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal End -->
+
                     <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
                         <div class="card-box pd-30 pt-10 height-50-p">
                             <section>
@@ -205,7 +295,7 @@
                                                 toast: true,
                                                 position: "top-end",
                                                 showConfirmButton: false,
-                                                timer: 1300,
+                                                timer: 980,
                                                 timerProgressBar: true,
                                                 didOpen: (toast) => {
                                                     toast.onmouseenter = Swal.stopTimer;
@@ -218,7 +308,7 @@
                                             });            
                                             </script>';
 
-                                            echo "<meta http-equiv='refresh' content='2'>";
+                                            echo "<meta http-equiv='refresh' content='1'>";
                                             exit; // จบการทำงานของสคริปต์ทันทีหลังจาก redirect
                                         }
                                     }

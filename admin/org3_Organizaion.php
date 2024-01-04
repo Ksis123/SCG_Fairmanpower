@@ -40,7 +40,7 @@
                     <div class="col-lg-8 col-md-6 col-sm-12 mb-30">
                         <div class="card-box pd-30 pt-10 height-100-p">
                             <h2 class="mb-30 h4 text-blue">หมายเลข Organization-ID ทั้งหมดในระบบ</h2>
-                            <p class="text-danger">* หมายเหตุ : หากต้องการหมายเลข OrganizationID จะต้องลบ ชื่อบริษัท ที่เกี่ยวข้องก่อนเสมอ</p>
+                            <p class="text-danger">* หมายเหตุ : หากต้องการลบหมายเลข OrganizationID จะต้องลบ ชื่อบริษัท ที่เกี่ยวข้องก่อนเสมอ </p>
 
                             <div class="pb-20">
                                 <table class="data-table table stripe hover nowrap">
@@ -48,7 +48,7 @@
                                         <tr>
                                             <th>จาก Sub-business-unit</th>
                                             <th>หมายเลข OrganizationID</th>
-                                            <th>จัดการ</th>
+                                            <th>จัดการ <a onclick="openEdit_OrgID_Modal()"><i class="fa-solid fa-circle-exclamation warming-btn_Org"></i></a></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -75,10 +75,6 @@
                                             '<input type="hidden" name="organization_id" value="' . $row['organization_id'] . '">',
                                             '<button type="submit" name="delete_organization" class="delete-btn_Org"><i class="fa-solid fa-trash-can"></i></button>',
                                             '</form>';
-                                            echo '<form >',
-                                            '<input type="hidden" name="organization_id" value="' . $row['organization_id'] . '">',
-                                            '<button type="submit" name="edit_organization" class="edit-btn_Org"  ><i class="fa-solid fa-pencil"></i></button>',
-                                            '</form></div></td>';
                                             echo "</tr>";
                                         }
                                         ?>
@@ -127,6 +123,32 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Modal Start -->
+                    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <i class='fa-solid fa-circle-exclamation 2xl'></i>
+
+                                    <h5 class="modal-title" >ระบบ<a class="text-danger"> ไม่สามารถแก้ไข
+                                        หมายเลข OrganizationID </a>ได้ 
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Form for editing data -->
+                                    <label class="modal-title">เนื่องจากหมายเลข OrganizationID ถูกกำหนดเป็น Primary Key</label>
+                                    <label class="modal-title">จะมีความซ้ำซ้อนเมื่อแก้ไข และส่งผลกระทบต่อลำดับขั้น Company ถัดไป</label>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal End -->
+
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-30">
                         <div class="card-box pd-30 pt-10 height-50-p">
                             <section>

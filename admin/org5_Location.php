@@ -47,7 +47,7 @@
                                     <thead>
                                         <tr>
                                             <th>ลำดับ</th>
-                                            <th>company_id</th>
+                                            <th>บริษัท</th>
                                             <th>Location</th>
                                             <th>จัดการ</th>
                                         </tr>
@@ -76,11 +76,9 @@
                                             '<input type="hidden" name="location_id" value="' . $row['location_id'] . '">',
                                             '<button type="submit" name="delete_location" class="delete-btn_Org"><i class="fa-solid fa-trash-can"></i></button>',
                                             '</form>';
-                                            echo '<form >',
-                                            '<input type="hidden" name="location_id" value="' . $row['location_id'] . '">',
-                                            '<button type="submit" name="edit_location" class="edit-btn_Org" ><i class="fa-solid fa-pencil"></i></button>',
-                                            '</form></div></td>';
-                                            echo "</tr>";
+                                            echo '<button type="button" class="edit-btn_Org" onclick="openEdit_Location_Modal(\'' . $row['location_id'] . '\', \'' . $row['company_id'] . '\', \'' . $row['name'] . '\');">',
+                                            '<i class="fa-solid fa-pencil"></i>',
+                                            '</button></div></td>';
                                         }
                                         ?>
 
@@ -128,8 +126,94 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Modal Start -->
+                    <div class="modal fade" id="editLocationModal" tabindex="-1" role="dialog" aria-labelledby="editLocationModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editLocationModalLabel">แก้ไขข้อมูล Location (สำนักงาน)</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Form for editing Location data -->
+                                    <form id="editLocationForm" method="post" action="org5_Location.php">
+                                        <input name="location_id" type="hidden" id="editLocationIdInput">
+                                        <div class="form-group">
+                                            <label for="editCompany">ชื่อ company (บริษัท)</label>
+                                            <select name="company_id" class="custom-select form-control" required="true" autocomplete="off" id="editCompany">
+                                                <?php
+                                                // สร้าง options สำหรับ dropdown 2
+                                                $sqlDropdown = "SELECT * FROM company";
+                                                $resultDropdown = sqlsrv_query($conn, $sqlDropdown);
+
+                                                // เช็ค error
+                                                if ($resultDropdown === false) {
+                                                    die(print_r(sqlsrv_errors(), true));
+                                                }
+
+                                                if ($resultDropdown) {
+                                                    while ($row = sqlsrv_fetch_array($resultDropdown, SQLSRV_FETCH_ASSOC)) {
+                                                        echo "<option value='"  . $row['company_id'] . "'>" . $row['name_thai'] . "</option>";
+                                                    }
+                                                }
+                                                ?> </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editLocationName">ชื่อ Location (สำนักงาน)</label>
+                                            <input type="text" class="form-control" id="editLocationName" name="name" required autocomplete="off" style='text-transform:uppercase'>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary" name="update_location">บันทึกการแก้ไข</button>
+                                        </div>
+                                    </form>
+                                    <?php
+                                    // -- UPDATE Location based on location_id -->
+                                    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_location'])) {
+                                        $location_id = $_POST['location_id'];
+                                        $company_id = $_POST['company_id'];
+                                        $location_name = $_POST['name'];
+
+                                        // อัปเดตค่าของฟิลด์ company_id และ name
+                                        $sqlUpdateLocation = "UPDATE location SET company_id = '$company_id', name = '$location_name' WHERE location_id = '$location_id'";
+                                        $stmtUpdateLocation = sqlsrv_query($conn, $sqlUpdateLocation);
+
+                                        if ($stmtUpdateLocation === false) {
+                                            die(print_r(sqlsrv_errors(), true));
+                                        } else {
+                                            echo '<script type="text/javascript">
+                                                    const Toast = Swal.mixin({
+                                                        toast: true,
+                                                        position: "top-end",
+                                                        showConfirmButton: false,
+                                                        timer: 980,
+                                                        timerProgressBar: true,
+                                                        didOpen: (toast) => {
+                                                            toast.onmouseenter = Swal.stopTimer;
+                                                            toast.onmouseleave = Swal.resumeTimer;
+                                                        }
+                                                    });
+                                                    Toast.fire({
+                                                        icon: "success",
+                                                        title: "บันทึกข้อมูลสำนักงานสำเร็จ"
+                                                    });
+                                                </script>';
+
+                                            echo "<meta http-equiv='refresh' content='1'>";
+                                            exit; // จบการทำงานของสคริปต์ทันทีหลังจาก redirect
+                                        }
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal End -->
+
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-30">
-                        <div class="card-box pd-30 pt-10 height-100-p">
+                        <div class="card-box pd-30 pt-10 height-50-p">
                             <form name="save" method="post" action="org5_Location.php">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -194,7 +278,7 @@
                                                 toast: true,
                                                 position: "top-end",
                                                 showConfirmButton: false,
-                                                timer: 1300,
+                                                timer: 950,
                                                 timerProgressBar: true,
                                                 didOpen: (toast) => {
                                                     toast.onmouseenter = Swal.stopTimer;
@@ -207,7 +291,7 @@
                                             });            
                                             </script>';
 
-                                    echo "<meta http-equiv='refresh' content='2'>";
+                                    echo "<meta http-equiv='refresh' content='1'>";
                                     exit; // จบการทำงานของสคริปต์ทันทีหลังจาก redirect
                                 }
                             }

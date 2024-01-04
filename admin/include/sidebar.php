@@ -5,9 +5,6 @@
             <!-- Version 1 -->
             <img src="https://salmon-charming-stingray-66.mypinata.cloud/ipfs/QmebXP3b8JbPb14WvphSJQavhqtBgFTcYBfZD6X5rkiUbP?_gl=1*1alnhe0*_ga*MTE0ODI0Mjc0LjE2OTY4NjQ2MTU.*_ga_5RMPXG14TE*MTcwMjgwNzg3OS42MC4xLjE3MDI4MDc4ODAuNTkuMC4w" alt="" class="dark-logo">
             <img src="https://salmon-charming-stingray-66.mypinata.cloud/ipfs/QmebXP3b8JbPb14WvphSJQavhqtBgFTcYBfZD6X5rkiUbP?_gl=1*1alnhe0*_ga*MTE0ODI0Mjc0LjE2OTY4NjQ2MTU.*_ga_5RMPXG14TE*MTcwMjgwNzg3OS42MC4xLjE3MDI4MDc4ODAuNTkuMC4w" alt="" class="light-logo">
-            <!-- Version 2 -->
-            <!-- <img src="https://salmon-charming-stingray-66.mypinata.cloud/ipfs/QmQWDGDreHp99nneodnavQYYBYd7ejFqU5TLzDefhKb92Z?_gl=1*h0jbka*_ga*MTE0ODI0Mjc0LjE2OTY4NjQ2MTU.*_ga_5RMPXG14TE*MTcwMjgxMTQ1Ni42MS4xLjE3MDI4MTIwMjcuNDcuMC4w" alt="" class="dark-logo">    
-            <img src="https://salmon-charming-stingray-66.mypinata.cloud/ipfs/QmQWDGDreHp99nneodnavQYYBYd7ejFqU5TLzDefhKb92Z?_gl=1*h0jbka*_ga*MTE0ODI0Mjc0LjE2OTY4NjQ2MTU.*_ga_5RMPXG14TE*MTcwMjgxMTQ1Ni42MS4xLjE3MDI4MTIwMjcuNDcuMC4w" alt="" class="light-logo"> -->
         </a>
     </div>
     <div class="menu-block customscroll">
@@ -15,7 +12,7 @@
             <ul id="accordion-menu">
                 <li class="dropdown">
                     <a href="dashboard.php" class="dropdown-toggle no-arrow">
-                        <span class="mtext">Dashboard</span>
+                        <span class="mtext"><i class="fa-solid fa-gauge-high fa-lg"></i> Dashboard</span>
                     </a>
                 </li>
                 <!-- <li class="dropdown">
@@ -25,6 +22,7 @@
                 </li> -->
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
+                        <i class="fa-solid fa-sitemap fa-lg"></i>
                         <span class="mtext">โครงสร้างองค์กร</span>
                     </a>
                     <ul class="submenu">
@@ -41,7 +39,7 @@
                 </li>
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
-                        <span class="mtext">ข้อมูลพนักงาน</span>
+                    <i class="fa-solid fa-users-gear fa-lg"></i><span class="mtext"> ข้อมูลพนักงาน</span>
                     </a>
                     <ul class="submenu">
                         <li><a href="listemployee.php">รายการข้อมูลพนักงานทั้งหมด</a></li>
@@ -51,18 +49,6 @@
                         <li><a href="listemployee_Workinfo.php">ประวัติการทำงาน</a></li>
                         <li><a href="listemployee_Manager.php">ผู้จัดการ</a></li>
                         <li><a href="listemployee_Report_to.php">report-to</a></li>
-
-
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="javascript:;" class="dropdown-toggle">
-                        <span class="mtext">พนักงานทดลองงาน</span>
-                    </a>
-                    <ul class="submenu">
-                        <li><a href="">รายการพนักงานทดลองทั้งหมด</a></li>
-                        <li><a href="">ประวัติพนักงานทดลองงานผ่าน</a></li>
-                        <li><a href="">ประวัติพนักงานทดลองงานไม่ผ่าน</a></li>
                     </ul>
                 </li>
                 <li>

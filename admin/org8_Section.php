@@ -75,17 +75,15 @@
                                             '<input type="hidden" name="section_id" value="' . $row['section_id'] . '">',
                                             '<button type="submit" name="delete_section" class="delete-btn_Org"><i class="fa-solid fa-trash-can"></i></button>',
                                             '</form>';
-                                            echo '<form >',
-                                            '<input type="hidden" name="section_id" value="' . $row['section_id'] . '">',
-                                            '<button type="submit" name="edit_section" class="edit-btn_Org" ><i class="fa-solid fa-pencil"></i></button>',
-                                            '</form></div></td>';
-                                            echo "</tr>";                                           
+                                            echo '<button type="button" class="edit-btn_Org" onclick="openEdit_Section_Modal(\'' . $row['section_id'] . '\', \'' . $row['department_id'] . '\', \'' . $row['name_thai'] . '\', \'' . $row['name_eng'] . '\');">',
+                                            '<i class="fa-solid fa-pencil"></i>',
+                                            '</button></div></td>';
+                                            echo "</tr>";
                                         }
                                         ?>
 
                                         <?php
-                                        // -- DELETE  ค่า Business ตาม organization_id -->
-
+                                        // -- DELETE  ค่า Business ตาม section_id -->
                                         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_section'])) {
 
                                             $section_id = $_POST['section_id'];
@@ -127,6 +125,97 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Modal Start -->
+                    <div class="modal fade" id="editSectionModal" tabindex="-1" role="dialog" aria-labelledby="editSectionModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editSectionModalLabel">แก้ไขข้อมูล Section</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Form for editing Section data -->
+                                    <form id="editSectionForm" method="post" action="org8_Section.php">
+                                        <input name="section_id" type="hidden" id="editSectionIdInput">
+                                        <div class="form-group">
+                                            <label for="editDepartment">ชื่อแผนก (Department)</label>
+                                            <select name="department_id" class="custom-select form-control" required="true" autocomplete="off" id="editDepartment">
+                                                <?php
+                                                // สร้าง options สำหรับ dropdown 2
+                                                $sqlDropdown = "SELECT * FROM department";
+                                                $resultDropdown = sqlsrv_query($conn, $sqlDropdown);
+
+                                                // เช็ค error
+                                                if ($resultDropdown === false) {
+                                                    die(print_r(sqlsrv_errors(), true));
+                                                }
+
+                                                if ($resultDropdown) {
+                                                    while ($row = sqlsrv_fetch_array($resultDropdown, SQLSRV_FETCH_ASSOC)) {
+                                                        echo "<option value='"  . $row['department_id'] . "'>" . $row['department_id'] . ' ' . $row['name_eng'] . "</option>";
+                                                    }
+                                                }
+                                                ?> </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editSectionNameThai">ชื่อ Section (TH)</label>
+                                            <input type="text" class="form-control" id="editSectionNameThai" name="name_thai" required autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editSectionNameEng">ชื่อ Section (ENG)</label>
+                                            <input type="text" class="form-control" id="editSectionNameEng" name="name_eng" required autocomplete="off">
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary" name="update_section">บันทึกการแก้ไข</button>
+                                        </div>
+                                    </form>
+                                    <?php
+                                    // -- UPDATE Section based on section_id -->
+                                    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_section'])) {
+                                        $section_id = $_POST['section_id'];
+                                        $department_id = $_POST['department_id'];
+                                        $name_thai = $_POST['name_thai'];
+                                        $name_eng = $_POST['name_eng'];
+
+                                        // อัปเดตค่าของฟิลด์ department_id, name_thai, และ name_eng
+                                        $sqlUpdateSection = "UPDATE section SET department_id = '$department_id', name_thai = '$name_thai', name_eng = '$name_eng' WHERE section_id = '$section_id'";
+                                        $stmtUpdateSection = sqlsrv_query($conn, $sqlUpdateSection);
+
+                                        if ($stmtUpdateSection === false) {
+                                            die(print_r(sqlsrv_errors(), true));
+                                        } else {
+                                            echo '<script type="text/javascript">
+                                                    const Toast = Swal.mixin({
+                                                        toast: true,
+                                                        position: "top-end",
+                                                        showConfirmButton: false,
+                                                        timer: 980,
+                                                        timerProgressBar: true,
+                                                        didOpen: (toast) => {
+                                                            toast.onmouseenter = Swal.stopTimer;
+                                                            toast.onmouseleave = Swal.resumeTimer;
+                                                        }
+                                                    });
+                                                    Toast.fire({
+                                                        icon: "success",
+                                                        title: "บันทึกข้อมูล Section สำเร็จ"
+                                                    });
+                                                </script>';
+
+                                            echo "<meta http-equiv='refresh' content='1'>";
+                                            exit; // จบการทำงานของสคริปต์ทันทีหลังจาก redirect
+                                        }
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal End -->
+
                     <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
                         <div class="card-box pd-30 pt-10 height-50-p">
                             <section>
@@ -170,7 +259,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>ชื่อ Section (ENG)</label>
-                                                <input name="name_eng" type="text" class="form-control" required="true" autocomplete="off" >
+                                                <input name="name_eng" type="text" class="form-control" required="true" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -201,7 +290,7 @@
                                                 toast: true,
                                                 position: "top-end",
                                                 showConfirmButton: false,
-                                                timer: 1300,
+                                                timer: 980,
                                                 timerProgressBar: true,
                                                 didOpen: (toast) => {
                                                     toast.onmouseenter = Swal.stopTimer;
@@ -214,7 +303,7 @@
                                             });            
                                             </script>';
 
-                                            echo "<meta http-equiv='refresh' content='2'>";
+                                            echo "<meta http-equiv='refresh' content='1'>";
                                             exit; // จบการทำงานของสคริปต์ทันทีหลังจาก redirect
                                         }
                                     }

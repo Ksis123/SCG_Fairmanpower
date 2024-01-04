@@ -132,7 +132,7 @@
                                     <div class="col-md-3 col-sm-12">
                                         <div class="form-group">
                                             <label>รหัสบัตรประชาชนของพนักงาน (Card_id)</label>
-                                            <input name="card_id" placeholder="1-9499-99999-991" type="number" maxlength="14" class="form-control wizard-required" required="true">
+                                            <input name="card_id" placeholder="1-9499-99999-991" type="number" maxlength="14" class="form-control wizard-required" required="true" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-sm-12">
@@ -143,7 +143,7 @@
                                     </div>
                                     <div class="col-md-3 col-sm-12">
                                         <div class="form-group">
-                                            <label>รหัสประจำตัวบุคคล (Personnel Number)</label>
+                                            <label>รหัสประจำตัวบุคคล</label>
                                             <input name="personnel_number" placeholder="1002247" type="number" class="form-control wizard-required" required="true" autocomplete="off">
                                         </div>
                                     </div>

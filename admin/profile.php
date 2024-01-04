@@ -106,13 +106,13 @@
 
                                                         <div class="weight-500 col-md-6">
                                                             <div class="form-group">
-                                                                <label>First Name</label>
+                                                                <label>ชื่อ</label>
                                                                 <input name="fname" class="form-control form-control-lg" type="text" required="true" autocomplete="off" value="<?php echo $fname; ?>">
                                                             </div>
                                                         </div>
                                                         <div class="weight-500 col-md-6">
                                                             <div class="form-group">
-                                                                <label>Last Name</label>
+                                                                <label>นามสกุล</label>
                                                                 <input name="lastname" class="form-control form-control-lg" type="text" placeholder="" required="true" autocomplete="off" value="<?php echo $lname; ?>">
                                                             </div>
                                                         </div>

@@ -80,10 +80,11 @@
                                             '<input type="hidden" name="business_id" value="' . $row['business_id'] . '">',
                                             '<button type="submit" name="delete_business" class="delete-btn_Org" ><i class="fa-solid fa-trash-can"></i></button>',
                                             '</form>';
-                                            echo '<form >',
-                                            '<input type="hidden" name="business_id" value="' . $row['business_id'] . '">',
-                                            '<button type="submit" name="editbusiness" class="edit-btn_Org"  ><i class="fa-solid fa-pencil"></i></button>',
-                                            '</form></div></td>';
+
+                                            echo "<button type='button' class='edit-btn_Org' onclick='openEdit_Business_Modal(\"" . $row['business_id'] . "\", \"" . $row['name_thai'] . "\", \"" . $row['name_eng'] . "\");'>";
+                                            echo "<i class='fa-solid fa-pencil'></i>";
+                                            echo "</button>";
+
 
                                             echo '</tr>';
                                         }
@@ -93,7 +94,7 @@
                                         // -- DELETE  ค่า Business ตาม business_id -->
 
                                         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_business'])) {
-                                            
+
                                             $business_id = $_POST['business_id'];
                                             $sql = "DELETE FROM business WHERE business_id = ?";
                                             $params = array($business_id);
@@ -128,12 +129,84 @@
                                             }
                                         }
                                         ?>
-
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Modal Start -->
+                    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editModalLabel">แก้ไขรายชื่อ Business Unit</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Form for editing data -->
+                                    <form id="editForm" method="post" action="org1_Business_unit.php">
+                                        <input name="business_id" type="hidden" id="editBusinessIdInput">
+                                        <div class="form-group">
+                                            <label for="editNameThai">ชื่อ Business Unit (TH)</label>
+                                            <input type="text" class="form-control" id="editNameThai" name="name_thai" required autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editNameEng">ชื่อ Business Unit (ENG)</label>
+                                            <input type="text" class="form-control" id="editNameEng" name="name_eng" required autocomplete="off">
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary" name="update_business">บันทึกการแก้ไข</button>
+                                        </div>
+                                    </form>
+
+                                    <?php
+                                    // -- UPDATE Business Unit based on business_id -->
+                                    if (isset($_POST['update_business'])) {
+                                        $business_id = $_POST['business_id'];
+                                        $nameTH = $_POST['name_thai'];
+                                        $nameENG = $_POST['name_eng'];
+
+                                        // อัปเดตค่าของฟิลด์ name_thai และ name_eng
+                                        $sqlUpdate = "UPDATE business SET name_thai = '$nameTH', name_eng = '$nameENG' WHERE business_id = '$business_id'";
+                                        $stmt = sqlsrv_query($conn, $sqlUpdate);
+
+                                        if ($stmt === false) {
+                                            die(print_r(sqlsrv_errors(), true));
+                                        } else {
+                                            echo '<script type="text/javascript">
+                                                    const Toast = Swal.mixin({
+                                                        toast: true,
+                                                        position: "top-end",
+                                                        showConfirmButton: false,
+                                                        timer: 950,
+                                                        timerProgressBar: true,
+                                                        didOpen: (toast) => {
+                                                            toast.onmouseenter = Swal.stopTimer;
+                                                            toast.onmouseleave = Swal.resumeTimer;
+                                                        }
+                                                    });
+                                                    Toast.fire({
+                                                        icon: "success",
+                                                        title: "แก้ไขข้อมูล Business-Unit สำเร็จ"
+                                                    });
+                                                    </script>';
+
+                                            echo "<meta http-equiv='refresh' content='1'>";
+
+                                            exit; // จบการทำงานของสคริปต์ทันทีหลังจาก redirect
+                                        }
+                                    }
+
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal End -->
+
                     <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
                         <div class="card-box pd-30 pt-10 height-50-p">
                             <h2 class="mb-30 h4"></h2>
@@ -143,7 +216,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>ชื่อย่อ หรือ Business ID </label>
-                                                <input name="business_id" placeholder="ตัวอย่างเช่น CBM" type="text" class="form-control" required="true" autocomplete="off" style="text-transform:uppercase">
+                                                <input name="business_id" placeholder="ตัวอย่างเช่น CBM" type="text" class="form-control" required="true" oninput="this.value = this.value.toUpperCase()" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -193,7 +266,7 @@
                                                 toast: true,
                                                 position: "top-end",
                                                 showConfirmButton: false,
-                                                timer: 1500,
+                                                timer: 950,
                                                 timerProgressBar: true,
                                                 didOpen: (toast) => {
                                                     toast.onmouseenter = Swal.stopTimer;
@@ -206,7 +279,7 @@
                                             });            
                                             </script>';
 
-                                            echo "<meta http-equiv='refresh' content='2'>";
+                                            echo "<meta http-equiv='refresh' content='1'>";
 
                                             exit; // จบการทำงานของสคริปต์ทันทีหลังจาก redirect
                                         }
@@ -222,6 +295,7 @@
             <?php include('../admin/include/footer.php'); ?>
         </div>
     </div>
+
     <!-- js -->
     <?php include('../admin/include/scripts.php') ?>
 </body>

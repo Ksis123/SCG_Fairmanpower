@@ -20,7 +20,106 @@
 <script src="../vendors/scripts/advanced-components.js"></script>
 
 
-<!-- Add alert buttons fuctiion for C-R-U-D -->
+<!-- Add Modal for OpenEdit_Business  -->
+<script>
+    function openEdit_Business_Modal(business_id, name_thai, name_eng) {
+        document.getElementById('editBusinessIdInput').value = business_id;
+        document.getElementById('editNameThai').value = name_thai;
+        document.getElementById('editNameEng').value = name_eng;
+        $('#editModal').modal('show');
+    }
+</script>
+
+<!-- Add Modal for OpenEdit_SubBusiness -->
+<script>
+    function openEdit_SubBusiness_Modal(business_id, sub_business_id, name_thai, name_eng) {
+        document.getElementById('editBusinessIdInput').value = business_id;
+        document.getElementById('editSubBusinessId').value = sub_business_id;
+        document.getElementById('editNameThai').value = name_thai;
+        document.getElementById('editNameEng').value = name_eng;
+        $('#editModal').modal('show');
+    }
+</script>
+
+<!-- Add Modal for OpenEdit_Org -->
+<script>
+    function openEdit_OrgID_Modal() {
+        $('#editModal').modal('show');
+    }
+</script>
+<script>
+    function openEdit_Cost_Modal() {
+        $('#editModal').modal('show');
+    }
+</script>
+
+<!-- Add Modal for OpenEdit_Company -->
+<script>
+    function openEdit_Company_Modal(company_id, organization_id, name_thai, name_eng) {
+        // Set values in the modal form
+        document.getElementById('editCompanyIdInput').value = company_id;
+        document.getElementById('editOrganizationId').value = organization_id;
+        document.getElementById('editNameThai').value = name_thai;
+        document.getElementById('editNameEng').value = name_eng;
+        // Open the modal
+        $('#editCompanyModal').modal('show');
+    }
+</script>
+
+<!-- Add Modal for OpenEdit_Location -->
+<script>
+    function openEdit_Location_Modal(location_id, company_id, name) {
+        // Set values in the modal form
+        document.getElementById('editLocationIdInput').value = location_id;
+        document.getElementById('editCompany').value = company_id;
+        document.getElementById('editLocationName').value = name;
+
+        // Open the modal
+        $('#editLocationModal').modal('show');
+    }
+</script>
+
+<!-- Add Modal for OpenEdit_Division -->
+<script>
+    function openEdit_Division_Modal(division_id, location_id, name_thai, name_eng) {
+        // Set values in the modal form
+        document.getElementById('editDivisionIdInput').value = division_id;
+        document.getElementById('editLocation').value = location_id;
+        document.getElementById('editDivisionNameThai').value = name_thai;
+        document.getElementById('editDivisionNameEng').value = name_eng;
+
+        // Open the modal
+        $('#editDivisionModal').modal('show');
+    }
+</script>
+
+<!-- Add Modal for OpenEdit_Department -->
+<script>
+    function openEdit_Department_Modal(department_id, division_id, name_thai, name_eng) {
+        // Set values in the modal form
+        document.getElementById('editDepartmentIdInput').value = department_id;
+        document.getElementById('editDivision').value = division_id;
+        document.getElementById('editDepartmentNameThai').value = name_thai;
+        document.getElementById('editDepartmentNameEng').value = name_eng;
+        // Open the modal
+        $('#editDepartmentModal').modal('show');
+    }
+</script>
+
+<!-- Add Modal for OpenEdit_Section -->
+<script>
+    function openEdit_Section_Modal(section_id, department_id, name_thai, name_eng) {
+        // Set values in the modal form
+        document.getElementById('editSectionIdInput').value = section_id;
+        document.getElementById('editDepartment').value = department_id;
+        document.getElementById('editSectionNameThai').value = name_thai;
+        document.getElementById('editSectionNameEng').value = name_eng;
+        // Open the modal
+        $('#editSectionModal').modal('show');
+    }
+</script>
+
+
 <script>
     function confirmDeleteSubmit() {
         Swal.fire({

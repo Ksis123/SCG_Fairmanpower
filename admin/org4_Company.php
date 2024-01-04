@@ -106,7 +106,7 @@
                                                 toast: true,
                                                 position: "top-end",
                                                 showConfirmButton: false,
-                                                timer: 1300,
+                                                timer: 950,
                                                 timerProgressBar: true,
                                                 didOpen: (toast) => {
                                                     toast.onmouseenter = Swal.stopTimer;
@@ -118,8 +118,7 @@
                                                 title: "บันทึกข้อมูล Company (บริษัท) สำเร็จ"
                                             });            
                                             </script>';
-
-                                    echo "<meta http-equiv='refresh' content='2'>";
+                                    echo "<meta http-equiv='refresh' content='1'>";
                                     exit; // จบการทำงานของสคริปต์ทันทีหลังจาก redirect
                                 }
                             }
@@ -130,8 +129,8 @@
                 </div>
                 <div class="col-lg-12 col-md-6 col-sm-12 mb-30">
                     <div class="card-box pd-30 pt-10 height-100-p">
-                        <h2 class="mb-30 h4 text-blue">รายการ บริษัท ทั้งหมดในระบบ</h2>
-                        <p class="text-danger">* หมายเหตุ : หากต้องการลบชื่อ Company(บริษัท) จะต้องลบ location ที่เกี่ยวข้องก่อนเสมอ</p>
+                        <h2 class="mb-30 h4 text-blue">รายการ บริษัททั้งหมดในระบบ</h2>
+                        <p class="text-danger">* หมายเหตุ : หากต้องการลบชื่อ Company (บริษัท) จะต้องลบ Location (สำนักงาน) ที่เกี่ยวข้องก่อนเสมอ</p>
 
                         <div class="pb-20">
                             <table class="data-table table stripe hover nowrap">
@@ -139,8 +138,8 @@
                                     <tr>
                                         <th>ลำดับ</th>
                                         <th>Organization-ID</th>
-                                        <th>บริษัท (TH)</th>
-                                        <th>บริษัท (ENG)</th>
+                                        <th>ชื่อบริษัท (TH)</th>
+                                        <th>ชื่อบริษัท (ENG)</th>
                                         <th>จัดการ</th>
                                     </tr>
                                 </thead>
@@ -168,10 +167,9 @@
                                         '<input type="hidden" name="company_id" value="' . $row['company_id'] . '">',
                                         '<button type="submit" name="delete_company" class="delete-btn_Org"><i class="fa-solid fa-trash-can"></i></button>',
                                         '</form>';
-                                        echo '<form >',
-                                        '<input type="hidden" name="company_id" value="' . $row['company_id'] . '">',
-                                        '<button type="submit" name="edit_company" class="edit-btn_Org"  ><i class="fa-solid fa-pencil"></i></button>',
-                                        '</form></div></td>';
+                                        echo '<button type="button" class="edit-btn_Org" onclick="openEdit_Company_Modal(\'' . $row['company_id'] . '\', \'' . $row['organization_id'] . '\', \'' . $row['name_thai'] . '\', \'' . $row['name_eng'] . '\');">',
+                                        '<i class="fa-solid fa-pencil"></i>',
+                                        '</button></div></td>';
                                         echo "</tr>";
                                     }
                                     ?>
@@ -219,6 +217,96 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Modal Start -->
+                <div class="modal fade" id="editCompanyModal" tabindex="-1" role="dialog" aria-labelledby="editCompanyModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editCompanyModalLabel">แก้ไขข้อมูลบริษัท</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Form for editing Company data -->
+                                <form id="editCompanyForm" method="post" action="org4_Company.php">
+                                    <input name="company_id" type="hidden" id="editCompanyIdInput">
+                                    <div class="form-group">
+                                        <label for="editOrganizationId">หมายเลข Organization-ID</label>
+                                        <select name="organization_id" class="custom-select form-control" required="true" autocomplete="off" id="editOrganizationId">
+                                            <?php
+                                            // สร้าง options สำหรับ dropdown 2
+                                            $sqlDropdown = "SELECT * FROM organization";
+                                            $resultDropdown = sqlsrv_query($conn, $sqlDropdown);
+
+                                            // เช็ค error
+                                            if ($resultDropdown === false) {
+                                                die(print_r(sqlsrv_errors(), true));
+                                            }
+
+                                            if ($resultDropdown) {
+                                                while ($row = sqlsrv_fetch_array($resultDropdown, SQLSRV_FETCH_ASSOC)) {
+                                                    echo "<option value='"  . $row['organization_id'] . "'>" . $row['organization_id'] . "</option>";
+                                                }
+                                            }
+                                            ?> </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editNameThai">ชื่อ บริษัท (TH)</label>
+                                        <input type="text" class="form-control" id="editNameThai" name="name_thai" required autocomplete="off">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editNameEng">ชื่อ บริษัท (ENG)</label>
+                                        <input type="text" class="form-control" id="editNameEng" name="name_eng" required autocomplete="off">
+                                    </div>
+                                    <div class="text-right">
+                                        <button type="submit" class="btn btn-primary" name="update_company">บันทึกการแก้ไข</button>
+                                    </div>
+                                </form>
+                                <?php
+                                // -- UPDATE Company based on company_id -->
+                                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_company'])) {
+                                    $company_id = $_POST['company_id'];
+                                    $organization_id = $_POST['organization_id'];
+                                    $nameTH = $_POST['name_thai'];
+                                    $nameENG = $_POST['name_eng'];
+
+                                    // อัปเดตค่าของฟิลด์ organization_id, name_thai และ name_eng
+                                    $sqlUpdateCompany = "UPDATE company SET organization_id = '$organization_id', name_thai = '$nameTH', name_eng = '$nameENG' WHERE company_id = '$company_id'";
+                                    $stmtUpdateCompany = sqlsrv_query($conn, $sqlUpdateCompany);
+
+                                    if ($stmtUpdateCompany === false) {
+                                        die(print_r(sqlsrv_errors(), true));
+                                    } else {
+                                        echo '<script type="text/javascript">
+                                                const Toast = Swal.mixin({
+                                                    toast: true,
+                                                    position: "top-end",
+                                                    showConfirmButton: false,
+                                                    timer: 980,
+                                                    timerProgressBar: true,
+                                                    didOpen: (toast) => {
+                                                        toast.onmouseenter = Swal.stopTimer;
+                                                        toast.onmouseleave = Swal.resumeTimer;
+                                                    }
+                                                });
+                                                Toast.fire({
+                                                    icon: "success",
+                                                    title: "แก้ไขข้อมูลบริษัทสำเร็จ"
+                                                });
+                                            </script>';
+
+                                        echo "<meta http-equiv='refresh' content='1'>";
+                                        exit; // จบการทำงานของสคริปต์ทันทีหลังจาก redirect
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal End -->
             </div>
 
         </div>

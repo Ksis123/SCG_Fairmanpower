@@ -77,10 +77,11 @@
                                             '<input type="hidden" name="sub_business_id" value="' . $row['sub_business_id'] . '">',
                                             '<button type="submit" name="delete_sub_business" class="delete-btn_Org"><i class="fa-solid fa-trash-can"></i></button>',
                                             '</form>';
-                                            echo '<form >',
-                                            '<input type="hidden" name="sub_business_id" value="' . $row['sub_business_id'] . '">',
-                                            '<button type="submit" name="edit_sub_business" class="edit-btn_Org"  ><i class="fa-solid fa-pencil"></i></button>',
-                                            '</form></div></td>';
+
+                                            echo "<button type='button' class='edit-btn_Org' onclick='openEdit_SubBusiness_Modal(\"" . $row['business_id'] . "\",\"" . $row['sub_business_id'] . "\", \"" . $row['name_thai'] . "\", \"" . $row['name_eng'] . "\");'>";
+                                            echo "<i class='fa-solid fa-pencil'></i>";
+                                            echo "</button>";
+
                                             echo "</tr>";
                                         }
                                         ?>
@@ -89,7 +90,7 @@
                                         // ----- DELETE  ค่า Business ตาม sub_business_id -->
 
                                         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_sub_business'])) {
-                                            
+
                                             $sub_business_id = $_POST['sub_business_id'];
                                             $sql = "DELETE FROM sub_business WHERE sub_business_id = ?";
                                             $params = array($sub_business_id);
@@ -125,11 +126,105 @@
                                         }
                                         ?>
                                     </tbody>
-                                    </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Modal Start -->
+                    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editModalLabel">แก้ไขรายชื่อ Sub-Business Unit</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Form for editing data -->
+                                    <form id="editForm" method="post" action="org2_Sub_Business_unit.php">
+                                        <input name="sub_business_id" type="hidden" id="editSubBusinessId">
+                                        <div class="form-group">
+                                            <label for="editBusinessIdInput">Business ID</label>
+                                            <select name="business_id" class="custom-select form-control" required="true" autocomplete="off" id="editBusinessIdInput">
+                                                <?php
+                                                // สร้าง options สำหรับ dropdown 2
+                                                $sqlDropdown = "SELECT * FROM business";
+                                                $resultDropdown = sqlsrv_query($conn, $sqlDropdown);
+
+                                                // เช็ค error
+                                                if ($resultDropdown === false) {
+                                                    die(print_r(sqlsrv_errors(), true));
+                                                }
+
+                                                if ($resultDropdown) {
+                                                    while ($row = sqlsrv_fetch_array($resultDropdown, SQLSRV_FETCH_ASSOC)) {
+                                                        echo "<option value='"  . $row['business_id'] . "'>" . $row['business_id'] . "</option>";
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editNameThai">ชื่อ Sub-Business Unit (TH)</label>
+                                            <input type="text" class="form-control" id="editNameThai" name="name_thai" required autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editNameEng">ชื่อ Sub-Business Unit (ENG)</label>
+                                            <input type="text" class="form-control" id="editNameEng" name="name_eng" required autocomplete="off">
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary" name="update_sub_business">บันทึกการแก้ไข</button>
+                                        </div>
+                                    </form>
+
+                                    <?php
+                                    // -- UPDATE Business Unit based on sub_business_id -->
+                                    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_sub_business'])) {
+
+                                        $sub_business_id = $_POST['sub_business_id'];
+                                        $business_id = $_POST['business_id'];
+                                        $name_thai = $_POST['name_thai'];
+                                        $name_eng = $_POST['name_eng'];
+
+                                        // อัปเดตค่าของฟิลด์ name_thai และ name_eng
+                                        $sqlUpdate = "UPDATE sub_business SET business_id = '$business_id' , name_thai = '$name_thai', name_eng = '$name_eng' WHERE sub_business_id = $sub_business_id";
+                                        $stmt = sqlsrv_query($conn, $sqlUpdate);
+
+                                        if ($stmt === false) {
+                                            die(print_r(sqlsrv_errors(), true));
+                                        } else {
+                                            echo '<script type="text/javascript">
+                                                const Toast = Swal.mixin({
+                                                    toast: true,
+                                                    position: "top-end",
+                                                    showConfirmButton: false,
+                                                    timer: 980,
+                                                    timerProgressBar: true,
+                                                    didOpen: (toast) => {
+                                                        toast.onmouseenter = Swal.stopTimer;
+                                                        toast.onmouseleave = Swal.resumeTimer;
+                                                    }
+                                                });
+                                                Toast.fire({
+                                                    icon: "success",
+                                                    title: "แก้ไขข้อมูล Sub-Business-Unit สำเร็จ"
+                                                });
+                                            </script>';
+
+                                            echo "<meta http-equiv='refresh' content='1'>";
+
+                                            exit; // จบการทำงานของสคริปต์ทันทีหลังจาก redirect
+                                        }
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal End -->
+
                     <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
                         <div class="card-box pd-30 pt-10 height-50-p">
                             <h2 class="mb-30 h4"></h2>
@@ -205,7 +300,7 @@
                                                 toast: true,
                                                 position: "top-end",
                                                 showConfirmButton: false,
-                                                timer: 1300,
+                                                timer: 980,
                                                 timerProgressBar: true,
                                                 didOpen: (toast) => {
                                                     toast.onmouseenter = Swal.stopTimer;
@@ -218,7 +313,7 @@
                                             });            
                                             </script>';
 
-                                            echo "<meta http-equiv='refresh' content='2'>";
+                                            echo "<meta http-equiv='refresh' content='1'>";
 
                                             exit; // จบการทำงานของสคริปต์ทันทีหลังจาก redirect
                                         }

@@ -48,7 +48,7 @@
                                             <th>ลำดับ</th>
                                             <th>ชื่อ Section (ENG)</th>
                                             <th>Cost-Center</th>
-                                            <th>จัดการ</th>
+                                            <th>จัดการ <a onclick="openEdit_Cost_Modal()"> <i class="fa-solid fa-circle-exclamation warming-btn_Org"></i></a></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -77,11 +77,6 @@
                                             '<input type="hidden" name="cost_center_id" value="' . $row['cost_center_id'] . '">',
                                             '<button type="submit" name="delete_cost_center" class="delete-btn_Org"><i class="fa-solid fa-trash-can"></i></button>',
                                             '</form>';
-                                            echo '<form >',
-                                            '<input type="hidden" name="cost_center_id" value="' . $row['cost_center_id'] . '">',
-                                            '<button type="submit" name="edit_section" class="edit-btn_Org" ><i class="fa-solid fa-pencil"></i></button>',
-                                            '</form></div></td>';
-                                            echo "</tr>";
                                         }
                                         ?>
 
@@ -129,6 +124,32 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Modal Start -->
+                    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <i class='fa-solid fa-circle-exclamation 2xl'> </i>
+
+                                    <h5 class="modal-title"> ระบบ <a class="text-danger"> ไม่สามารถแก้ไข
+                                            หมายเลข Cost-Center</a> ได้
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Form for editing data -->
+                                    <label class="modal-title">เนื่องจากหมายเลข Cost-Center ถูกกำหนดเป็น Primary Key</label>
+                                    <label class="modal-title">กรณีระบุ Cost-Center แนะนำให้ลบและเพิ่มข้อมูลใหม่</label>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal End -->
+
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-30">
                         <div class="card-box pd-30 pt-10 height-100-p">
                             <section>

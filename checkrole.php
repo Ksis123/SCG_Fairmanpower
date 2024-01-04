@@ -37,9 +37,9 @@ if (isset($_SESSION['line_id']) && !empty($_SESSION['line_id'])) {
 
 
         if ($permission == 1) {
-            header('Location: dashboard.php');
+            header('Location: admin/dashboard.php');
         } else if ($permission == 4) {
-            header('Location: ../employee/home.php');
+            header('Location: employee/home.php');
         }
         echo "พบข้อมูล บัตรประชาชน : " . $row["card_id"];
     } else {
@@ -50,3 +50,6 @@ if (isset($_SESSION['line_id']) && !empty($_SESSION['line_id'])) {
     // หากไม่มีหรือมีค่าว่างใน Session 'line_id'
     echo "ไม่มีค่า line_id หรือค่าว่างใน Session";
 }
+
+
+// เช็ค ก่อน Insert 
