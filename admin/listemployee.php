@@ -56,21 +56,28 @@
 							<th class="datatable-nosort">ลำดับ</th>
 							<th class="datatable-nosort">SCG-ID</th>
 							<th class="datatable-nosort">รายชื่อพนักงาน</th>
-							<th class="datatable-nosort">เพศ</th>
-							<!-- <th class="datatable-nosort">ประเภท</th> -->
-							<th class="datatable-nosort">เบอร์โทร</th>
-							<th class="datatable-nosort">อีเมล</th>
-							<th class="datatable-nosort">Cost-Center</th>
-							<!-- <th class="datatable-nosort">แผนก</th>
+							<th class="datatable-nosort">ประเภท</th>
+							<th class="datatable-nosort">แผนก</th>
 							<th class="datatable-nosort">หน่วยงาน</th>
-							<th class="datatable-nosort">ตำแหน่ง</th> -->
+							<th class="datatable-nosort">บทบาท</th>
 							<th class="datatable-nosort">การจัดการ</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php
 						// เตรียมคำสั่ง SQL
-						$sql = "SELECT * FROM employee";
+						$sql = "SELECT scg_employee_id, prefix_thai, firstname_thai, lastname_thai, nickname_thai, gender, phone_number, employee_email, 
+								permission.name as permission, permission.permission_id as permissionID, contract_type.name_eng as contracts, 
+								section.name_thai as section, department.name_thai as department 
+								
+								FROM employee
+								INNER JOIN  cost_center ON cost_center.cost_center_id = employee.cost_center_organization_id
+								INNER JOIN section ON section.section_id = cost_center.section_id
+								INNER JOIN department ON department.department_id = section.department_id
+								INNER JOIN permission ON permission.permission_id = employee.permission_id
+								INNER JOIN contract_type ON contract_type.contract_type_id = employee.contract_type_id";
+
+
 						$params = array();
 						$i = 1;
 
@@ -86,16 +93,19 @@
 							echo "<tr>";
 							echo "<td>" . $i++ . "</td>";
 							echo "<td>" . $row["scg_employee_id"] . "</td>";
-							echo "<td>" . $row["prefix_thai"] . ' ' . $row["firstname_thai"] . '' . $row["lastname_thai"] . ' (' . $row["nickname_thai"] . ')' . "</td>";
-							echo "<td>" . $row["gender"] . "</td>";
-							echo "<td>" . $row["phone_number"] . "</td>";
-							echo "<td>" . $row["employee_email"] . "</td>";
-							echo "<td>" . $row["cost_center_payment_id"] . "</td>";
+							echo "<td><div class='row'>",										
+							"<div style= 'padding-right: 10px;'><img src='../asset/img/employeeicon.png' class='border-radius-100 shadow' width='40' height='40' alt=''></div>",
+							"<div  ><b>". '  ' . $row["prefix_thai"] . '  ' . $row["firstname_thai"] . '' . $row["lastname_thai"] . ' (' . $row["nickname_thai"] . ')' . " </b><br/>" ,"<a class ='text-primary'>" . $row["employee_email"] ." </a><br/>";
+							
+							echo "<td>" . $row["contracts"] . "</td>";
+							echo "<td>" . $row["department"] . "</td>";
+							echo "<td>" . $row["section"] . "</td>";
+
+							echo "<td><div class='permission-" . $row["permissionID"] . "'><b>" . $row["permission"] . "</b></div></td>";
 							echo "<td><div class='dropdown'><button class='delete-btn_Org'><i class='fa-solid fa-trash-can'></i></button><button class='edit-btn_Org'><i class='fa-solid fa-pencil'></i></button></div></td>";
 							echo "</tr>";
 						}
 						?>
-
 					</tbody>
 				</table>
 			</div>

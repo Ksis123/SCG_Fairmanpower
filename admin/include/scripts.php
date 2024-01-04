@@ -155,3 +155,26 @@
         });
     };
 </script>
+
+<script>
+    function confirmDelete(businessId) {
+        Swal.fire({
+            title: "คุณต้องการลบข้อมูล Business Unit นี้หรือไม่?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "ลบ",
+            cancelButtonText: "ยกเลิก"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // ถ้าคลิกปุ่ม "ลบ" ให้ทำการลบข้อมูล
+                window.location.href = `org1_Business_unit.php?delete_business_id=${businessId}`;
+                window.location.href = `org1_Business_unit.php`;
+
+            }
+            exit();
+
+        });
+    }
+</script>

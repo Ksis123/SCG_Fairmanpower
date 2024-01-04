@@ -5166,3 +5166,83 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 
 }
 
+/* สีแดง */
+.permission-1 {
+    text-align: center;
+    color: #EB5858;
+    background-color: #ffffff;
+    border-radius: 50px;
+    border-style: solid;
+    border-color: #EB5858;    
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 2px 15px -8px #000000;
+
+}
+.permission-1:hover {
+    font-size: 15px;
+    color: #EB5858;
+    transition: 0.3s ease-in-out;
+}
+
+
+/* สีทอง */
+.permission-2 {
+    text-align: center;
+    color: #ffb703;
+    background-color: #fffbf0;
+    border-radius: 50px;
+    border-style: solid;
+    border-color: #ffb703;    
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 2px 15px -8px #000000;
+
+}
+.permission-2:hover {
+    font-size: 15px;
+    color: #ffb703;
+    background-color: #ffffff;
+    border-color: #ffb703;    
+    transition: 0.3s ease-in-out;
+}
+
+/* สีเขียว */
+.permission-3 {
+    text-align: center;
+    color: #1FBAC0;
+    background-color: #f5ffff;
+    border-radius: 50px;
+    border-style: solid;
+    border-color: #1FBAC0;    
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 2px 15px -8px #000000;
+
+}
+.permission-3:hover {
+    font-size: 15px;
+    color: #1FBAC0;
+    background-color: #ffffff;
+    border-color: #1FBAC0;    
+    transition: 0.3s ease-in-out;
+}
+/* สีฟ้า */
+
+.permission-4 {
+    font-size: 12px;
+    width: 70px;
+    text-align: center;
+    color: #1FBAC0;
+    background-color: #f5ffff;
+    border-radius: 50px;
+    border-style: solid;
+    border-color: #1FBAC0;    
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 2px 15px -8px #000000;
+
+}
+.permission-4:hover {
+    font-size: 12px;
+    color: #1FBAC0;
+    background-color: #ffffff;
+    border-color: #1FBAC0;    
+    transition: 0.3s ease-in-out;
+}

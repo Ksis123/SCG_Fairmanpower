@@ -17,7 +17,7 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="title">
-                                <h3>ข้อมูลโครงสร้างองค์กร : Business Unit</h3>
+                                <h3>ข้อมูลโครงสร้างองค์กร : Business Unit (หน่วยธุรกิจ)</h3>
                                 <p class="text-primary">โครงสร้างทั้ง 9 ลำดับขั้นจะเริ่มเรียงจากซ้าย-ขวาเสมอ
 
                             </div>
@@ -76,10 +76,7 @@
                                             echo "<td>" . $row["name_eng"] . "</td>";
 
                                             echo '<td><div class="flex">',
-                                            '<form method="post" action="org1_Business_unit.php">',
-                                            '<input type="hidden" name="business_id" value="' . $row['business_id'] . '">',
-                                            '<button type="submit" name="delete_business" class="delete-btn_Org" ><i class="fa-solid fa-trash-can"></i></button>',
-                                            '</form>';
+                                            '<button type="button" name="delete_business" class="delete-btn_Org" onclick="confirmDelete(\'' . $row['business_id'] . '\');"><i class="fa-solid fa-trash-can"></i></button>';
 
                                             echo "<button type='button' class='edit-btn_Org' onclick='openEdit_Business_Modal(\"" . $row['business_id'] . "\", \"" . $row['name_thai'] . "\", \"" . $row['name_eng'] . "\");'>";
                                             echo "<i class='fa-solid fa-pencil'></i>";
@@ -90,12 +87,24 @@
                                         }
                                         ?>
                                         <?php
+                                        // -- DELETE ค่า Business ตาม business_id -->
+                                        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['delete_business_id'])) {
+                                            $business_id_to_delete = $_GET['delete_business_id'];
 
-                                        // -- DELETE  ค่า Business ตาม business_id -->
+                                            // แสดง SweetAlert2 Confirm Alert
+                                            echo '<script type="text/javascript">
+                                                        confirmDelete(' . $business_id_to_delete . ');
+                                                    </script>';
 
-                                        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_business'])) {
+                                            // กระบวนการลบข้อมูล
+                                            deleteBusiness($business_id_to_delete);
+                                        }
 
-                                            $business_id = $_POST['business_id'];
+                                        // ฟังก์ชันสำหรับลบข้อมูล Business Unit จาก SQL Server
+                                        function deleteBusiness($business_id)
+                                        {
+                                            global $conn;
+
                                             $sql = "DELETE FROM business WHERE business_id = ?";
                                             $params = array($business_id);
 
@@ -121,7 +130,6 @@
                                                             title: "ระบบลบข้อมูล Business-Unit สำเร็จ ",
                                                             text: "อีกสักครู่ ...ระบบจะทำการรีเฟส",
                                                             confirmButtonText: "ตกลง",
-
                                                         })
                                                     </script>';
                                                 echo "<meta http-equiv='refresh' content='2'>";

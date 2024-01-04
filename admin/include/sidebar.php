@@ -1,10 +1,10 @@
 <div class="left-side-bar">
     <div class="brand-logo">
         <a href="dashboard.php">
-
             <!-- Version 1 -->
             <img src="https://salmon-charming-stingray-66.mypinata.cloud/ipfs/QmebXP3b8JbPb14WvphSJQavhqtBgFTcYBfZD6X5rkiUbP?_gl=1*1alnhe0*_ga*MTE0ODI0Mjc0LjE2OTY4NjQ2MTU.*_ga_5RMPXG14TE*MTcwMjgwNzg3OS42MC4xLjE3MDI4MDc4ODAuNTkuMC4w" alt="" class="dark-logo">
             <img src="https://salmon-charming-stingray-66.mypinata.cloud/ipfs/QmebXP3b8JbPb14WvphSJQavhqtBgFTcYBfZD6X5rkiUbP?_gl=1*1alnhe0*_ga*MTE0ODI0Mjc0LjE2OTY4NjQ2MTU.*_ga_5RMPXG14TE*MTcwMjgwNzg3OS42MC4xLjE3MDI4MDc4ODAuNTkuMC4w" alt="" class="light-logo">
+
         </a>
     </div>
     <div class="menu-block customscroll">
@@ -15,11 +15,7 @@
                         <span class="mtext"><i class="fa-solid fa-gauge-high fa-lg"></i> Dashboard</span>
                     </a>
                 </li>
-                <!-- <li class="dropdown">
-                    <a href="organozation.php" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-house-1"></span><span class="mtext">ข้อมูลโครงสร้างองค์กร</span>
-                    </a>
-                </li> -->
+
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <i class="fa-solid fa-sitemap fa-lg"></i>
