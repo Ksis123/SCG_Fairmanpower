@@ -18,11 +18,11 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="listemployee.php">รายการข้อมูลพนักงานทั้งหมด</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">ข้อมูลพนักงานเบื้องต้น</li>
-                                    <li class="breadcrumb-item"><a href="listemployee_Info.php">ประวัติส่วนตัว</a></li>
+                                    <!-- <li class="breadcrumb-item"><a href="listemployee_Info.php">ประวัติส่วนตัว</a></li>
                                     <li class="breadcrumb-item"><a href="listemployee_Education.php">ประวัติการศึกษา</a></li>
                                     <li class="breadcrumb-item"><a href="listemployee_Workinfo.php">ประวัติการทำงาน</a></li>
                                     <li class="breadcrumb-item"><a href="listemployee_Manager.php">ผู้จัดการ</a></li>
-                                    <li class="breadcrumb-item"><a href="listemployee_Report_to.php">report-to</a></li>
+                                    <li class="breadcrumb-item"><a href="listemployee_Report_to.php">report-to</a></li> -->
 
                                 </ol>
                             </nav>

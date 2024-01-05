@@ -572,11 +572,11 @@ p {
 }
 
 .bg-blue {
-    background-color: #524d7d
+    background-color: #4d6e7d
 }
 
 .text-blue {
-    color: #616061
+    color: #787c7c
 }
 
 .text-light-blue {
@@ -4724,8 +4724,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     }
 
     .user-info-dropdown .dropdown-toggle .user-name {
-        display: none;
-        color: #ecf0f4
+        width: 45%
     }
 
     .page-header {
@@ -5173,11 +5172,12 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     background-color: #ffffff;
     border-radius: 50px;
     border-style: solid;
-    border-color: #EB5858;    
+    border-color: 2px #EB5858;
     transition: 0.3s ease-in-out;
     box-shadow: 0px 2px 15px -8px #000000;
 
 }
+
 .permission-1:hover {
     font-size: 15px;
     color: #EB5858;
@@ -5192,16 +5192,17 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     background-color: #fffbf0;
     border-radius: 50px;
     border-style: solid;
-    border-color: #ffb703;    
+    border-color: #ffb703;
     transition: 0.3s ease-in-out;
     box-shadow: 0px 2px 15px -8px #000000;
 
 }
+
 .permission-2:hover {
     font-size: 15px;
     color: #ffb703;
     background-color: #ffffff;
-    border-color: #ffb703;    
+    border-color: #ffb703;
     transition: 0.3s ease-in-out;
 }
 
@@ -5212,37 +5213,37 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     background-color: #f5ffff;
     border-radius: 50px;
     border-style: solid;
-    border-color: #1FBAC0;    
+    border-color: #1FBAC0;
     transition: 0.3s ease-in-out;
     box-shadow: 0px 2px 15px -8px #000000;
 
 }
+
 .permission-3:hover {
     font-size: 15px;
     color: #1FBAC0;
     background-color: #ffffff;
-    border-color: #1FBAC0;    
+    border-color: #1FBAC0;
     transition: 0.3s ease-in-out;
 }
+
 /* สีฟ้า */
 
 .permission-4 {
-    font-size: 12px;
-    width: 70px;
     text-align: center;
     color: #1FBAC0;
     background-color: #f5ffff;
     border-radius: 50px;
     border-style: solid;
-    border-color: #1FBAC0;    
+    border-color: #1FBAC0;
     transition: 0.3s ease-in-out;
     box-shadow: 0px 2px 15px -8px #000000;
 
 }
+
 .permission-4:hover {
-    font-size: 12px;
     color: #1FBAC0;
     background-color: #ffffff;
-    border-color: #1FBAC0;    
+    border-color: #1FBAC0;
     transition: 0.3s ease-in-out;
 }

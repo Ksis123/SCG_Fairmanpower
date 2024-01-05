@@ -73,19 +73,31 @@
                                             echo "<td>" . $i++ . "</td>";
                                             echo "<td>" . $row["name_eng"] . "</td>";
                                             echo "<td>" . $row["cost_center_id"] . "</td>";
-                                            echo '<td><div class="flex"><form method="post" action="org9_Costcenter.php" >',
-                                            '<input type="hidden" name="cost_center_id" value="' . $row['cost_center_id'] . '">',
-                                            '<button type="submit" name="delete_cost_center" class="delete-btn_Org"><i class="fa-solid fa-trash-can"></i></button>',
-                                            '</form>';
+                                            echo'<td><button type="button" name="delete_cost_center" class="delete-btn_Org" onclick="confirmDelete_Cost(\'' . $row['cost_center_id'] . '\');"><i class="fa-solid fa-trash-can"></i></button></td>';
+                                            echo '</tr>';
+
                                         }
                                         ?>
 
                                         <?php
-                                        // -- DELETE  ค่า Business ตาม organization_id -->
+                                        // -- DELETE ค่า Business ตาม business_id -->
+                                        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['delete_cost_center_id'])) {
+                                            $cost_center_id_to_delete = $_GET['delete_cost_center_id'];
 
-                                        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_cost_center'])) {
+                                            // แสดง SweetAlert2 Confirm Alert
+                                            echo '<script type="text/javascript">
+                                                        confirmDelete(' . $cost_center_id_to_delete . ');
+                                                    </script>';
 
-                                            $cost_center_id = $_POST['cost_center_id'];
+                                            // กระบวนการลบข้อมูล
+                                            delete_Cost_center($cost_center_id_to_delete);
+                                        }
+
+                                        // ฟังก์ชันสำหรับลบข้อมูล Cost-center Unit จาก SQL Server
+                                        function delete_Cost_center($cost_center_id)
+                                        {
+                                            global $conn;
+
                                             $sql = "DELETE FROM cost_center WHERE cost_center_id = ?";
                                             $params = array($cost_center_id);
 
@@ -99,22 +111,21 @@
                                                 die(print_r(sqlsrv_errors(), true));
                                             } else {
                                                 echo '<script type="text/javascript">
-                                                                    const swalWithBootstrapButtons = Swal.mixin({
-                                                                        customClass: {
-                                                                            confirmButton: "delete-swal",
-                                                                            cancelButton: "edit-swal"
-                                                                        },
-                                                                        buttonsStyling: false
-                                                                    });
-                                                                    swalWithBootstrapButtons.fire({
-                                                                        icon: "success",
-                                                                        title: "ระบบลบ หมายเลข Cost-Center ตามที่ระบุสำเร็จ ",
-                                                                        text: "อีกสักครู่ ...ระบบจะทำการรีเฟส",
-                                                                        confirmButtonText: "ตกลง",
-
-                                                                    })
-                                                                </script>';
-                                                echo "<meta http-equiv='refresh' content='3'>";
+                                                        const swalWithBootstrapButtons = Swal.mixin({
+                                                            customClass: {
+                                                                confirmButton: "delete-swal",
+                                                                cancelButton: "edit-swal"
+                                                            },
+                                                            buttonsStyling: false
+                                                        });
+                                                        swalWithBootstrapButtons.fire({
+                                                            icon: "success",
+                                                            title: "ระบบลบข้อมูลหมายเลข Cost-Center สำเร็จ ",
+                                                            text: "อีกสักครู่ ...ระบบจะทำการรีเฟส",
+                                                            confirmButtonText: "ตกลง",
+                                                        })
+                                                    </script>';
+                                                echo "<meta http-equiv='refresh' content='2'>";
                                                 exit();
                                             }
                                         }
@@ -215,7 +226,7 @@
                                                 toast: true,
                                                 position: "top-end",
                                                 showConfirmButton: false,
-                                                timer: 1300,
+                                                timer: 980,
                                                 timerProgressBar: true,
                                                 didOpen: (toast) => {
                                                     toast.onmouseenter = Swal.stopTimer;
@@ -228,7 +239,7 @@
                                             });            
                                             </script>';
 
-                                            echo "<meta http-equiv='refresh' content='2'>";
+                                            echo "<meta http-equiv='refresh' content='1'>";
 
                                             exit; // จบการทำงานของสคริปต์ทันทีหลังจาก redirect
                                         }

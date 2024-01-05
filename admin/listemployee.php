@@ -22,23 +22,21 @@
 		<div class="pd-ltr-20 card-box mb-0">
 			<div class="pd-20">
 				<h2 class="text-blue h4">รายการพนักงานทั้งหมด</h2>
-				<div class="text-left ">หมวดหมู่ :
-					<select name="sub_business_id" class="filter-select" required="true" autocomplete="off">
+				<div class="text-left">
+					หมวดหมู่ :
+					<select name="contract_type" id="contract_type" class="filter-select" required="true" autocomplete="off">
 						<option value="" disabled selected>-- เลือกประเภทพนักงานทั้งหมด --</option>
 						<?php
-						// สร้าง options สำหรับ dropdown 2
+						// สร้าง options สำหรับ dropdown
 						$sqlDropdown = "SELECT * FROM contract_type";
 						$resultDropdown = sqlsrv_query($conn, $sqlDropdown);
 
-						// เช็ค error
 						if ($resultDropdown === false) {
 							die(print_r(sqlsrv_errors(), true));
 						}
 
-						if ($resultDropdown) {
-							while ($row = sqlsrv_fetch_array($resultDropdown, SQLSRV_FETCH_ASSOC)) {
-								echo "<option value='"  . $row['contract_type_id'] . "'>" . $row['name_thai'] . "</option>";
-							}
+						while ($row = sqlsrv_fetch_array($resultDropdown, SQLSRV_FETCH_ASSOC)) {
+							echo "<option value='"  . $row['contract_type_id'] . "'>" . $row['name_thai'] . "</option>";
 						}
 						?>
 					</select>
@@ -93,11 +91,11 @@
 							echo "<tr>";
 							echo "<td>" . $i++ . "</td>";
 							echo "<td>" . $row["scg_employee_id"] . "</td>";
-							echo "<td><div class='row'>",										
-							"<div style= 'padding-right: 10px;'><img src='../asset/img/employeeicon.png' class='border-radius-100 shadow' width='40' height='40' alt=''></div>",
-							"<div  ><b>". '  ' . $row["prefix_thai"] . '  ' . $row["firstname_thai"] . '' . $row["lastname_thai"] . ' (' . $row["nickname_thai"] . ')' . " </b><br/>" ,"<a class ='text-primary'>" . $row["employee_email"] ." </a><br/>";
-							
-							echo "<td>" . $row["contracts"] . "</td>";
+							echo "<td><div class='row'>",
+							"<div style= 'padding-right: 5px;'><img src='../asset/img/employeeicon.png' class='border-radius-100 shadow' width='40' height='40' alt=''></div>",
+							"<div  ><b>" . '  ' . $row["prefix_thai"] . '  ' . $row["firstname_thai"] . ' ' . $row["lastname_thai"] . ' (' . $row["nickname_thai"] . ')' . " </b><br/>", "<a class ='text-primary'>" . $row["employee_email"] . " </a><br/>";
+
+							echo "<td class ='col-md-1'>" . $row["contracts"] . "</td>";
 							echo "<td>" . $row["department"] . "</td>";
 							echo "<td>" . $row["section"] . "</td>";
 

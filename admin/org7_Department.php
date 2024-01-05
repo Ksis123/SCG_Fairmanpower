@@ -57,6 +57,11 @@
                                         // เตรียมคำสั่ง SQL
                                         $sql7 = "SELECT * FROM department";
 
+                                        $sql = "SELECT department_id, name_thai, name_eng, division_id,
+                                        division.name_thai as division_name_th, division.name_eng as division_name_eng
+                                        FROM department
+                                        INNER JOIN division ON division.division_id = department.division_id";
+
                                         $params7 = array();
                                         $i = 1;
 

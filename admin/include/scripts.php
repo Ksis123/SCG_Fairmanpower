@@ -178,3 +178,28 @@
         });
     }
 </script>
+
+<script>
+    function confirmDelete_Cost(cost_center_id) {
+        Swal.fire({
+            title: "คุณต้องการลบข้อมูล Cost-Center นี้หรือไม่?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "ลบ",
+            cancelButtonText: "ยกเลิก"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // ถ้าคลิกปุ่ม "ลบ" ให้ทำการลบข้อมูล
+                window.location.href = `org9_Costcenter.php?delete_cost_center_id=${cost_center_id}`;
+                window.location.href = `org9_Costcenter.php`;
+
+            }
+            exit();
+
+        });
+    }
+</script>
+
+

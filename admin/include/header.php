@@ -17,8 +17,20 @@ if (
 
 	// ส่วนคำสั่ง SQL ควรตรงกับโครงสร้างของตารางในฐานข้อมูล
 	$sql = "SELECT * FROM employee em WHERE em.card_id = ?";
+
+	$sql2 = "SELECT scg_employee_id, prefix_thai, firstname_thai, lastname_thai, nickname_thai, gender, phone_number, employee_email, 
+	permission.name as permission, permission.permission_id as permissionID, contract_type.name_eng as contracts, 
+	section.name_thai as section, department.name_thai as department 
+	
+	FROM employee
+	INNER JOIN  cost_center ON cost_center.cost_center_id = employee.cost_center_organization_id
+	INNER JOIN section ON section.section_id = cost_center.section_id
+	INNER JOIN department ON department.department_id = section.department_id
+	INNER JOIN permission ON permission.permission_id = employee.permission_id
+	INNER JOIN contract_type ON contract_type.contract_type_id = employee.contract_type_id WHERE employee.card_id = ?";
+	
 	$params = array($card_id);
-	$stmt = sqlsrv_query($conn, $sql, $params);
+	$stmt = sqlsrv_query($conn, $sql2, $params);
 
 	if ($stmt === false) {
 		die(print_r(sqlsrv_errors(), true));
