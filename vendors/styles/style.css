@@ -806,8 +806,9 @@ p {
 }
 
 .form-group>label {
-    font-weight: 500;
-    font-size: 14px
+    font-weight: 590;
+    font-size: 14px;
+
 }
 
 .filter-select {
@@ -1042,6 +1043,10 @@ textarea.form-control {
 .breadcrumb-item a {
     color: #6cadae92
 }
+.breadcrumb-item a:hover {
+    color: #22cacdd5
+}
+
 
 .breadcrumb-item+.breadcrumb-item::before {
     font-family: "FontAwesome";
@@ -4970,28 +4975,53 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     transition: 0.5s ease-in-out;
     height: 43px;
     width: 83px;
-    color: #60D3AA;
+    color: #343634;
     box-shadow: 0px 2px 15px -6px #000000;
     transition: 0.3s ease-in-out;
     background-color: #ffffff;
     border-radius: 15px;
-    border: 2px solid #9CEE8C !important;
+    border: 2px solid #343634 !important;
 
 }
 
 .edit-swal:hover {
     font-size: 19px;
     font-weight: bold;
-    transition: 0.5s ease-in-out;
-    color: #f0f8ff;
+    transition: 0.3s ease-in-out;
+    color: #343634;
     box-shadow: 0px 2px 15px -6px #000000;
     transition: 0.3s ease-in-out;
-    background-image: linear-gradient(#9CEE8C, #60D3AA);
-    border: 2px solid #ffffff !important;
+    background-image: linear-gradient(#ffffff, #fafafa);
+    border: 2px solid #515151 !important;
 
 }
 
+.green-swal {
+    font-size: 18px;
+    transition: 0.5s ease-in-out;
+    height: 43px;
+    width: 83px;
+    color: #ffffff;
+    box-shadow: 0px 2px 15px -6px #000000;
+    transition: 0.3s ease-in-out;
+    background: linear-gradient(#1FBABF, #60D3AA);
+    border-radius: 15px;
+    border: 1px solid #1FBABF !important;
 
+
+}
+
+.green-swal:hover {
+    font-size: 19px;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+    color: #60D3AA;
+    box-shadow: 0px 2px 15px -6px #000000;
+    transition: 0.3s ease-in-out;
+    background: linear-gradient(#ffffff, #fafafa);
+    border: 2px solid #60D3AA !important;
+
+}
 
 
 .importexcel-btn {
@@ -5180,8 +5210,13 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 
 .permission-1:hover {
     font-size: 15px;
-    color: #EB5858;
+    color: #ffffff;
+    background-color: #EB5858;
     transition: 0.3s ease-in-out;
+    border-color:  #EB5858;
+
+    box-shadow: 0px 2px 15px -4px #ff9f94;
+
 }
 
 
@@ -5200,31 +5235,34 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 
 .permission-2:hover {
     font-size: 15px;
-    color: #ffb703;
-    background-color: #ffffff;
+    color: #fffbf0;
+    background-color: #ffb703;
     border-color: #ffb703;
     transition: 0.3s ease-in-out;
+    box-shadow: 0px 2px 15px -4px #fac228;
+
 }
 
 /* สีเขียว */
 .permission-3 {
     text-align: center;
-    color: #1FBAC0;
-    background-color: #f5ffff;
+    color: #cc750a;
+    background-color: #ffefdb;
     border-radius: 50px;
     border-style: solid;
-    border-color: #1FBAC0;
+    border-color: #cc750a;
     transition: 0.3s ease-in-out;
     box-shadow: 0px 2px 15px -8px #000000;
 
 }
 
 .permission-3:hover {
-    font-size: 15px;
-    color: #1FBAC0;
-    background-color: #ffffff;
-    border-color: #1FBAC0;
+    color: #ffffff;
+    background-color: #cc750a;
+    border-color: #cc750a;
     transition: 0.3s ease-in-out;
+    box-shadow: 0px 2px 15px -4px #cc810a;
+
 }
 
 /* สีฟ้า */
@@ -5242,8 +5280,10 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 }
 
 .permission-4:hover {
-    color: #1FBAC0;
-    background-color: #ffffff;
+    color: #f5ffff;
+    background-color: #1FBAC0;
     border-color: #1FBAC0;
     transition: 0.3s ease-in-out;
+    box-shadow: 0px 2px 15px -4px #94fbff;
+
 }

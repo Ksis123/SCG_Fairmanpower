@@ -110,21 +110,7 @@
                                             if ($result === false) {
                                                 die(print_r(sqlsrv_errors(), true));
                                             } else {
-                                                echo '<script type="text/javascript">
-                                                        const swalWithBootstrapButtons = Swal.mixin({
-                                                            customClass: {
-                                                                confirmButton: "delete-swal",
-                                                                cancelButton: "edit-swal"
-                                                            },
-                                                            buttonsStyling: false
-                                                        });
-                                                        swalWithBootstrapButtons.fire({
-                                                            icon: "success",
-                                                            title: "ระบบลบข้อมูลหมายเลข Cost-Center สำเร็จ ",
-                                                            text: "อีกสักครู่ ...ระบบจะทำการรีเฟส",
-                                                            confirmButtonText: "ตกลง",
-                                                        })
-                                                    </script>';
+
                                                 echo "<meta http-equiv='refresh' content='2'>";
                                                 exit();
                                             }

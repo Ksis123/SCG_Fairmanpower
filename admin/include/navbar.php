@@ -37,7 +37,7 @@
 				</a>
 				<div class="dropdown-menu dropdown-menu-right ">
 					<a class="dropdown-item" href="profile.php"><i class="fa-regular fa-user" style=" padding-right: 5px;"><br /> </i> โปรไฟล์</a>
-					<a class="dropdown-item" href="/index.php"><i class="fa-solid fa-arrow-right-from-bracket" style=" padding-right: 5px;"></i> ออกจากระบบ</a>
+					<a class="dropdown-item" href="C:\xampp\htdocs\SCG_Fairmanpower\index.php"><i class="fa-solid fa-arrow-right-from-bracket" style=" padding-right: 5px;"></i> ออกจากระบบ</a>
 				</div>
 			</div>
 		</div>

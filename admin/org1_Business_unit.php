@@ -251,15 +251,12 @@
                                     </div>
                                 </form>
                                 <?php
-
                                 // -------- INSERT  ค่า Business ตาม business_id PK-->
-
                                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     if (isset($_POST['submit'])) {
                                         $business_id = $_POST['business_id'];
                                         $nameTH = $_POST['name_thai'];
                                         $nameENG = $_POST['name_eng'];
-
 
                                         // ค่าไม่ว่าง ทำการ insert ข้อมูล
                                         $sqlInsert = "INSERT INTO business (business_id, name_thai, name_eng) VALUES ('$business_id', '$nameTH', '$nameENG')";

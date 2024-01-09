@@ -156,19 +156,32 @@
     };
 </script>
 
+<!-- Delete cornfirm sweetalert2-->
+
 <script>
     function confirmDelete(businessId) {
-        Swal.fire({
-            title: "คุณต้องการลบข้อมูล Business Unit นี้หรือไม่?",
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "delete-swal",
+                cancelButton: "edit-swal"
+            },
+            buttonsStyling: false
+        });
+        swalWithBootstrapButtons.fire({
             icon: "warning",
+            title: "คุณต้องการลบข้อมูล Business Unit นี้หรือไม่ ?",
             showCancelButton: true,
-            confirmButtonColor: "#d33",
-            cancelButtonColor: "#3085d6",
             confirmButtonText: "ลบ",
             cancelButtonText: "ยกเลิก"
         }).then((result) => {
             if (result.isConfirmed) {
                 // ถ้าคลิกปุ่ม "ลบ" ให้ทำการลบข้อมูล
+                swalWithBootstrapButtons.fire({
+                    icon: "success",
+                    title: "ระบบลบข้อมูล Business-Unit สำเร็จ ",
+                    text: "อีกสักครู่ ...ระบบจะทำการรีเฟส",
+                    confirmButtonText: "ตกลง",
+                });
                 window.location.href = `org1_Business_unit.php?delete_business_id=${businessId}`;
                 window.location.href = `org1_Business_unit.php`;
 
@@ -177,21 +190,30 @@
 
         });
     }
-</script>
 
-<script>
     function confirmDelete_Cost(cost_center_id) {
-        Swal.fire({
-            title: "คุณต้องการลบข้อมูล Cost-Center นี้หรือไม่?",
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "delete-swal",
+                cancelButton: "edit-swal"
+            },
+            buttonsStyling: false
+        });
+        swalWithBootstrapButtons.fire({
             icon: "warning",
+            title: "คุณต้องการลบหมายเลข Cost Center นี้หรือไม่ ?",
             showCancelButton: true,
-            confirmButtonColor: "#d33",
-            cancelButtonColor: "#3085d6",
             confirmButtonText: "ลบ",
             cancelButtonText: "ยกเลิก"
         }).then((result) => {
             if (result.isConfirmed) {
                 // ถ้าคลิกปุ่ม "ลบ" ให้ทำการลบข้อมูล
+                swalWithBootstrapButtons.fire({
+                    icon: "success",
+                    title: "ระบบลบข้อมูล Business-Unit สำเร็จ ",
+                    text: "อีกสักครู่ ...ระบบจะทำการรีเฟส",
+                    confirmButtonText: "ตกลง",
+                });
                 window.location.href = `org9_Costcenter.php?delete_cost_center_id=${cost_center_id}`;
                 window.location.href = `org9_Costcenter.php`;
 
@@ -200,6 +222,63 @@
 
         });
     }
+
+    function deleteEmployee(cardId) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "delete-swal",
+                cancelButton: "edit-swal"
+            },
+            buttonsStyling: false
+        });
+        swalWithBootstrapButtons.fire({
+            title: 'คุณแน่ใจหรือไม่?',
+            text: 'คุณต้องการลบข้อมูลพนักงานนี้หรือไม่?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ใช่, ลบ!',
+            cancelButtonText: 'ยกเลิก'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // ส่ง request ไปยังไฟล์ PHP ที่ทำการลบข้อมูล
+                $.ajax({
+                    type: 'POST',
+                    url: 'listemployee_delete.php',
+                    data: {
+                        delete_employee: true,
+                        card_id_to_delete: cardId
+                    },
+                    success: function(response) {
+                        // ตรวจสอบคำตอบที่ได้จาก PHP
+                        var result = JSON.parse(response);
+                        if (result.status === 'success') {
+                            swalWithBootstrapButtons.fire({
+                                icon: 'success',
+                                title: 'ลบข้อมูลสำเร็จ!',
+                                text: 'ข้อมูลพนักงานถูกลบออกจากระบบแล้ว',
+                            }).then(() => {
+                                // ทำการรีเฟรชหน้าหลังจากลบสำเร็จ
+                                location.reload();
+                            });
+                        } else {
+                            swalWithBootstrapButtons.fire({
+                                icon: 'error',
+                                title: 'เกิดข้อผิดพลาด!',
+                                text: 'ไม่สามารถลบข้อมูลได้',
+                            });
+                        }
+                    },
+                    error: function() {
+                        swalWithBootstrapButtons.fire({
+                            icon: 'error',
+                            title: 'เกิดข้อผิดพลาด!',
+                            text: 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้',
+                        });
+                    }
+                });
+            }
+        });
+    }
 </script>
-
-

@@ -250,7 +250,8 @@
                                                     echo "<option value='"  . $row['organization_id'] . "'>" . $row['organization_id'] . "</option>";
                                                 }
                                             }
-                                            ?> </select>
+                                            ?> 
+                                            </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="editNameThai">ชื่อ บริษัท (TH)</label>

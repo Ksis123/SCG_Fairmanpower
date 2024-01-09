@@ -28,7 +28,7 @@ if (
 	INNER JOIN department ON department.department_id = section.department_id
 	INNER JOIN permission ON permission.permission_id = employee.permission_id
 	INNER JOIN contract_type ON contract_type.contract_type_id = employee.contract_type_id WHERE employee.card_id = ?";
-	
+
 	$params = array($card_id);
 	$stmt = sqlsrv_query($conn, $sql2, $params);
 
@@ -66,6 +66,33 @@ if (
 
 	<script src="../asset/plugins/sweetalert2-11.10.1/jquery-3.7.1.min.js"></script>
 	<script src="../asset/plugins/sweetalert2-11.10.1/sweetalert2.all.min.js"></script>
+
+	<!-- momet time -->
+	<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
+	<script>
+		function calculateAge() {
+			// ดึงค่าจาก input birth_date
+			var birthDateValue = document.getElementsByName("birth_date")[0].value;
+
+			// ตรวจสอบว่า birthDateValue ไม่ใช่ค่าว่าง
+			if (birthDateValue !== "") {
+				// ทำการคำนวณอายุ
+				var birthDate = moment(birthDateValue, "YYYY-MM-DD");
+				var currentDate = moment();
+				var ageYears = currentDate.diff(birthDate, "years");
+				var ageMonths = currentDate.diff(birthDate, "months") % 12;
+
+				// ตั้งค่าค่าอายุใน input
+				document.getElementsByName("age_year")[0].value = ageYears;
+				document.getElementsByName("age_month")[0].value = ageMonths;
+			} else {
+				// ถ้า birthDateValue เป็นค่าว่าง ให้ตั้งค่า age_year และ age_month เป็นค่าว่างด้วย
+				document.getElementsByName("age_year")[0].value = "";
+				document.getElementsByName("age_month")[0].value = "";
+			}
+		}
+	</script>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<style>

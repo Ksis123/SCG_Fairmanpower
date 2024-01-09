@@ -64,7 +64,7 @@
 					<tbody>
 						<?php
 						// เตรียมคำสั่ง SQL
-						$sql = "SELECT scg_employee_id, prefix_thai, firstname_thai, lastname_thai, nickname_thai, gender, phone_number, employee_email, 
+						$sql = "SELECT card_id, scg_employee_id, prefix_thai, firstname_thai, lastname_thai, nickname_thai, gender, phone_number, employee_email, employment_status,
 								permission.name as permission, permission.permission_id as permissionID, contract_type.name_eng as contracts, 
 								section.name_thai as section, department.name_thai as department 
 								
@@ -100,10 +100,17 @@
 							echo "<td>" . $row["section"] . "</td>";
 
 							echo "<td><div class='permission-" . $row["permissionID"] . "'><b>" . $row["permission"] . "</b></div></td>";
-							echo "<td><div class='dropdown'><button class='delete-btn_Org'><i class='fa-solid fa-trash-can'></i></button><button class='edit-btn_Org'><i class='fa-solid fa-pencil'></i></button></div></td>";
+
+							echo '<td><div class="flex">',
+							'<button type="button" name="delete_employee" class="delete-btn_Org" onclick="deleteEmployee(\'' . $row['card_id'] . '\');"><i class="fa-solid fa-trash-can"></i></button>';
+
+							echo "<button type='button' class='edit-btn_Org' >";
+							echo "<i class='fa-solid fa-pencil'></i>";
+							echo "</button>";
 							echo "</tr>";
 						}
 						?>
+
 					</tbody>
 				</table>
 			</div>
